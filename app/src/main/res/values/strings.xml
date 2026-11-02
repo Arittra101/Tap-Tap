@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Every user-visible string in Tap Tap (FR-8.1). The English here is the design's
+        own copy, taken from the artboards verbatim; TT-027 translates it into bn, hi, ru,
+        es and it. Voice rules live in the design system README: short sentences, sentence
+        case, verbs on buttons, no emoji.
+    -->
+    <!-- The product name. Not translated in any language. -->
+    <string name="app_name" translatable="false">Tap Tap</string>
+    <!-- The wordmark in the Home top bar. Not translated: it is the product name. -->
+    <string name="app_wordmark" translatable="false">Tap Tap</string>
+    <!-- Typographic markers, not prose. -->
+    <string name="required_marker" translatable="false">*</string>
+    <string name="quoted" translatable="false">\u201C%1$s\u201D</string>
+
+    <!-- Common -->
+    <string name="action_back">Back</string>
+    <string name="action_back_to_home">Back to Home</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save_changes">Save changes</string>
+    <string name="label_optional">Optional</string>
+
+    <!-- Home -->
+    <string name="home_focus_heading">Your focus</string>
+    <string name="home_focus_one_at_a_time">One quit counter at a time</string>
+    <string name="home_focus_not_set">Not set yet</string>
+    <string name="home_focus_pick_title">Pick one habit to focus on</string>
+    <string name="home_focus_pick_help">It stays big at the top of Home, so you see your progress first every day.</string>
+    <string name="home_counters_heading">Counters</string>
+    <string name="home_quit_heading">Quit tracker</string>
+    <string name="home_pinned_first">· pinned first</string>
+    <string name="home_new_counter">New counter</string>
+    <string name="home_days_free">days free</string>
+    <string name="home_money_saved">money saved</string>
+    <string name="home_urges_today">urges beaten today</string>
+    <string name="home_beat_urge">I beat an urge</string>
+    <string name="home_no_target">no target</string>
+    <string name="home_step_meta">Step %1$d</string>
+    <string name="home_target_reached">Target reached</string>
+    <string name="home_of_target">/ %1$d</string>
+    <string name="home_welcome_title">Welcome to Tap Tap</string>
+    <string name="home_welcome_body">Count anything you do, or quit a bad habit day by day. Start with your first counter.</string>
+    <string name="home_choice_normal_title">Normal counter</string>
+    <string name="home_choice_normal_sub">Reps, glasses of water, pages, anything</string>
+    <string name="home_choice_quit_title">Quit counter</string>
+    <string name="home_choice_quit_sub">Stay away from a bad habit and watch the days add up</string>
+    <string name="home_popular_ideas">Popular ideas</string>
+    <string name="idea_pushups">Push-ups</string>
+    <string name="idea_water">Glasses of water</string>
+    <string name="idea_pages">Pages read</string>
+    <string name="idea_quit_smoking">Quit smoking</string>
+    <string name="idea_phone_night">Less phone at night</string>
+
+    <!-- Accessibility labels -->
+    <string name="a11y_open_counter">Open %1$s</string>
+    <string name="a11y_add_to">Add %1$d to %2$s</string>
+    <string name="a11y_pin">Pin %1$s</string>
+    <string name="a11y_unpin">Unpin %1$s</string>
+    <string name="a11y_make_focus">Make %1$s your focus</string>
+    <string name="a11y_pin_to_top">Pin to top</string>
+    <string name="a11y_unpin_from_top">Unpin</string>
+    <string name="a11y_edit_counter">Edit counter</string>
+    <string name="a11y_settings">Settings</string>
+
+    <!-- New counter -->
+    <string name="create_title">New counter</string>
+    <string name="create_type_question">What do you want to track?</string>
+    <string name="create_type_normal">Normal counter</string>
+    <string name="create_type_normal_sub">Count anything: reps, glasses of water, pages</string>
+    <string name="create_type_quit">Quit counter</string>
+    <string name="create_type_quit_sub">Stay away from a bad habit, day by day</string>
+    <string name="create_pick_habit">Pick a habit or write your own</string>
+    <string name="habit_cigarettes">Cigarettes</string>
+    <string name="habit_alcohol">Alcohol</string>
+    <string name="habit_soft_drinks">Soft drinks</string>
+    <string name="habit_phone_night">Phone at night</string>
+    <string name="habit_other">Other</string>
+    <string name="habit_name_cigarettes">Quit cigarettes</string>
+    <string name="habit_name_alcohol">Quit drinking</string>
+    <string name="habit_name_soft_drinks">Quit soft drinks</string>
+    <string name="habit_name_phone_night">Less phone at night</string>
+    <string name="create_name_normal">Counter name</string>
+    <string name="create_name_quit">Habit to quit</string>
+    <string name="create_name_hint_normal">e.g. Push-ups, Glasses of water</string>
+    <string name="create_name_hint_quit">e.g. Junk food, Late-night snacks</string>
+    <string name="field_start_value">Start value</string>
+    <string name="field_start_value_help">Reset goes back here</string>
+    <string name="field_step_value">Step value</string>
+    <string name="field_step_value_help">Added per tap</string>
+    <string name="a11y_lower_start_value">Lower start value</string>
+    <string name="a11y_raise_start_value">Raise start value</string>
+    <string name="a11y_lower_step_value">Lower step value</string>
+    <string name="a11y_raise_step_value">Raise step value</string>
+    <string name="a11y_less">Less</string>
+    <string name="a11y_more">More</string>
+    <string name="create_when_stopped">When did you stop?</string>
+    <string name="create_today">Today</string>
+    <string name="create_earlier_date">Earlier date</string>
+    <string name="create_quit_date_help">Days free are counted from this day, by themselves. You don\'t need to tap every day.</string>
+    <string name="create_money_per_day">Money spent on it per day</string>
+    <string name="create_money_hint">150</string>
+    <string name="create_money_help">We show how much money you save each day.</string>
+    <string name="field_set_target">Set a target</string>
+    <string name="field_set_goal">Set a goal</string>
+    <string name="field_target_count">Target count</string>
+    <string name="field_target_value">Target value</string>
+    <string name="field_days_to_stay_free">Days to stay free</string>
+    <string name="field_keep_counting">Keep counting after target</string>
+    <string name="field_keep_counting_help">When off, it stops at the target</string>
+    <string name="create_reason">Your reason to quit</string>
+    <string name="create_reason_hint">e.g. To breathe better on my morning walk</string>
+    <string name="create_reason_help">We show it to you when you open this counter and when an urge comes.</string>
+    <string name="create_motivation">Motivation</string>
+    <string name="field_badges">Milestone badges</string>
+    <string name="field_badges_help">Earn a badge at 1, 3, 7, 14, 30, 90 days and more</string>
+    <string name="field_daily_message">Daily motivation message</string>
+    <string name="field_daily_message_help">A short note with your progress every morning</string>
+    <string name="field_make_focus">Make this my focus</string>
+    <string name="field_make_focus_help">Shown big at the top of Home. Only one at a time.</string>
+    <string name="field_notes">Notes</string>
+    <string name="field_notes_hint">When to count, anything to remember</string>
+    <string name="field_pin_to_top">Pin to top</string>
+    <string name="field_pin_help_normal">Show it first in Counters</string>
+    <string name="field_pin_help_quit">Show it first in Quit tracker</string>
+    <string name="create_button_normal">Create counter</string>
+    <string name="create_button_quit">Start quit counter</string>
+    <string name="create_footer">You can change the color, background and these options later.</string>
+
+    <string name="home_money_saved_value">%1$s saved</string>
+    <string name="badge_all_earned">You earned every badge</string>
+
+    <!--
+        Counts use plurals rather than string concatenation, so languages with more than
+        two forms (Russian has three) are correct, not merely close (FR-8.3).
+    -->
+    <plurals name="home_counter_count">
+        <item quantity="one">%1$d counter</item>
+        <item quantity="other">%1$d counters</item>
+    </plurals>
+    <plurals name="home_habit_count">
+        <item quantity="one">%1$d habit</item>
+        <item quantity="other">%1$d habits</item>
+    </plurals>
+    <plurals name="home_urges_beaten_today">
+        <item quantity="one">%1$d urge beaten today</item>
+        <item quantity="other">%1$d urges beaten today</item>
+    </plurals>
+    <plurals name="badge_days_to_next">
+        <item quantity="one">%1$d day to your %2$d-day badge</item>
+        <item quantity="other">%1$d days to your %2$d-day badge</item>
+    </plurals>
+    <plurals name="badge_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
+    <!-- Normal counter -->
+    <string name="counter_stat_today">Today</string>
+    <string name="counter_stat_left">Left to target</string>
+    <string name="counter_stat_done">Done</string>
+    <string name="counter_no_value">\u2014</string>
+    <string name="counter_of_target">of %1$d</string>
+    <string name="counter_pill_step">Step %1$d</string>
+    <string name="counter_pill_counting_down">Counting down</string>
+    <string name="counter_pill_locked">Locked</string>
+    <string name="counter_pill_target_reached">Target reached</string>
+    <string name="counter_hint_add">Tap to +%1$d</string>
+    <string name="counter_hint_subtract">Tap to \u2212%1$d</string>
+    <string name="counter_hint_locked">Locked</string>
+    <string name="counter_hint_done">Done for today</string>
+    <string name="counter_helper_tap">Tap anywhere on the circle</string>
+    <!--
+        Not a plural on purpose: the step value is the object of the sentence in every
+        language here, so no word agrees with it. "takes 1 away" / "takes 5 away" and the
+        Russian "убирает 1" / "убирает 5" are both correct without plural forms.
+    -->
+    <string name="counter_helper_reverse">Reverse is on. Each tap takes %1$d away.</string>
+    <string name="counter_helper_locked">Unlock to count again. Locking stops taps by mistake.</string>
+    <string name="counter_helper_done">Turn on \"Keep counting after target\" in Edit to go on.</string>
+    <string name="a11y_add">Add %1$d</string>
+    <string name="a11y_subtract">Subtract %1$d</string>
+    <string name="a11y_counter_locked">Counter is locked</string>
+    <string name="control_lock">Lock</string>
+    <string name="control_unlock">Unlock</string>
+    <string name="control_reverse">Reverse</string>
+    <string name="control_count_up">Count up</string>
+    <string name="control_reset">Reset</string>
+    <string name="reset_title">Reset this counter?</string>
+    <string name="reset_message">The count goes back to the start value (%1$d). You can\'t undo this.</string>
+    <string name="reset_confirm">Reset</string>
+
+    <!-- Quit counter -->
+    <string name="quit_free_since">Free since %1$s</string>
+    <string name="quit_started_again_today">Started again today</string>
+    <string name="quit_days_free">days free</string>
+    <string name="quit_time_without">%1$d d %2$d h without it</string>
+    <string name="quit_your_focus">Your focus</string>
+    <string name="quit_make_focus">Make focus</string>
+    <string name="quit_stat_money">Money saved</string>
+    <string name="quit_stat_urges">Urges beaten</string>
+    <string name="quit_stat_best">Best streak</string>
+    <string name="quit_beat_urge">I beat an urge</string>
+    <string name="quit_beaten_today">%1$s beaten today. Tap each time you say no.</string>
+    <string name="quit_your_reason">Your reason</string>
+    <string name="quit_milestones">Milestones</string>
+    <string name="quit_badges_earned">%1$d of 10 earned</string>
+    <string name="quit_slipped">I slipped</string>
+    <string name="slip_title">Did you slip?</string>
+    <string name="slip_message">That is okay. Your days free start again from today. Your best streak, badges and urges beaten are kept.</string>
+    <string name="slip_confirm">Start again</string>
+    <string name="badge_day_word">day badge</string>
+    <string name="badge_state_earned">earned</string>
+    <string name="badge_state_next">next</string>
+    <string name="badge_state_locked">locked</string>
+    <plurals name="quit_best_streak_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+
+    <!-- Edit counter -->
+    <string name="edit_title">Edit counter</string>
+    <string name="edit_name">Name</string>
+    <string name="edit_background">Background image</string>
+    <string name="edit_background_help">Default images take the counter\'s color. A soft layer keeps the number easy to read.</string>
+    <string name="background_none">No background</string>
+    <string name="background_waves">Waves</string>
+    <string name="background_orbs">Orbs</string>
+    <string name="background_hills">Hills</string>
+    <string name="edit_counter_color">Counter color</string>
+    <string name="edit_counter_color_help">Only this counter changes color. Light or dark mode still follows the app.</string>
+    <string name="color_app">App</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_teal">Teal</string>
+    <string name="color_saffron">Saffron</string>
+    <string name="color_blue">Blue</string>
+    <string name="edit_values_help">The current count does not change. A new step works from the next tap. A new start value is used the next time you reset.</string>
+    <!-- TT-031 decision 1: allowed, but the user is told what a reset will do. -->
+    <string name="edit_start_above_target">The start value is above the target, so a reset will already be past it.</string>
+    <string name="edit_pin_help">Show it first in Counters on Home</string>
+    <string name="edit_pin_help_quit">Show it first in Quit tracker on Home</string>
+    <string name="edit_delete">Delete counter</string>
+    <string name="delete_title">Delete this counter?</string>
+    <string name="delete_message">%1$s and its history are removed. You can\'t undo this.</string>
+    <string name="delete_confirm">Delete</string>
+    <string name="edit_quit_date">Quit date</string>
+    <string name="a11y_back_to_counter">Back to counter</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_appearance">App appearance</string>
+    <string name="settings_color_theme">Color theme</string>
+    <string name="settings_mode">Mode</string>
+    <string name="settings_mode_light">Light</string>
+    <string name="settings_mode_dark">Dark</string>
+    <string name="settings_mode_system">System</string>
+    <string name="settings_mode_note_system">Phone is in %1$s mode, so the app uses %2$s ~ %3$s</string>
+    <string name="settings_mode_note_fixed">The app uses %1$s ~ %2$s</string>
+    <string name="settings_mode_word_light">light</string>
+    <string name="settings_mode_word_dark">dark</string>
+    <string name="settings_mode_name_light">Light</string>
+    <string name="settings_mode_name_dark">Dark</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_when_you_tap">When you tap</string>
+    <string name="settings_vibration">Vibration</string>
+    <string name="settings_vibration_help">Short buzz on every + and \u2212</string>
+    <string name="settings_sound">Sound</string>
+    <string name="settings_sound_help">Soft click on every + and \u2212</string>
+    <string name="settings_about">About</string>
+    <string name="settings_privacy">Privacy policy</string>
+
+    <!-- Language names stay in their own script, with the English name beneath (FR-6.3). -->
+    <string name="lang_native_en" translatable="false">English</string>
+    <string name="lang_native_bn" translatable="false">বাংলা</string>
+    <string name="lang_native_hi" translatable="false">हिन्दी</string>
+    <string name="lang_native_ru" translatable="false">Русский</string>
+    <string name="lang_native_es" translatable="false">Español</string>
+    <string name="lang_native_it" translatable="false">Italiano</string>
+    <string name="lang_en">English</string>
+    <string name="lang_bn">Bangla</string>
+    <string name="lang_hi">Hindi</string>
+    <string name="lang_ru">Russian</string>
+    <string name="lang_es">Spanish</string>
+    <string name="lang_it">Italian</string>
+
+    <!-- Daily motivation message (FR-8.6) -->
+    <string name="notif_channel_name">Daily motivation</string>
+    <string name="notif_channel_description">One short note each morning about the habits you are leaving.</string>
+    <!-- The ordinary morning note: days free plus the next badge. -->
+    <string name="notif_daily_body">%1$s · %2$s</string>
+    <!--
+        TT-031 decision 4: the message still goes out on a day the user slipped, but it
+        must not claim a streak they no longer have.
+    -->
+    <string name="notif_restart_title">Day one again</string>
+    <string name="notif_restart_body">You started again today. Your best streak, badges and urges beaten are all kept.</string>
+    <plurals name="notif_days_free">
+        <item quantity="one">%1$d day free</item>
+        <item quantity="other">%1$d days free</item>
+    </plurals>
+</resources>

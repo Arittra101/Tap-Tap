@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Russian (ru). FR-8.1.
+        Russian needs four plural forms (one / few / many / other) — see the plurals at the
+        bottom. "0 дней", "1 день", "2 дня", "5 дней" are all different.
+        NOTE: produced without a native reviewer — please check before release.
+    -->
+
+    <!-- Common -->
+    <string name="action_back">Назад</string>
+    <string name="action_back_to_home">Назад на главную</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_save_changes">Сохранить изменения</string>
+    <string name="label_optional">Необязательно</string>
+
+    <!-- Home -->
+    <string name="home_focus_heading">Ваш фокус</string>
+    <string name="home_focus_one_at_a_time">Одна привычка за раз</string>
+    <string name="home_focus_not_set">Ещё не выбрано</string>
+    <string name="home_focus_pick_title">Выберите одну привычку для фокуса</string>
+    <string name="home_focus_pick_help">Она остаётся большой вверху главной, так что каждый день вы сначала видите свой прогресс.</string>
+    <string name="home_counters_heading">Счётчики</string>
+    <string name="home_quit_heading">Отказ от привычек</string>
+    <string name="home_pinned_first">· закреплённые первыми</string>
+    <string name="home_new_counter">Новый счётчик</string>
+    <string name="home_days_free">дней без неё</string>
+    <string name="home_money_saved">сэкономлено</string>
+    <string name="home_urges_today">желаний побеждено сегодня</string>
+    <string name="home_beat_urge">Я победил желание</string>
+    <string name="home_no_target">без цели</string>
+    <string name="home_step_meta">Шаг %1$d</string>
+    <string name="home_target_reached">Цель достигнута</string>
+    <string name="home_of_target">/ %1$d</string>
+    <string name="home_welcome_title">Добро пожаловать в Tap Tap</string>
+    <string name="home_welcome_body">Считайте всё, что делаете, или бросайте вредную привычку день за днём. Начните с первого счётчика.</string>
+    <string name="home_choice_normal_title">Обычный счётчик</string>
+    <string name="home_choice_normal_sub">Повторения, стаканы воды, страницы, что угодно</string>
+    <string name="home_choice_quit_title">Счётчик отказа</string>
+    <string name="home_choice_quit_sub">Держитесь подальше от вредной привычки и смотрите, как растут дни</string>
+    <string name="home_popular_ideas">Популярные идеи</string>
+    <string name="idea_pushups">Отжимания</string>
+    <string name="idea_water">Стаканы воды</string>
+    <string name="idea_pages">Прочитанные страницы</string>
+    <string name="idea_quit_smoking">Бросить курить</string>
+    <string name="idea_phone_night">Меньше телефона ночью</string>
+    <string name="home_money_saved_value">%1$s сэкономлено</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_open_counter">Открыть «%1$s»</string>
+    <string name="a11y_add_to">Добавить %1$d к «%2$s»</string>
+    <string name="a11y_pin">Закрепить «%1$s»</string>
+    <string name="a11y_unpin">Открепить «%1$s»</string>
+    <string name="a11y_make_focus">Сделать «%1$s» вашим фокусом</string>
+    <string name="a11y_pin_to_top">Закрепить сверху</string>
+    <string name="a11y_unpin_from_top">Открепить</string>
+    <string name="a11y_edit_counter">Изменить счётчик</string>
+    <string name="a11y_settings">Настройки</string>
+    <string name="a11y_lower_start_value">Уменьшить начальное значение</string>
+    <string name="a11y_raise_start_value">Увеличить начальное значение</string>
+    <string name="a11y_lower_step_value">Уменьшить шаг</string>
+    <string name="a11y_raise_step_value">Увеличить шаг</string>
+    <string name="a11y_less">Меньше</string>
+    <string name="a11y_more">Больше</string>
+    <string name="a11y_add">Добавить %1$d</string>
+    <string name="a11y_subtract">Вычесть %1$d</string>
+    <string name="a11y_counter_locked">Счётчик заблокирован</string>
+    <string name="a11y_back_to_counter">Назад к счётчику</string>
+
+    <!-- New counter -->
+    <string name="create_title">Новый счётчик</string>
+    <string name="create_type_question">Что вы хотите считать?</string>
+    <string name="create_type_normal">Обычный счётчик</string>
+    <string name="create_type_normal_sub">Считайте что угодно: повторения, стаканы воды, страницы</string>
+    <string name="create_type_quit">Счётчик отказа</string>
+    <string name="create_type_quit_sub">День за днём держитесь подальше от вредной привычки</string>
+    <string name="create_pick_habit">Выберите привычку или напишите свою</string>
+    <string name="habit_cigarettes">Сигареты</string>
+    <string name="habit_alcohol">Алкоголь</string>
+    <string name="habit_soft_drinks">Газировка</string>
+    <string name="habit_phone_night">Телефон ночью</string>
+    <string name="habit_other">Другое</string>
+    <string name="habit_name_cigarettes">Бросить курить</string>
+    <string name="habit_name_alcohol">Бросить пить</string>
+    <string name="habit_name_soft_drinks">Бросить газировку</string>
+    <string name="habit_name_phone_night">Меньше телефона ночью</string>
+    <string name="create_name_normal">Название счётчика</string>
+    <string name="create_name_quit">Привычка, от которой отказываетесь</string>
+    <string name="create_name_hint_normal">например, отжимания, стаканы воды</string>
+    <string name="create_name_hint_quit">например, фастфуд, перекусы ночью</string>
+    <string name="field_start_value">Начальное значение</string>
+    <string name="field_start_value_help">Сброс возвращает сюда</string>
+    <string name="field_step_value">Шаг</string>
+    <string name="field_step_value_help">Добавляется за одно касание</string>
+    <string name="create_when_stopped">Когда вы остановились?</string>
+    <string name="create_today">Сегодня</string>
+    <string name="create_earlier_date">Более ранняя дата</string>
+    <string name="create_quit_date_help">Дни без привычки считаются от этого дня сами. Не нужно нажимать каждый день.</string>
+    <string name="create_money_per_day">Трата на это в день</string>
+    <string name="create_money_hint">150</string>
+    <string name="create_money_help">Мы показываем, сколько денег вы экономите каждый день.</string>
+    <string name="field_set_target">Задать цель</string>
+    <string name="field_set_goal">Задать цель</string>
+    <string name="field_target_count">Цель счёта</string>
+    <string name="field_target_value">Значение цели</string>
+    <string name="field_days_to_stay_free">Сколько дней держаться</string>
+    <string name="field_keep_counting">Продолжать считать после цели</string>
+    <string name="field_keep_counting_help">Когда выключено, счёт останавливается на цели</string>
+    <string name="create_reason">Ваша причина бросить</string>
+    <string name="create_reason_hint">например, чтобы легче дышать на утренней прогулке</string>
+    <string name="create_reason_help">Мы показываем её, когда вы открываете этот счётчик и когда приходит желание.</string>
+    <string name="create_motivation">Мотивация</string>
+    <string name="field_badges">Значки за вехи</string>
+    <string name="field_badges_help">Получайте значки на 1, 3, 7, 14, 30, 90 дней и дальше</string>
+    <string name="field_daily_message">Ежедневное сообщение</string>
+    <string name="field_daily_message_help">Короткая заметка о вашем прогрессе каждое утро</string>
+    <string name="field_make_focus">Сделать это моим фокусом</string>
+    <string name="field_make_focus_help">Показывается большим вверху главной. Только одна за раз.</string>
+    <string name="field_notes">Заметки</string>
+    <string name="field_notes_hint">Когда считать, что стоит запомнить</string>
+    <string name="field_pin_to_top">Закрепить сверху</string>
+    <string name="field_pin_help_normal">Показывать первым в «Счётчиках»</string>
+    <string name="field_pin_help_quit">Показывать первым в «Отказе от привычек»</string>
+    <string name="create_button_normal">Создать счётчик</string>
+    <string name="create_button_quit">Начать счётчик отказа</string>
+    <string name="create_footer">Цвет, фон и эти настройки можно изменить позже.</string>
+
+    <!-- Normal counter -->
+    <string name="counter_stat_today">Сегодня</string>
+    <string name="counter_stat_left">До цели</string>
+    <string name="counter_stat_done">Готово</string>
+    <string name="counter_no_value">—</string>
+    <string name="counter_of_target">из %1$d</string>
+    <string name="counter_pill_step">Шаг %1$d</string>
+    <string name="counter_pill_counting_down">Обратный счёт</string>
+    <string name="counter_pill_locked">Заблокировано</string>
+    <string name="counter_pill_target_reached">Цель достигнута</string>
+    <string name="counter_hint_add">Нажмите для +%1$d</string>
+    <string name="counter_hint_subtract">Нажмите для −%1$d</string>
+    <string name="counter_hint_locked">Заблокировано</string>
+    <string name="counter_hint_done">На сегодня всё</string>
+    <string name="counter_helper_tap">Нажмите в любом месте круга</string>
+    <string name="counter_helper_reverse">Обратный счёт включён. Каждое касание убирает %1$d.</string>
+    <string name="counter_helper_locked">Разблокируйте, чтобы считать снова. Блокировка защищает от случайных касаний.</string>
+    <string name="counter_helper_done">Чтобы продолжить, включите «Продолжать считать после цели» в настройках счётчика.</string>
+    <string name="control_lock">Блок</string>
+    <string name="control_unlock">Разблок</string>
+    <string name="control_reverse">Обратно</string>
+    <string name="control_count_up">Вперёд</string>
+    <string name="control_reset">Сброс</string>
+    <string name="reset_title">Сбросить этот счётчик?</string>
+    <string name="reset_message">Счёт вернётся к начальному значению (%1$d). Это нельзя отменить.</string>
+    <string name="reset_confirm">Сбросить</string>
+
+    <!-- Quit counter -->
+    <string name="quit_free_since">Свободны с %1$s</string>
+    <string name="quit_started_again_today">Начали заново сегодня</string>
+    <string name="quit_days_free">дней без неё</string>
+    <string name="quit_time_without">%1$d д %2$d ч без неё</string>
+    <string name="quit_your_focus">Ваш фокус</string>
+    <string name="quit_make_focus">Сделать фокусом</string>
+    <string name="quit_stat_money">Сэкономлено</string>
+    <string name="quit_stat_urges">Желаний побеждено</string>
+    <string name="quit_stat_best">Лучшая серия</string>
+    <string name="quit_beat_urge">Я победил желание</string>
+    <string name="quit_beaten_today">Сегодня побеждено: %1$s. Нажимайте каждый раз, когда говорите «нет».</string>
+    <string name="quit_your_reason">Ваша причина</string>
+    <string name="quit_milestones">Вехи</string>
+    <string name="quit_badges_earned">%1$d из 10 получено</string>
+    <string name="quit_slipped">Я сорвался</string>
+    <string name="slip_title">Вы сорвались?</string>
+    <string name="slip_message">Это нормально. Ваши дни без привычки начнутся заново с сегодняшнего дня. Лучшая серия, значки и побеждённые желания сохранятся.</string>
+    <string name="slip_confirm">Начать заново</string>
+    <string name="badge_all_earned">Вы получили все значки</string>
+    <string name="badge_day_word">дневной значок</string>
+    <string name="badge_state_earned">получен</string>
+    <string name="badge_state_next">следующий</string>
+    <string name="badge_state_locked">закрыт</string>
+
+    <!-- Edit counter -->
+    <string name="edit_title">Изменить счётчик</string>
+    <string name="edit_name">Название</string>
+    <string name="edit_background">Фоновое изображение</string>
+    <string name="edit_background_help">Стандартные изображения берут цвет счётчика. Мягкий слой оставляет число читаемым.</string>
+    <string name="background_none">Без фона</string>
+    <string name="background_waves">Волны</string>
+    <string name="background_orbs">Круги</string>
+    <string name="background_hills">Холмы</string>
+    <string name="edit_counter_color">Цвет счётчика</string>
+    <string name="edit_counter_color_help">Меняется цвет только этого счётчика. Светлый или тёмный режим по-прежнему следует за приложением.</string>
+    <string name="color_app">Как в приложении</string>
+    <string name="color_pink">Розовый</string>
+    <string name="color_teal">Бирюзовый</string>
+    <string name="color_saffron">Шафрановый</string>
+    <string name="color_blue">Синий</string>
+    <string name="edit_values_help">Текущий счёт не меняется. Новый шаг работает со следующего касания. Новое начальное значение используется при следующем сбросе.</string>
+    <string name="edit_start_above_target">Начальное значение больше цели, поэтому после сброса цель уже будет пройдена.</string>
+    <string name="edit_pin_help">Показывать первым в «Счётчиках» на главной</string>
+    <string name="edit_pin_help_quit">Показывать первым в «Отказе от привычек» на главной</string>
+    <string name="edit_delete">Удалить счётчик</string>
+    <string name="delete_title">Удалить этот счётчик?</string>
+    <string name="delete_message">«%1$s» и его история будут удалены. Это нельзя отменить.</string>
+    <string name="delete_confirm">Удалить</string>
+    <string name="edit_quit_date">Дата отказа</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_appearance">Вид приложения</string>
+    <string name="settings_color_theme">Цветовая тема</string>
+    <string name="settings_mode">Режим</string>
+    <string name="settings_mode_light">Светлый</string>
+    <string name="settings_mode_dark">Тёмный</string>
+    <string name="settings_mode_system">Системный</string>
+    <string name="settings_mode_note_system">На телефоне %1$s режим, поэтому приложение использует %2$s ~ %3$s</string>
+    <string name="settings_mode_note_fixed">Приложение использует %1$s ~ %2$s</string>
+    <string name="settings_mode_word_light">светлый</string>
+    <string name="settings_mode_word_dark">тёмный</string>
+    <string name="settings_mode_name_light">Светлый</string>
+    <string name="settings_mode_name_dark">Тёмный</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_when_you_tap">При касании</string>
+    <string name="settings_vibration">Вибрация</string>
+    <string name="settings_vibration_help">Короткая вибрация на каждый + и −</string>
+    <string name="settings_sound">Звук</string>
+    <string name="settings_sound_help">Мягкий щелчок на каждый + и −</string>
+    <string name="settings_about">О приложении</string>
+    <string name="settings_privacy">Политика конфиденциальности</string>
+    <string name="lang_en">Английский</string>
+    <string name="lang_bn">Бенгальский</string>
+    <string name="lang_hi">Хинди</string>
+    <string name="lang_ru">Русский</string>
+    <string name="lang_es">Испанский</string>
+    <string name="lang_it">Итальянский</string>
+
+    <!-- Plurals: Russian needs one / few / many / other. -->
+    <plurals name="home_counter_count">
+        <item quantity="one">%1$d счётчик</item>
+        <item quantity="few">%1$d счётчика</item>
+        <item quantity="many">%1$d счётчиков</item>
+        <item quantity="other">%1$d счётчика</item>
+    </plurals>
+    <plurals name="home_habit_count">
+        <item quantity="one">%1$d привычка</item>
+        <item quantity="few">%1$d привычки</item>
+        <item quantity="many">%1$d привычек</item>
+        <item quantity="other">%1$d привычки</item>
+    </plurals>
+    <plurals name="home_urges_beaten_today">
+        <item quantity="one">%1$d желание побеждено сегодня</item>
+        <item quantity="few">%1$d желания побеждено сегодня</item>
+        <item quantity="many">%1$d желаний побеждено сегодня</item>
+        <item quantity="other">%1$d желания побеждено сегодня</item>
+    </plurals>
+    <plurals name="badge_days_to_next">
+        <item quantity="one">%1$d день до значка на %2$d дней</item>
+        <item quantity="few">%1$d дня до значка на %2$d дней</item>
+        <item quantity="many">%1$d дней до значка на %2$d дней</item>
+        <item quantity="other">%1$d дня до значка на %2$d дней</item>
+    </plurals>
+    <plurals name="badge_days">
+        <item quantity="one">%1$d день</item>
+        <item quantity="few">%1$d дня</item>
+        <item quantity="many">%1$d дней</item>
+        <item quantity="other">%1$d дня</item>
+    </plurals>
+    <plurals name="quit_best_streak_days">
+        <item quantity="one">%1$d день</item>
+        <item quantity="few">%1$d дня</item>
+        <item quantity="many">%1$d дней</item>
+        <item quantity="other">%1$d дня</item>
+    </plurals>
+
+    <!-- Daily motivation message (FR-8.6) -->
+    <string name="notif_channel_name">Ежедневная мотивация</string>
+    <string name="notif_channel_description">Короткая заметка каждое утро о привычках, от которых вы отказываетесь.</string>
+    <string name="notif_daily_body">%1$s · %2$s</string>
+    <string name="notif_restart_title">Снова первый день</string>
+    <string name="notif_restart_body">Сегодня вы начали заново. Лучшая серия, значки и побеждённые желания — всё сохранено.</string>
+    <plurals name="notif_days_free">
+        <item quantity="one">%1$d день без неё</item>
+        <item quantity="few">%1$d дня без неё</item>
+        <item quantity="many">%1$d дней без неё</item>
+        <item quantity="other">%1$d дня без неё</item>
+    </plurals>
+</resources>

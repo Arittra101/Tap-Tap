@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Bangla (bn). FR-8.1.
+        Translated from the English source, following the design system's voice: short
+        sentences, one idea each, no slang, no religious words.
+        NOTE: produced without a native reviewer — please check before release.
+    -->
+
+    <!-- Common -->
+    <string name="action_back">ফিরে যান</string>
+    <string name="action_back_to_home">হোমে ফিরে যান</string>
+    <string name="action_cancel">বাতিল</string>
+    <string name="action_save_changes">পরিবর্তন সংরক্ষণ করুন</string>
+    <string name="label_optional">ঐচ্ছিক</string>
+
+    <!-- Home -->
+    <string name="home_focus_heading">আপনার ফোকাস</string>
+    <string name="home_focus_one_at_a_time">একবারে একটি ছাড়ার কাউন্টার</string>
+    <string name="home_focus_not_set">এখনও ঠিক করা হয়নি</string>
+    <string name="home_focus_pick_title">ফোকাস করার জন্য একটি অভ্যাস বাছুন</string>
+    <string name="home_focus_pick_help">এটি হোমের উপরে বড় হয়ে থাকে, তাই প্রতিদিন আপনি প্রথমেই আপনার অগ্রগতি দেখেন।</string>
+    <string name="home_counters_heading">কাউন্টার</string>
+    <string name="home_quit_heading">ছাড়ার ট্র্যাকার</string>
+    <string name="home_pinned_first">· পিন করা আগে</string>
+    <string name="home_new_counter">নতুন কাউন্টার</string>
+    <string name="home_days_free">দিন মুক্ত</string>
+    <string name="home_money_saved">টাকা বেঁচেছে</string>
+    <string name="home_urges_today">আজ জেতা ইচ্ছা</string>
+    <string name="home_beat_urge">আমি একটি ইচ্ছা জিতেছি</string>
+    <string name="home_no_target">কোনো লক্ষ্য নেই</string>
+    <string name="home_step_meta">ধাপ %1$d</string>
+    <string name="home_target_reached">লক্ষ্য পূর্ণ</string>
+    <string name="home_of_target">/ %1$d</string>
+    <string name="home_welcome_title">Tap Tap-এ স্বাগতম</string>
+    <string name="home_welcome_body">আপনি যা করেন তা গুনুন, বা দিনে দিনে একটি খারাপ অভ্যাস ছাড়ুন। আপনার প্রথম কাউন্টার দিয়ে শুরু করুন।</string>
+    <string name="home_choice_normal_title">সাধারণ কাউন্টার</string>
+    <string name="home_choice_normal_sub">ব্যায়াম, গ্লাস পানি, পৃষ্ঠা, যেকোনো কিছু</string>
+    <string name="home_choice_quit_title">ছাড়ার কাউন্টার</string>
+    <string name="home_choice_quit_sub">একটি খারাপ অভ্যাস থেকে দূরে থাকুন আর দিন বাড়তে দেখুন</string>
+    <string name="home_popular_ideas">জনপ্রিয় ভাবনা</string>
+    <string name="idea_pushups">পুশ-আপ</string>
+    <string name="idea_water">গ্লাস পানি</string>
+    <string name="idea_pages">পড়া পৃষ্ঠা</string>
+    <string name="idea_quit_smoking">ধূমপান ছাড়ুন</string>
+    <string name="idea_phone_night">রাতে কম ফোন</string>
+    <string name="home_money_saved_value">%1$s বেঁচেছে</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_open_counter">%1$s খুলুন</string>
+    <string name="a11y_add_to">%2$s-এ %1$d যোগ করুন</string>
+    <string name="a11y_pin">%1$s পিন করুন</string>
+    <string name="a11y_unpin">%1$s আনপিন করুন</string>
+    <string name="a11y_make_focus">%1$s-কে আপনার ফোকাস বানান</string>
+    <string name="a11y_pin_to_top">উপরে পিন করুন</string>
+    <string name="a11y_unpin_from_top">আনপিন করুন</string>
+    <string name="a11y_edit_counter">কাউন্টার সম্পাদনা</string>
+    <string name="a11y_settings">সেটিংস</string>
+    <string name="a11y_lower_start_value">শুরুর মান কমান</string>
+    <string name="a11y_raise_start_value">শুরুর মান বাড়ান</string>
+    <string name="a11y_lower_step_value">ধাপের মান কমান</string>
+    <string name="a11y_raise_step_value">ধাপের মান বাড়ান</string>
+    <string name="a11y_less">কম</string>
+    <string name="a11y_more">বেশি</string>
+    <string name="a11y_add">%1$d যোগ করুন</string>
+    <string name="a11y_subtract">%1$d বিয়োগ করুন</string>
+    <string name="a11y_counter_locked">কাউন্টার লক করা আছে</string>
+    <string name="a11y_back_to_counter">কাউন্টারে ফিরে যান</string>
+
+    <!-- New counter -->
+    <string name="create_title">নতুন কাউন্টার</string>
+    <string name="create_type_question">আপনি কী হিসাব রাখতে চান?</string>
+    <string name="create_type_normal">সাধারণ কাউন্টার</string>
+    <string name="create_type_normal_sub">যেকোনো কিছু গুনুন: ব্যায়াম, গ্লাস পানি, পৃষ্ঠা</string>
+    <string name="create_type_quit">ছাড়ার কাউন্টার</string>
+    <string name="create_type_quit_sub">দিনে দিনে একটি খারাপ অভ্যাস থেকে দূরে থাকুন</string>
+    <string name="create_pick_habit">একটি অভ্যাস বাছুন বা নিজে লিখুন</string>
+    <string name="habit_cigarettes">সিগারেট</string>
+    <string name="habit_alcohol">মদ</string>
+    <string name="habit_soft_drinks">কোমল পানীয়</string>
+    <string name="habit_phone_night">রাতে ফোন</string>
+    <string name="habit_other">অন্য কিছু</string>
+    <string name="habit_name_cigarettes">সিগারেট ছাড়ুন</string>
+    <string name="habit_name_alcohol">মদ ছাড়ুন</string>
+    <string name="habit_name_soft_drinks">কোমল পানীয় ছাড়ুন</string>
+    <string name="habit_name_phone_night">রাতে কম ফোন</string>
+    <string name="create_name_normal">কাউন্টারের নাম</string>
+    <string name="create_name_quit">যে অভ্যাস ছাড়বেন</string>
+    <string name="create_name_hint_normal">যেমন পুশ-আপ, গ্লাস পানি</string>
+    <string name="create_name_hint_quit">যেমন ভাজাপোড়া, রাতের খাবার</string>
+    <string name="field_start_value">শুরুর মান</string>
+    <string name="field_start_value_help">রিসেট এখানে ফিরে আসে</string>
+    <string name="field_step_value">ধাপের মান</string>
+    <string name="field_step_value_help">প্রতি ট্যাপে যোগ হয়</string>
+    <string name="create_when_stopped">আপনি কবে থেমেছেন?</string>
+    <string name="create_today">আজ</string>
+    <string name="create_earlier_date">আগের তারিখ</string>
+    <string name="create_quit_date_help">এই দিন থেকে মুক্ত দিন নিজে নিজেই গোনা হয়। আপনাকে প্রতিদিন ট্যাপ করতে হবে না।</string>
+    <string name="create_money_per_day">প্রতিদিন এতে খরচ</string>
+    <string name="create_money_hint">150</string>
+    <string name="create_money_help">আপনি প্রতিদিন কত টাকা বাঁচান তা আমরা দেখাই।</string>
+    <string name="field_set_target">একটি লক্ষ্য দিন</string>
+    <string name="field_set_goal">একটি লক্ষ্য দিন</string>
+    <string name="field_target_count">লক্ষ্য সংখ্যা</string>
+    <string name="field_target_value">লক্ষ্যের মান</string>
+    <string name="field_days_to_stay_free">যত দিন মুক্ত থাকবেন</string>
+    <string name="field_keep_counting">লক্ষ্যের পরেও গোনা চালু রাখুন</string>
+    <string name="field_keep_counting_help">বন্ধ থাকলে লক্ষ্যে গিয়ে থেমে যায়</string>
+    <string name="create_reason">ছাড়ার আপনার কারণ</string>
+    <string name="create_reason_hint">যেমন সকালের হাঁটায় ভালো শ্বাস নিতে</string>
+    <string name="create_reason_help">এই কাউন্টার খুললে আর ইচ্ছা এলে আমরা এটি আপনাকে দেখাই।</string>
+    <string name="create_motivation">অনুপ্রেরণা</string>
+    <string name="field_badges">মাইলফলক ব্যাজ</string>
+    <string name="field_badges_help">১, ৩, ৭, ১৪, ৩০, ৯০ দিনে আর তারও পরে ব্যাজ পান</string>
+    <string name="field_daily_message">প্রতিদিনের অনুপ্রেরণা বার্তা</string>
+    <string name="field_daily_message_help">প্রতি সকালে আপনার অগ্রগতির ছোট একটি নোট</string>
+    <string name="field_make_focus">এটিকে আমার ফোকাস বানান</string>
+    <string name="field_make_focus_help">হোমের উপরে বড় করে দেখানো হয়। একবারে একটি।</string>
+    <string name="field_notes">নোট</string>
+    <string name="field_notes_hint">কখন গুনবেন, মনে রাখার মতো যেকোনো কিছু</string>
+    <string name="field_pin_to_top">উপরে পিন করুন</string>
+    <string name="field_pin_help_normal">কাউন্টার তালিকায় প্রথমে দেখান</string>
+    <string name="field_pin_help_quit">ছাড়ার ট্র্যাকারে প্রথমে দেখান</string>
+    <string name="create_button_normal">কাউন্টার তৈরি করুন</string>
+    <string name="create_button_quit">ছাড়ার কাউন্টার শুরু করুন</string>
+    <string name="create_footer">রং, পটভূমি আর এই বিকল্পগুলো পরে বদলাতে পারবেন।</string>
+
+    <!-- Normal counter -->
+    <string name="counter_stat_today">আজ</string>
+    <string name="counter_stat_left">লক্ষ্যের বাকি</string>
+    <string name="counter_stat_done">হয়েছে</string>
+    <string name="counter_no_value">—</string>
+    <string name="counter_of_target">%1$d-এর মধ্যে</string>
+    <string name="counter_pill_step">ধাপ %1$d</string>
+    <string name="counter_pill_counting_down">নিচের দিকে গোনা</string>
+    <string name="counter_pill_locked">লক করা</string>
+    <string name="counter_pill_target_reached">লক্ষ্য পূর্ণ</string>
+    <string name="counter_hint_add">+%1$d করতে ট্যাপ করুন</string>
+    <string name="counter_hint_subtract">−%1$d করতে ট্যাপ করুন</string>
+    <string name="counter_hint_locked">লক করা</string>
+    <string name="counter_hint_done">আজকের জন্য শেষ</string>
+    <string name="counter_helper_tap">বৃত্তের যেকোনো জায়গায় ট্যাপ করুন</string>
+    <string name="counter_helper_reverse">উল্টো গোনা চালু আছে। প্রতি ট্যাপে %1$d কমে।</string>
+    <string name="counter_helper_locked">আবার গুনতে আনলক করুন। লক করলে ভুলে ট্যাপ হয় না।</string>
+    <string name="counter_helper_done">চালিয়ে যেতে সম্পাদনায় \"লক্ষ্যের পরেও গোনা চালু রাখুন\" চালু করুন।</string>
+    <string name="control_lock">লক</string>
+    <string name="control_unlock">আনলক</string>
+    <string name="control_reverse">উল্টো</string>
+    <string name="control_count_up">উপরে গুনুন</string>
+    <string name="control_reset">রিসেট</string>
+    <string name="reset_title">এই কাউন্টার রিসেট করবেন?</string>
+    <string name="reset_message">গণনা শুরুর মানে (%1$d) ফিরে যাবে। এটি আর ফেরানো যাবে না।</string>
+    <string name="reset_confirm">রিসেট</string>
+
+    <!-- Quit counter -->
+    <string name="quit_free_since">%1$s থেকে মুক্ত</string>
+    <string name="quit_started_again_today">আজ আবার শুরু হয়েছে</string>
+    <string name="quit_days_free">দিন মুক্ত</string>
+    <string name="quit_time_without">এটি ছাড়া %1$d দিন %2$d ঘণ্টা</string>
+    <string name="quit_your_focus">আপনার ফোকাস</string>
+    <string name="quit_make_focus">ফোকাস বানান</string>
+    <string name="quit_stat_money">টাকা বেঁচেছে</string>
+    <string name="quit_stat_urges">জেতা ইচ্ছা</string>
+    <string name="quit_stat_best">সেরা ধারা</string>
+    <string name="quit_beat_urge">আমি একটি ইচ্ছা জিতেছি</string>
+    <string name="quit_beaten_today">আজ %1$s বার জিতেছেন। প্রতিবার না বললেই ট্যাপ করুন।</string>
+    <string name="quit_your_reason">আপনার কারণ</string>
+    <string name="quit_milestones">মাইলফলক</string>
+    <string name="quit_badges_earned">১০-এর মধ্যে %1$d পেয়েছেন</string>
+    <string name="quit_slipped">আমি পিছলে গেছি</string>
+    <string name="slip_title">আপনি কি পিছলে গেছেন?</string>
+    <string name="slip_message">এটা ঠিক আছে। আপনার মুক্ত দিন আজ থেকে আবার শুরু হবে। আপনার সেরা ধারা, ব্যাজ আর জেতা ইচ্ছা রাখা থাকবে।</string>
+    <string name="slip_confirm">আবার শুরু করুন</string>
+    <string name="badge_all_earned">আপনি সব ব্যাজ পেয়েছেন</string>
+    <string name="badge_day_word">দিনের ব্যাজ</string>
+    <string name="badge_state_earned">পাওয়া হয়েছে</string>
+    <string name="badge_state_next">পরবর্তী</string>
+    <string name="badge_state_locked">লক করা</string>
+
+    <!-- Edit counter -->
+    <string name="edit_title">কাউন্টার সম্পাদনা</string>
+    <string name="edit_name">নাম</string>
+    <string name="edit_background">পটভূমির ছবি</string>
+    <string name="edit_background_help">ডিফল্ট ছবি কাউন্টারের রং নেয়। একটি নরম স্তর সংখ্যাটি পড়তে সহজ রাখে।</string>
+    <string name="background_none">কোনো পটভূমি নেই</string>
+    <string name="background_waves">ঢেউ</string>
+    <string name="background_orbs">গোলক</string>
+    <string name="background_hills">পাহাড়</string>
+    <string name="edit_counter_color">কাউন্টারের রং</string>
+    <string name="edit_counter_color_help">শুধু এই কাউন্টারের রং বদলায়। হালকা বা গাঢ় মোড অ্যাপের সাথেই থাকে।</string>
+    <string name="color_app">অ্যাপ</string>
+    <string name="color_pink">গোলাপি</string>
+    <string name="color_teal">সবুজাভ নীল</string>
+    <string name="color_saffron">কমলা</string>
+    <string name="color_blue">নীল</string>
+    <string name="edit_values_help">বর্তমান গণনা বদলায় না। নতুন ধাপ পরের ট্যাপ থেকে কাজ করে। নতুন শুরুর মান পরের রিসেটে ব্যবহার হয়।</string>
+    <string name="edit_start_above_target">শুরুর মান লক্ষ্যের চেয়ে বেশি, তাই রিসেট করলেই লক্ষ্য পেরিয়ে যাবে।</string>
+    <string name="edit_pin_help">হোমের কাউন্টার তালিকায় প্রথমে দেখান</string>
+    <string name="edit_pin_help_quit">হোমের ছাড়ার ট্র্যাকারে প্রথমে দেখান</string>
+    <string name="edit_delete">কাউন্টার মুছুন</string>
+    <string name="delete_title">এই কাউন্টার মুছবেন?</string>
+    <string name="delete_message">%1$s আর এর ইতিহাস মুছে যাবে। এটি আর ফেরানো যাবে না।</string>
+    <string name="delete_confirm">মুছুন</string>
+    <string name="edit_quit_date">ছাড়ার তারিখ</string>
+
+    <!-- Settings -->
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_appearance">অ্যাপের চেহারা</string>
+    <string name="settings_color_theme">রঙের থিম</string>
+    <string name="settings_mode">মোড</string>
+    <string name="settings_mode_light">হালকা</string>
+    <string name="settings_mode_dark">গাঢ়</string>
+    <string name="settings_mode_system">সিস্টেম</string>
+    <string name="settings_mode_note_system">ফোন %1$s মোডে আছে, তাই অ্যাপ %2$s ~ %3$s ব্যবহার করছে</string>
+    <string name="settings_mode_note_fixed">অ্যাপ %1$s ~ %2$s ব্যবহার করছে</string>
+    <string name="settings_mode_word_light">হালকা</string>
+    <string name="settings_mode_word_dark">গাঢ়</string>
+    <string name="settings_mode_name_light">হালকা</string>
+    <string name="settings_mode_name_dark">গাঢ়</string>
+    <string name="settings_language">ভাষা</string>
+    <string name="settings_when_you_tap">যখন আপনি ট্যাপ করেন</string>
+    <string name="settings_vibration">কম্পন</string>
+    <string name="settings_vibration_help">প্রতি + আর − এ ছোট কম্পন</string>
+    <string name="settings_sound">শব্দ</string>
+    <string name="settings_sound_help">প্রতি + আর − এ নরম ক্লিক</string>
+    <string name="settings_about">সম্পর্কে</string>
+    <string name="settings_privacy">গোপনীয়তা নীতি</string>
+    <string name="lang_en">ইংরেজি</string>
+    <string name="lang_bn">বাংলা</string>
+    <string name="lang_hi">হিন্দি</string>
+    <string name="lang_ru">রুশ</string>
+    <string name="lang_es">স্প্যানিশ</string>
+    <string name="lang_it">ইতালীয়</string>
+
+    <!-- Plurals: Bangla has one/other. -->
+    <plurals name="home_counter_count">
+        <item quantity="one">%1$d কাউন্টার</item>
+        <item quantity="other">%1$d কাউন্টার</item>
+    </plurals>
+    <plurals name="home_habit_count">
+        <item quantity="one">%1$d অভ্যাস</item>
+        <item quantity="other">%1$d অভ্যাস</item>
+    </plurals>
+    <plurals name="home_urges_beaten_today">
+        <item quantity="one">আজ %1$d ইচ্ছা জেতা</item>
+        <item quantity="other">আজ %1$d ইচ্ছা জেতা</item>
+    </plurals>
+    <plurals name="badge_days_to_next">
+        <item quantity="one">আপনার %2$d দিনের ব্যাজে %1$d দিন বাকি</item>
+        <item quantity="other">আপনার %2$d দিনের ব্যাজে %1$d দিন বাকি</item>
+    </plurals>
+    <plurals name="badge_days">
+        <item quantity="one">%1$d দিন</item>
+        <item quantity="other">%1$d দিন</item>
+    </plurals>
+    <plurals name="quit_best_streak_days">
+        <item quantity="one">%1$d দিন</item>
+        <item quantity="other">%1$d দিন</item>
+    </plurals>
+
+    <!-- Daily motivation message (FR-8.6) -->
+    <string name="notif_channel_name">প্রতিদিনের অনুপ্রেরণা</string>
+    <string name="notif_channel_description">আপনি যে অভ্যাসগুলো ছাড়ছেন, সেগুলো নিয়ে প্রতি সকালে ছোট একটি নোট।</string>
+    <string name="notif_daily_body">%1$s · %2$s</string>
+    <string name="notif_restart_title">আবার প্রথম দিন</string>
+    <string name="notif_restart_body">আপনি আজ আবার শুরু করেছেন। আপনার সেরা ধারা, ব্যাজ আর জেতা ইচ্ছা সবই রাখা আছে।</string>
+    <plurals name="notif_days_free">
+        <item quantity="one">%1$d দিন মুক্ত</item>
+        <item quantity="other">%1$d দিন মুক্ত</item>
+    </plurals>
+</resources>

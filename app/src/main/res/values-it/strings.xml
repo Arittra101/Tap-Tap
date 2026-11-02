@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Italian (it). FR-8.1.
+        NOTE: produced without a native reviewer — please check before release.
+    -->
+
+    <!-- Common -->
+    <string name="action_back">Indietro</string>
+    <string name="action_back_to_home">Torna alla home</string>
+    <string name="action_cancel">Annulla</string>
+    <string name="action_save_changes">Salva le modifiche</string>
+    <string name="label_optional">Facoltativo</string>
+
+    <!-- Home -->
+    <string name="home_focus_heading">Il tuo focus</string>
+    <string name="home_focus_one_at_a_time">Un\'abitudine alla volta</string>
+    <string name="home_focus_not_set">Non ancora scelto</string>
+    <string name="home_focus_pick_title">Scegli un\'abitudine su cui concentrarti</string>
+    <string name="home_focus_pick_help">Resta grande in cima alla home, così ogni giorno vedi subito i tuoi progressi.</string>
+    <string name="home_counters_heading">Contatori</string>
+    <string name="home_quit_heading">Abitudini che lasci</string>
+    <string name="home_pinned_first">· prima quelli fissati</string>
+    <string name="home_new_counter">Nuovo contatore</string>
+    <string name="home_days_free">giorni senza</string>
+    <string name="home_money_saved">risparmiati</string>
+    <string name="home_urges_today">voglie vinte oggi</string>
+    <string name="home_beat_urge">Ho vinto una voglia</string>
+    <string name="home_no_target">nessun obiettivo</string>
+    <string name="home_step_meta">Passo %1$d</string>
+    <string name="home_target_reached">Obiettivo raggiunto</string>
+    <string name="home_of_target">/ %1$d</string>
+    <string name="home_welcome_title">Benvenuto su Tap Tap</string>
+    <string name="home_welcome_body">Conta quello che fai, oppure lascia una cattiva abitudine giorno dopo giorno. Inizia dal tuo primo contatore.</string>
+    <string name="home_choice_normal_title">Contatore normale</string>
+    <string name="home_choice_normal_sub">Ripetizioni, bicchieri d\'acqua, pagine, qualsiasi cosa</string>
+    <string name="home_choice_quit_title">Contatore per smettere</string>
+    <string name="home_choice_quit_sub">Stai lontano da una cattiva abitudine e guarda i giorni salire</string>
+    <string name="home_popular_ideas">Idee popolari</string>
+    <string name="idea_pushups">Flessioni</string>
+    <string name="idea_water">Bicchieri d\'acqua</string>
+    <string name="idea_pages">Pagine lette</string>
+    <string name="idea_quit_smoking">Smettere di fumare</string>
+    <string name="idea_phone_night">Meno telefono la sera</string>
+    <string name="home_money_saved_value">%1$s risparmiati</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_open_counter">Apri %1$s</string>
+    <string name="a11y_add_to">Aggiungi %1$d a %2$s</string>
+    <string name="a11y_pin">Fissa %1$s</string>
+    <string name="a11y_unpin">Togli %1$s dai fissati</string>
+    <string name="a11y_make_focus">Rendi %1$s il tuo focus</string>
+    <string name="a11y_pin_to_top">Fissa in alto</string>
+    <string name="a11y_unpin_from_top">Togli dai fissati</string>
+    <string name="a11y_edit_counter">Modifica contatore</string>
+    <string name="a11y_settings">Impostazioni</string>
+    <string name="a11y_lower_start_value">Abbassa il valore iniziale</string>
+    <string name="a11y_raise_start_value">Alza il valore iniziale</string>
+    <string name="a11y_lower_step_value">Abbassa il passo</string>
+    <string name="a11y_raise_step_value">Alza il passo</string>
+    <string name="a11y_less">Meno</string>
+    <string name="a11y_more">Più</string>
+    <string name="a11y_add">Aggiungi %1$d</string>
+    <string name="a11y_subtract">Sottrai %1$d</string>
+    <string name="a11y_counter_locked">Il contatore è bloccato</string>
+    <string name="a11y_back_to_counter">Torna al contatore</string>
+
+    <!-- New counter -->
+    <string name="create_title">Nuovo contatore</string>
+    <string name="create_type_question">Cosa vuoi tenere d\'occhio?</string>
+    <string name="create_type_normal">Contatore normale</string>
+    <string name="create_type_normal_sub">Conta qualsiasi cosa: ripetizioni, bicchieri d\'acqua, pagine</string>
+    <string name="create_type_quit">Contatore per smettere</string>
+    <string name="create_type_quit_sub">Stai lontano da una cattiva abitudine, giorno dopo giorno</string>
+    <string name="create_pick_habit">Scegli un\'abitudine o scrivila tu</string>
+    <string name="habit_cigarettes">Sigarette</string>
+    <string name="habit_alcohol">Alcol</string>
+    <string name="habit_soft_drinks">Bibite</string>
+    <string name="habit_phone_night">Telefono la sera</string>
+    <string name="habit_other">Altro</string>
+    <string name="habit_name_cigarettes">Smettere di fumare</string>
+    <string name="habit_name_alcohol">Smettere di bere</string>
+    <string name="habit_name_soft_drinks">Smettere con le bibite</string>
+    <string name="habit_name_phone_night">Meno telefono la sera</string>
+    <string name="create_name_normal">Nome del contatore</string>
+    <string name="create_name_quit">Abitudine da lasciare</string>
+    <string name="create_name_hint_normal">es. flessioni, bicchieri d\'acqua</string>
+    <string name="create_name_hint_quit">es. cibo spazzatura, spuntini notturni</string>
+    <string name="field_start_value">Valore iniziale</string>
+    <string name="field_start_value_help">Azzera torna qui</string>
+    <string name="field_step_value">Passo</string>
+    <string name="field_step_value_help">Si aggiunge a ogni tocco</string>
+    <string name="create_when_stopped">Quando hai smesso?</string>
+    <string name="create_today">Oggi</string>
+    <string name="create_earlier_date">Una data precedente</string>
+    <string name="create_quit_date_help">I giorni senza si contano da soli a partire da quel giorno. Non devi toccare ogni giorno.</string>
+    <string name="create_money_per_day">Spesa al giorno</string>
+    <string name="create_money_hint">150</string>
+    <string name="create_money_help">Ti mostriamo quanto risparmi ogni giorno.</string>
+    <string name="field_set_target">Imposta un obiettivo</string>
+    <string name="field_set_goal">Imposta un traguardo</string>
+    <string name="field_target_count">Obiettivo</string>
+    <string name="field_target_value">Valore dell\'obiettivo</string>
+    <string name="field_days_to_stay_free">Giorni da resistere</string>
+    <string name="field_keep_counting">Continua a contare dopo l\'obiettivo</string>
+    <string name="field_keep_counting_help">Se è spento, si ferma all\'obiettivo</string>
+    <string name="create_reason">Il tuo motivo per smettere</string>
+    <string name="create_reason_hint">es. per respirare meglio nella passeggiata del mattino</string>
+    <string name="create_reason_help">Te lo mostriamo quando apri questo contatore e quando arriva la voglia.</string>
+    <string name="create_motivation">Motivazione</string>
+    <string name="field_badges">Distintivi per i traguardi</string>
+    <string name="field_badges_help">Ottieni un distintivo a 1, 3, 7, 14, 30, 90 giorni e oltre</string>
+    <string name="field_daily_message">Messaggio quotidiano</string>
+    <string name="field_daily_message_help">Una nota breve sui tuoi progressi ogni mattina</string>
+    <string name="field_make_focus">Rendilo il mio focus</string>
+    <string name="field_make_focus_help">Si vede grande in cima alla home. Uno solo alla volta.</string>
+    <string name="field_notes">Note</string>
+    <string name="field_notes_hint">Quando contare, qualsiasi cosa da ricordare</string>
+    <string name="field_pin_to_top">Fissa in alto</string>
+    <string name="field_pin_help_normal">Mostralo per primo in Contatori</string>
+    <string name="field_pin_help_quit">Mostralo per primo in Abitudini che lasci</string>
+    <string name="create_button_normal">Crea contatore</string>
+    <string name="create_button_quit">Inizia a smettere</string>
+    <string name="create_footer">Puoi cambiare colore, sfondo e queste opzioni più tardi.</string>
+
+    <!-- Normal counter -->
+    <string name="counter_stat_today">Oggi</string>
+    <string name="counter_stat_left">All\'obiettivo</string>
+    <string name="counter_stat_done">Fatto</string>
+    <string name="counter_no_value">—</string>
+    <string name="counter_of_target">di %1$d</string>
+    <string name="counter_pill_step">Passo %1$d</string>
+    <string name="counter_pill_counting_down">Conto alla rovescia</string>
+    <string name="counter_pill_locked">Bloccato</string>
+    <string name="counter_pill_target_reached">Obiettivo raggiunto</string>
+    <string name="counter_hint_add">Tocca per +%1$d</string>
+    <string name="counter_hint_subtract">Tocca per −%1$d</string>
+    <string name="counter_hint_locked">Bloccato</string>
+    <string name="counter_hint_done">Per oggi basta</string>
+    <string name="counter_helper_tap">Tocca in un punto qualsiasi del cerchio</string>
+    <string name="counter_helper_reverse">Il conto alla rovescia è attivo. Ogni tocco toglie %1$d.</string>
+    <string name="counter_helper_locked">Sblocca per contare di nuovo. Il blocco evita i tocchi per sbaglio.</string>
+    <string name="counter_helper_done">Per andare avanti, attiva «Continua a contare dopo l\'obiettivo» in Modifica.</string>
+    <string name="control_lock">Blocca</string>
+    <string name="control_unlock">Sblocca</string>
+    <string name="control_reverse">Indietro</string>
+    <string name="control_count_up">Avanti</string>
+    <string name="control_reset">Azzera</string>
+    <string name="reset_title">Azzerare questo contatore?</string>
+    <string name="reset_message">Il conto torna al valore iniziale (%1$d). Non si può annullare.</string>
+    <string name="reset_confirm">Azzera</string>
+
+    <!-- Quit counter -->
+    <string name="quit_free_since">Senza dal %1$s</string>
+    <string name="quit_started_again_today">Hai ricominciato oggi</string>
+    <string name="quit_days_free">giorni senza</string>
+    <string name="quit_time_without">%1$d g %2$d h senza</string>
+    <string name="quit_your_focus">Il tuo focus</string>
+    <string name="quit_make_focus">Rendi focus</string>
+    <string name="quit_stat_money">Risparmiati</string>
+    <string name="quit_stat_urges">Voglie vinte</string>
+    <string name="quit_stat_best">Serie migliore</string>
+    <string name="quit_beat_urge">Ho vinto una voglia</string>
+    <string name="quit_beaten_today">%1$s vinte oggi. Tocca ogni volta che dici di no.</string>
+    <string name="quit_your_reason">Il tuo motivo</string>
+    <string name="quit_milestones">Traguardi</string>
+    <string name="quit_badges_earned">%1$d di 10 ottenuti</string>
+    <string name="quit_slipped">Ho ceduto</string>
+    <string name="slip_title">Hai ceduto?</string>
+    <string name="slip_message">Va bene così. I tuoi giorni senza ricominciano da oggi. La serie migliore, i distintivi e le voglie vinte restano.</string>
+    <string name="slip_confirm">Ricomincia</string>
+    <string name="badge_all_earned">Hai ottenuto tutti i distintivi</string>
+    <string name="badge_day_word">distintivo dei giorni</string>
+    <string name="badge_state_earned">ottenuto</string>
+    <string name="badge_state_next">prossimo</string>
+    <string name="badge_state_locked">bloccato</string>
+
+    <!-- Edit counter -->
+    <string name="edit_title">Modifica contatore</string>
+    <string name="edit_name">Nome</string>
+    <string name="edit_background">Immagine di sfondo</string>
+    <string name="edit_background_help">Le immagini prendono il colore del contatore. Uno strato leggero mantiene il numero facile da leggere.</string>
+    <string name="background_none">Nessuno sfondo</string>
+    <string name="background_waves">Onde</string>
+    <string name="background_orbs">Cerchi</string>
+    <string name="background_hills">Colline</string>
+    <string name="edit_counter_color">Colore del contatore</string>
+    <string name="edit_counter_color_help">Cambia solo il colore di questo contatore. La modalità chiara o scura segue sempre l\'app.</string>
+    <string name="color_app">App</string>
+    <string name="color_pink">Rosa</string>
+    <string name="color_teal">Verde acqua</string>
+    <string name="color_saffron">Zafferano</string>
+    <string name="color_blue">Blu</string>
+    <string name="edit_values_help">Il conto attuale non cambia. Il nuovo passo vale dal tocco successivo. Il nuovo valore iniziale si usa al prossimo azzeramento.</string>
+    <string name="edit_start_above_target">Il valore iniziale è sopra l\'obiettivo, quindi azzerando lo avrai già superato.</string>
+    <string name="edit_pin_help">Mostralo per primo in Contatori, nella home</string>
+    <string name="edit_pin_help_quit">Mostralo per primo in Abitudini che lasci, nella home</string>
+    <string name="edit_delete">Elimina contatore</string>
+    <string name="delete_title">Eliminare questo contatore?</string>
+    <string name="delete_message">%1$s e la sua cronologia vengono eliminati. Non si può annullare.</string>
+    <string name="delete_confirm">Elimina</string>
+    <string name="edit_quit_date">Data in cui hai smesso</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Impostazioni</string>
+    <string name="settings_appearance">Aspetto dell\'app</string>
+    <string name="settings_color_theme">Tema di colore</string>
+    <string name="settings_mode">Modalità</string>
+    <string name="settings_mode_light">Chiara</string>
+    <string name="settings_mode_dark">Scura</string>
+    <string name="settings_mode_system">Sistema</string>
+    <string name="settings_mode_note_system">Il telefono è in modalità %1$s, quindi l\'app usa %2$s ~ %3$s</string>
+    <string name="settings_mode_note_fixed">L\'app usa %1$s ~ %2$s</string>
+    <string name="settings_mode_word_light">chiara</string>
+    <string name="settings_mode_word_dark">scura</string>
+    <string name="settings_mode_name_light">Chiara</string>
+    <string name="settings_mode_name_dark">Scura</string>
+    <string name="settings_language">Lingua</string>
+    <string name="settings_when_you_tap">Quando tocchi</string>
+    <string name="settings_vibration">Vibrazione</string>
+    <string name="settings_vibration_help">Una vibrazione breve a ogni + e −</string>
+    <string name="settings_sound">Suono</string>
+    <string name="settings_sound_help">Un clic leggero a ogni + e −</string>
+    <string name="settings_about">Informazioni</string>
+    <string name="settings_privacy">Informativa sulla privacy</string>
+    <string name="lang_en">Inglese</string>
+    <string name="lang_bn">Bengalese</string>
+    <string name="lang_hi">Hindi</string>
+    <string name="lang_ru">Russo</string>
+    <string name="lang_es">Spagnolo</string>
+    <string name="lang_it">Italiano</string>
+
+    <plurals name="home_counter_count">
+        <item quantity="one">%1$d contatore</item>
+        <item quantity="many">%1$d contatori</item>
+        <item quantity="other">%1$d contatori</item>
+    </plurals>
+    <plurals name="home_habit_count">
+        <item quantity="one">%1$d abitudine</item>
+        <item quantity="many">%1$d abitudini</item>
+        <item quantity="other">%1$d abitudini</item>
+    </plurals>
+    <plurals name="home_urges_beaten_today">
+        <item quantity="one">%1$d voglia vinta oggi</item>
+        <item quantity="many">%1$d voglie vinte oggi</item>
+        <item quantity="other">%1$d voglie vinte oggi</item>
+    </plurals>
+    <plurals name="badge_days_to_next">
+        <item quantity="one">%1$d giorno al distintivo dei %2$d giorni</item>
+        <item quantity="many">%1$d giorni al distintivo dei %2$d giorni</item>
+        <item quantity="other">%1$d giorni al distintivo dei %2$d giorni</item>
+    </plurals>
+    <plurals name="badge_days">
+        <item quantity="one">%1$d giorno</item>
+        <item quantity="many">%1$d giorni</item>
+        <item quantity="other">%1$d giorni</item>
+    </plurals>
+    <plurals name="quit_best_streak_days">
+        <item quantity="one">%1$d giorno</item>
+        <item quantity="many">%1$d giorni</item>
+        <item quantity="other">%1$d giorni</item>
+    </plurals>
+
+    <!-- Daily motivation message (FR-8.6) -->
+    <string name="notif_channel_name">Motivazione quotidiana</string>
+    <string name="notif_channel_description">Una nota breve ogni mattina sulle abitudini che stai lasciando.</string>
+    <string name="notif_daily_body">%1$s · %2$s</string>
+    <string name="notif_restart_title">Di nuovo giorno uno</string>
+    <string name="notif_restart_body">Hai ricominciato oggi. La serie migliore, i distintivi e le voglie vinte restano tutti.</string>
+    <plurals name="notif_days_free">
+        <item quantity="one">%1$d giorno senza</item>
+        <item quantity="many">%1$d giorni senza</item>
+        <item quantity="other">%1$d giorni senza</item>
+    </plurals>
+</resources>

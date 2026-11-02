@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NFR-10: the Room database and the DataStore settings move to a new phone. -->
+<full-backup-content>
+    <include
+        domain="database"
+        path="." />
+    <include
+        domain="file"
+        path="datastore" />
+</full-backup-content>
