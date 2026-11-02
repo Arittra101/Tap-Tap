@@ -82,14 +82,30 @@ fun QuoteSlider(
         ) != 0f
     }
 
-    // Keyed on the page, so a manual swipe gives the new line a full interval of its own.
-    LaunchedEffect(pagerState.currentPage, animationsOn, quotes.size) {
+    // The keys here must all be stable. Keying this on `currentPage` looks like the
+    // natural way to give each line its own dwell, but `currentPage` flips over
+    // *during* the scroll animation — that restarts the effect, which cancels
+    // `animateScrollToPage` half way and leaves the pager parked between two pages,
+    // showing two quotes at once and never moving again. The dwell is restarted inside
+    // the loop instead.
+    LaunchedEffect(pagerState, animationsOn, quotes.size) {
         if (!animationsOn || quotes.size < 2) return@LaunchedEffect
-        delay(intervalMillis)
-        pagerState.animateScrollToPage(
-            page = (pagerState.currentPage + 1) % quotes.size,
-            animationSpec = tween(500),
-        )
+        while (true) {
+            val from = pagerState.currentPage
+            delay(intervalMillis)
+            // A drag of their own, or a swipe that landed on another page: leave it be and
+            // give whatever they chose a full interval of its own.
+            if (pagerState.isScrollInProgress || pagerState.currentPage != from) continue
+            pagerState.animateScrollToPage(
+                page = (pagerState.currentPage + 1) % quotes.size,
+                animationSpec = tween(500),
+            )
+            // Self-heal: if anything did interrupt the animation, settle on a whole page
+            // rather than sitting between two.
+            if (!pagerState.isScrollInProgress && pagerState.currentPageOffsetFraction != 0f) {
+                pagerState.scrollToPage(pagerState.currentPage)
+            }
+        }
     }
 
     // Read through stringResource, not context.getString: the latter is not
