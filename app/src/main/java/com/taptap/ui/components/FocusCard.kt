@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -75,6 +76,7 @@ fun FocusCard(
                     // Not a second button — the design system's rule is about actions.
                     modifier = Modifier
                         .weight(1f)
+                        .clip(TapTapShapes.sm)
                         .clickable(role = Role.Button, onClick = onOpen),
                 ) {
                     Icon(
@@ -133,7 +135,8 @@ fun FocusCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(min = 52.dp)
-                    .background(own.onAccent, TapTapShapes.md)
+                    .clip(TapTapShapes.md)
+                    .background(own.onAccent)
                     .clickable(role = Role.Button, onClick = onBeatUrge),
                 contentAlignment = Alignment.Center,
             ) {

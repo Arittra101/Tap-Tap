@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
@@ -62,6 +63,7 @@ fun ControlBar(
             label = lockLabel,
             modifier = Modifier
                 .weight(1f)
+                .clip(TapTapShapes.md)
                 .toggleable(
                     value = isLocked,
                     role = Role.Switch,
@@ -74,6 +76,7 @@ fun ControlBar(
             label = reverseLabel,
             modifier = Modifier
                 .weight(1f)
+                .clip(TapTapShapes.md)
                 .toggleable(
                     value = isReversed,
                     role = Role.Switch,
@@ -86,6 +89,7 @@ fun ControlBar(
             label = resetLabel,
             modifier = Modifier
                 .weight(1f)
+                .clip(TapTapShapes.md)
                 .clickable(role = Role.Button, onClick = onResetClick),
             on = false,
             contentColor = c.danger,

@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -106,8 +107,11 @@ fun EditScreen(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .verticalScroll(rememberScrollState())
+                    // imePadding has to come BEFORE verticalScroll: it must shrink the scroll
+                    // viewport, not pad the content inside it. The other way round, the
+                    // viewport still runs behind the keyboard and the focused field is hidden.
                     .imePadding()
+                    .verticalScroll(rememberScrollState())
                     .padding(horizontal = Spacing.space4, vertical = Spacing.space6),
                 verticalArrangement = Arrangement.spacedBy(Spacing.space6),
             ) {
@@ -159,6 +163,7 @@ fun EditScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .clip(TapTapShapes.md)
                         .selectable(
                             selected = false,
                             role = Role.Button,
@@ -208,6 +213,7 @@ private fun BackgroundSection(state: EditState, onIntent: (EditIntent) -> Unit) 
                 val tileLabel = stringResource(background.labelRes())
                 Box(
                     modifier = Modifier
+                        .clip(TapTapShapes.md)
                         .selectable(
                             selected = selected,
                             role = Role.RadioButton,

@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
@@ -54,7 +55,10 @@ fun SettingGroup(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(c.surface, TapTapShapes.lg)
+                // Clipping here bounds every row's ripple to the group's rounded corners,
+                // so a row at the top or bottom does not ripple past the edge.
+                .clip(TapTapShapes.lg)
+                .background(c.surface)
                 .border(1.dp, c.line, TapTapShapes.lg),
         ) {
             content()

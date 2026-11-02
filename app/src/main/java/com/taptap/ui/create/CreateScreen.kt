@@ -111,8 +111,11 @@ fun CreateScreen(
         Column(
             modifier = Modifier
                 .weight(1f)
-                .verticalScroll(rememberScrollState())
+                // imePadding has to come BEFORE verticalScroll: it must shrink the scroll
+                // viewport, not pad the content inside it. The other way round, the
+                // viewport still runs behind the keyboard and the focused field is hidden.
                 .imePadding()
+                .verticalScroll(rememberScrollState())
                 .padding(horizontal = Spacing.space4, vertical = Spacing.space6),
             verticalArrangement = Arrangement.spacedBy(Spacing.space6),
         ) {

@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.res.stringResource
@@ -135,6 +136,7 @@ fun TopBar(
                         // visual element and keeps that rule.
                         if (onTitleClick != null) {
                             Modifier
+                                .clip(TapTapShapes.sm)
                                 .clickable(
                                     role = Role.Button,
                                     onClickLabel = titleClickLabel,

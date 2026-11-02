@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -82,6 +83,7 @@ fun QuitCard(
                     modifier = Modifier
                         .weight(1f)
                         .padding(start = Spacing.space2)
+                        .clip(TapTapShapes.sm)
                         .clickable(role = Role.Button, onClick = onOpen),
                 )
                 TapTapIconButton(

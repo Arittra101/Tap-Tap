@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
@@ -87,6 +88,7 @@ fun CounterCard(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .weight(1f)
+                        .clip(TapTapShapes.sm)
                         .clickable(role = Role.Button, onClick = onOpen),
                 )
                 TapTapIconButton(
@@ -148,7 +150,8 @@ fun CounterCard(
                     Box(
                         modifier = Modifier
                             .size(44.dp)
-                            .background(own.accent, TapTapShapes.pill)
+                            .clip(TapTapShapes.pill)
+                            .background(own.accent)
                             .clickable(role = Role.Button, onClick = onAdd),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -177,6 +180,7 @@ fun NewCounterCard(
         modifier = modifier
             .widthIn(min = 120.dp)
             .dashedBorder(c.lineStrong, TapTapShapes.lg)
+            .clip(TapTapShapes.lg)
             .clickable(role = Role.Button, onClick = onClick)
             .padding(14.dp),
         verticalArrangement = Arrangement.spacedBy(Spacing.space2, Alignment.CenterVertically),
