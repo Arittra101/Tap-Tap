@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -56,6 +57,7 @@ import com.taptap.ui.components.TapTapButton
 import com.taptap.ui.components.TapTapTextField
 import com.taptap.ui.components.TopBar
 import com.taptap.ui.components.ValueRow
+import com.taptap.ui.theme.CounterTheme
 import com.taptap.ui.theme.Spacing
 import com.taptap.ui.theme.TapTapShapes
 import com.taptap.ui.theme.TapTapTheme
@@ -207,12 +209,19 @@ private fun BackgroundSection(state: EditState, onIntent: (EditIntent) -> Unit) 
             style = TapTapType.label,
             color = c.ink,
         )
-        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space3)) {
+        // The four tiles share the row evenly. Fixed 64dp tiles plus their frames came to
+        // more than a 360dp screen can hold, and each preview now fills its own card
+        // instead of sitting as a square inside a rounded one.
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
+        ) {
             Background.entries.forEach { background ->
                 val selected = state.background == background
                 val tileLabel = stringResource(background.labelRes())
                 Box(
                     modifier = Modifier
+                        .weight(1f)
                         .clip(TapTapShapes.md)
                         .selectable(
                             selected = selected,
@@ -227,8 +236,16 @@ private fun BackgroundSection(state: EditState, onIntent: (EditIntent) -> Unit) 
                         .padding(3.dp)
                         .semantics { contentDescription = tileLabel },
                 ) {
-                    Box(Modifier.size(64.dp).background(c.surfaceSunken, TapTapShapes.sm)) {
-                        BackgroundTile(background, Modifier.size(64.dp))
+                    // The help text under this row promises "Default images take the
+                    // counter's color", so the previews have to be drawn in the colour
+                    // being edited, not in the app's accent.
+                    CounterTheme(state.color) {
+                        BackgroundTile(
+                            background = background,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(1f),
+                        )
                     }
                 }
             }

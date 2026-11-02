@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- "per tap" counts the amount added, not the taps, so the unit never inflects:
+         "+1 per tap" / "+5 per tap". Hence tools:ignore="PluralsCandidate" below. -->
     <!--
         Every user-visible string in Tap Tap (FR-8.1). The English here is the design's
         own copy, taken from the artboards verbatim; TT-027 translates it into bn, hi, ru,
@@ -38,7 +40,7 @@
     <!-- On a quit card: the make-focus control carries its word, not just an icon. -->
     <string name="home_make_focus_short">Make focus</string>
     <string name="home_no_target">no target</string>
-    <string name="home_step_meta">Step %1$d</string>
+    <string name="home_step_meta" tools:ignore="PluralsCandidate">+%1$d per tap</string>
     <string name="home_target_reached">Target reached</string>
     <string name="home_of_target">/ %1$d</string>
     <string name="home_welcome_title">Welcome to Tap Tap</string>
@@ -86,14 +88,14 @@
     <string name="create_name_quit">Habit to quit</string>
     <string name="create_name_hint_normal">e.g. Push-ups, Glasses of water</string>
     <string name="create_name_hint_quit">e.g. Junk food, Late-night snacks</string>
-    <string name="field_start_value">Start value</string>
-    <string name="field_start_value_help">Reset goes back here</string>
-    <string name="field_step_value">Step value</string>
-    <string name="field_step_value_help">Added per tap</string>
-    <string name="a11y_lower_start_value">Lower start value</string>
-    <string name="a11y_raise_start_value">Raise start value</string>
-    <string name="a11y_lower_step_value">Lower step value</string>
-    <string name="a11y_raise_step_value">Raise step value</string>
+    <string name="field_start_value">Starting number</string>
+    <string name="field_start_value_help">Reset goes back to this number</string>
+    <string name="field_step_value">Amount per tap</string>
+    <string name="field_step_value_help">How much one tap adds</string>
+    <string name="a11y_lower_start_value">Lower starting number</string>
+    <string name="a11y_raise_start_value">Raise starting number</string>
+    <string name="a11y_lower_step_value">Lower the amount per tap</string>
+    <string name="a11y_raise_step_value">Raise the amount per tap</string>
     <string name="a11y_less">Less</string>
     <string name="a11y_more">More</string>
     <string name="create_when_stopped">When did you stop?</string>
@@ -105,11 +107,11 @@
     <string name="create_money_help">We show how much money you save each day.</string>
     <string name="field_set_target">Set a target</string>
     <string name="field_set_goal">Set a goal</string>
-    <string name="field_target_count">Target count</string>
-    <string name="field_target_value">Target value</string>
+    <string name="field_target_count">Target number</string>
+    <string name="field_target_value">Target number</string>
     <string name="field_days_to_stay_free">Days to stay free</string>
     <string name="field_keep_counting">Keep counting after target</string>
-    <string name="field_keep_counting_help">When off, it stops at the target</string>
+    <string name="field_keep_counting_help">When off, counting stops at the target</string>
     <string name="create_reason">Your reason to quit</string>
     <string name="create_reason_hint">e.g. To breathe better on my morning walk</string>
     <string name="create_reason_help">We show it to you when you open this counter and when an urge comes.</string>
@@ -160,15 +162,16 @@
     <!-- Normal counter -->
     <string name="counter_stat_today">Today</string>
     <string name="counter_stat_left">Left to target</string>
-    <string name="counter_stat_done">Done</string>
+    <string name="counter_stat_done">Progress</string>
     <string name="counter_no_value">\u2014</string>
     <string name="counter_of_target">of %1$d</string>
-    <string name="counter_pill_step">Step %1$d</string>
-    <string name="counter_pill_counting_down">Counting down</string>
+    <string name="counter_pill_step" tools:ignore="PluralsCandidate">+%1$d per tap</string>
+    <string name="counter_pill_step_down" tools:ignore="PluralsCandidate">−%1$d per tap</string>
+    <string name="home_step_meta_down" tools:ignore="PluralsCandidate">−%1$d per tap</string>
     <string name="counter_pill_locked">Locked</string>
     <string name="counter_pill_target_reached">Target reached</string>
-    <string name="counter_hint_add">Tap to +%1$d</string>
-    <string name="counter_hint_subtract">Tap to \u2212%1$d</string>
+    <string name="counter_hint_add">Tap to add %1$d</string>
+    <string name="counter_hint_subtract">Tap to take away %1$d</string>
     <string name="counter_hint_locked">Locked</string>
     <string name="counter_hint_done">Done for today</string>
     <string name="counter_helper_tap">Tap anywhere on the circle</string>
@@ -177,7 +180,7 @@
         language here, so no word agrees with it. "takes 1 away" / "takes 5 away" and the
         Russian "убирает 1" / "убирает 5" are both correct without plural forms.
     -->
-    <string name="counter_helper_reverse">Reverse is on. Each tap takes %1$d away.</string>
+    <string name="counter_helper_reverse">Each tap now takes away %1$d.</string>
     <string name="counter_helper_locked">Unlock to count again. Locking stops taps by mistake.</string>
     <string name="counter_helper_done">Turn on \"Keep counting after target\" in Edit to go on.</string>
     <string name="a11y_add">Add %1$d</string>
@@ -185,7 +188,7 @@
     <string name="a11y_counter_locked">Counter is locked</string>
     <string name="control_lock">Lock</string>
     <string name="control_unlock">Unlock</string>
-    <string name="control_reverse">Reverse</string>
+    <string name="control_reverse">Count down</string>
     <string name="control_count_up">Count up</string>
     <string name="control_reset">Reset</string>
     <string name="reset_title">Reset this counter?</string>
@@ -236,7 +239,7 @@
     <string name="color_teal">Teal</string>
     <string name="color_saffron">Saffron</string>
     <string name="color_blue">Blue</string>
-    <string name="edit_values_help">The current count does not change. A new step works from the next tap. A new start value is used the next time you reset.</string>
+    <string name="edit_values_help">Your current count stays the same. A new amount per tap works from your next tap. A new starting number is used the next time you reset.</string>
     <!-- TT-031 decision 1: allowed, but the user is told what a reset will do. -->
     <string name="edit_start_above_target">The start value is above the target, so a reset will already be past it.</string>
     <string name="edit_pin_help">Show it first in Counters on Home</string>

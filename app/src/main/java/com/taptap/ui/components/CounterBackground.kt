@@ -11,9 +11,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.withTransform
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
 import com.taptap.model.Background
+import com.taptap.ui.theme.TapTapShapes
 import com.taptap.ui.theme.TapTapTheme
 
 /**
@@ -40,12 +44,8 @@ fun CounterBackground(
     Box(modifier = modifier.fillMaxSize().clearAndSetSemantics { }) {
         Canvas(Modifier.fillMaxSize()) {
             drawRect(c.accentSoft)
-            when (background) {
-                Background.WAVES -> drawWaves(c.accent)
-                Background.ORBS -> drawOrbs(c.accent)
-                Background.HILLS -> drawHills(c.accent)
-                Background.NONE -> Unit
-            }
+            // The screen already has the reference aspect ratio, so no cropping is needed.
+            drawArt(background, c.accent, Frame(size.width, size.height))
         }
         if (withScrim) {
             Canvas(Modifier.fillMaxSize()) { drawRect(c.scrim) }
@@ -53,25 +53,49 @@ fun CounterBackground(
     }
 }
 
-/** A small tile of a background, for Edit's picker. */
+/**
+ * A small tile of a background, for Edit's picker.
+ *
+ * Two things the tile has to get right that the full-screen version does not:
+ *
+ * 1. It is **clipped to [shape]**. A bare `Canvas` draws its `drawRect` ground over the
+ *    rounded corners of whatever card it sits in, which reads as the artwork being sliced
+ *    off at the radius.
+ * 2. The artwork is **centre-cropped**, not squashed. The shapes were authored against a
+ *    390x844 portrait screen; mapping that onto a square tile directly would compress
+ *    everything vertically and show a band of waves instead of a recognisable preview. So
+ *    the reference frame is scaled to *cover* the tile and centred, exactly as
+ *    `ContentScale.Crop` would do for a bitmap.
+ */
 @Composable
 fun BackgroundTile(
     background: Background,
     modifier: Modifier = Modifier,
-    size: androidx.compose.ui.unit.Dp = 64.dp,
+    shape: Shape = TapTapShapes.sm,
 ) {
     val c = TapTapTheme.colors
-    Canvas(modifier.size(size)) {
+    Canvas(
+        modifier
+            .clip(shape)
+            .clearAndSetSemantics { },
+    ) {
         if (background == Background.NONE) {
             drawRect(c.surfaceSunken)
             return@Canvas
         }
         drawRect(c.accentSoft)
-        when (background) {
-            Background.WAVES -> drawWaves(c.accent)
-            Background.ORBS -> drawOrbs(c.accent)
-            Background.HILLS -> drawHills(c.accent)
-            Background.NONE -> Unit
+
+        // Cover: scale by the larger ratio so neither axis is left short, then centre.
+        val scale = maxOf(this.size.width / REF_W, this.size.height / REF_H)
+        val artW = REF_W * scale
+        val artH = REF_H * scale
+        withTransform({
+            translate(
+                left = (this.size.width - artW) / 2f,
+                top = (this.size.height - artH) / 2f,
+            )
+        }) {
+            drawArt(background, c.accent, Frame(artW, artH))
         }
     }
 }
@@ -80,13 +104,28 @@ fun BackgroundTile(
 private const val REF_W = 390f
 private const val REF_H = 844f
 
-private fun DrawScope.sx(x: Float) = x / REF_W * size.width
-private fun DrawScope.sy(y: Float) = y / REF_H * size.height
+/**
+ * The box the 390x844 reference coordinates are mapped onto. For the full screen it is the
+ * node itself; for a cropped tile it is the larger, centred box that covers the node.
+ */
+private class Frame(val w: Float, val h: Float)
+
+private fun Frame.sx(x: Float) = x / REF_W * w
+private fun Frame.sy(y: Float) = y / REF_H * h
 
 /** Scales a radius by the smaller axis, so circles stay circles. */
-private fun DrawScope.sr(r: Float) = r / REF_W * minOf(size.width, size.height * REF_W / REF_H)
+private fun Frame.sr(r: Float) = r / REF_W * minOf(w, h * REF_W / REF_H)
 
-private fun DrawScope.drawWaves(accent: Color) {
+private fun DrawScope.drawArt(background: Background, accent: Color, f: Frame) {
+    when (background) {
+        Background.WAVES -> drawWaves(accent, f)
+        Background.ORBS -> drawOrbs(accent, f)
+        Background.HILLS -> drawHills(accent, f)
+        Background.NONE -> Unit
+    }
+}
+
+private fun DrawScope.drawWaves(accent: Color, f: Frame) = with(f) {
     fun wave(startY: Float, c1y: Float, c2y: Float, midY: Float, endY: Float, alpha: Float) {
         val path = Path().apply {
             moveTo(sx(0f), sy(startY))
@@ -104,14 +143,14 @@ private fun DrawScope.drawWaves(accent: Color) {
     drawCircle(accent, radius = sr(60f), center = Offset(sx(300f), sy(150f)), alpha = 0.18f)
 }
 
-private fun DrawScope.drawOrbs(accent: Color) {
+private fun DrawScope.drawOrbs(accent: Color, f: Frame) = with(f) {
     drawCircle(accent, sr(90f), Offset(sx(60f), sy(140f)), alpha = 0.18f)
     drawCircle(accent, sr(130f), Offset(sx(340f), sy(360f)), alpha = 0.14f)
     drawCircle(accent, sr(160f), Offset(sx(110f), sy(700f)), alpha = 0.20f)
     drawCircle(accent, sr(70f), Offset(sx(330f), sy(790f)), alpha = 0.30f)
 }
 
-private fun DrawScope.drawHills(accent: Color) {
+private fun DrawScope.drawHills(accent: Color, f: Frame) = with(f) {
     fun ridge(points: List<Pair<Float, Float>>, alpha: Float) {
         val path = Path().apply {
             moveTo(sx(points.first().first), sy(points.first().second))

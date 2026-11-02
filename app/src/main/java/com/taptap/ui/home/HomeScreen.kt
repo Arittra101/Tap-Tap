@@ -241,6 +241,7 @@ private fun CountersSection(
             .horizontalScroll(rememberScrollState())
             .padding(horizontal = Spacing.space4, vertical = Spacing.space1),
         horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
+        verticalAlignment = Alignment.Top,
     ) {
         state.normalCounters.forEach { counter ->
             val done = counter.isTargetReached && !counter.keepCountingAfterTarget
@@ -259,7 +260,14 @@ private fun CountersSection(
                 metaText = if (done) {
                     stringResource(R.string.home_target_reached)
                 } else {
-                    stringResource(R.string.home_step_meta, counter.step)
+                    stringResource(
+                        if (counter.isReversed) {
+                            R.string.home_step_meta_down
+                        } else {
+                            R.string.home_step_meta
+                        },
+                        counter.step,
+                    )
                 },
                 ofText = counter.target
                     ?.let { stringResource(R.string.home_of_target, it) }

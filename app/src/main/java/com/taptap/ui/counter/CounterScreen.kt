@@ -200,7 +200,7 @@ private fun CounterState.dialState(): DialState = when {
 private fun CounterState.pillText(): String = when (dialState()) {
     DialState.Locked -> stringResource(R.string.counter_pill_locked)
     DialState.TargetReached -> stringResource(R.string.counter_pill_target_reached)
-    DialState.Reverse -> stringResource(R.string.counter_pill_counting_down)
+    DialState.Reverse -> stringResource(R.string.counter_pill_step_down, step)
     DialState.Counting -> stringResource(R.string.counter_pill_step, step)
 }
 

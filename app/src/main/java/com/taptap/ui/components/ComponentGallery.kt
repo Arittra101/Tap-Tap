@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -167,7 +168,7 @@ fun ComponentGallery(modifier: Modifier = Modifier) {
 
         Section("Backgrounds") {
             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space2)) {
-                Background.entries.forEach { BackgroundTile(it) }
+                Background.entries.forEach { BackgroundTile(it, Modifier.size(64.dp)) }
             }
             Box(Modifier.fillMaxWidth().height(180.dp)) {
                 CounterBackground(Background.WAVES)

@@ -12,10 +12,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.ripple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -27,7 +25,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.taptap.model.Counter
 import com.taptap.util.localNumber
@@ -69,9 +69,8 @@ fun CounterCard(
         0f
     }
 
-    val fontScale = LocalDensity.current.fontScale.coerceIn(1f, 2f)
-    val cardWidth = 164.dp * fontScale
-    val cardMinHeight = 168.dp * fontScale
+    val cardWidth = counterCardWidth()
+    val cardMinHeight = counterCardMinHeight()
 
     Box(modifier = modifier.width(cardWidth)) {
         Column(
@@ -207,7 +206,13 @@ fun CounterCard(
     }
 }
 
-/** The dashed card that ends the "Counters" row (FR-1.5). */
+/**
+ * The dashed card that ends the "Counters" row (FR-1.5).
+ *
+ * It takes [CounterCard]'s exact width and minimum height, so the row reads as one set of
+ * cards instead of a tall row with a short stub on the end. The dashed `lineStrong` edge
+ * and the `accentSoft` ground are what still mark it as an action rather than a counter.
+ */
 @Composable
 fun NewCounterCard(
     label: String,
@@ -217,20 +222,55 @@ fun NewCounterCard(
     val c = TapTapTheme.colors
     Column(
         modifier = modifier
-            .widthIn(min = 120.dp)
-            .dashedBorder(c.lineStrong, TapTapShapes.lg)
+            .width(counterCardWidth())
+            .heightIn(min = counterCardMinHeight())
             .clip(TapTapShapes.lg)
             .clickable(role = Role.Button, onClick = onClick)
+            .background(c.accentSoft)
+            .dashedBorder(c.lineStrong, TapTapShapes.lg)
             .padding(14.dp),
-        verticalArrangement = Arrangement.spacedBy(Spacing.space2, Alignment.CenterVertically),
+        verticalArrangement = Arrangement.spacedBy(Spacing.space3, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Icon(
-            imageVector = TapTapIcons.Plus,
-            contentDescription = null,
-            tint = c.ink,
-            modifier = Modifier.size(24.dp),
+        // Echoes the `+` on a real card, so the two are visibly the same gesture.
+        Box(
+            modifier = Modifier
+                .size(48.dp)
+                .background(c.accent, TapTapShapes.pill),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = TapTapIcons.Plus,
+                contentDescription = null,
+                tint = c.onAccent,
+                modifier = Modifier.size(24.dp),
+            )
+        }
+        Text(
+            text = label,
+            style = TapTapType.label.copy(
+                fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+            ),
+            color = c.onAccentSoft,
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
         )
-        Text(text = label, style = TapTapType.label, color = c.ink)
     }
 }
+
+/** Shared by [CounterCard] and [NewCounterCard] so the row never goes ragged. */
+@Composable
+private fun cardFontScale(): Float = LocalDensity.current.fontScale.coerceIn(1f, 2f)
+
+@Composable
+private fun counterCardWidth(): Dp = 164.dp * cardFontScale()
+
+/**
+ * 190dp, not the 168dp the row used to ask for: a real card's own content (name, count,
+ * bar, 48dp footer) measures ~186dp, so a 168dp minimum left [NewCounterCard] visibly
+ * shorter than every card beside it. Asking for a little more than the natural height
+ * puts both on exactly this number.
+ */
+@Composable
+private fun counterCardMinHeight(): Dp = 190.dp * cardFontScale()
