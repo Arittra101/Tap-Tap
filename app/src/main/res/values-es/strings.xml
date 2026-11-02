@@ -24,8 +24,8 @@
     <string name="home_new_counter">Nuevo contador</string>
     <string name="home_days_free">días sin él</string>
     <string name="home_money_saved">dinero ahorrado</string>
-    <string name="home_urges_today">ganas vencidas hoy</string>
-    <string name="home_beat_urge">He vencido unas ganas</string>
+    <string name="home_urges_today">veces que dijiste que no hoy</string>
+    <string name="home_beat_urge">Dije que no</string>
     <string name="home_no_target">sin objetivo</string>
     <string name="home_step_meta">+%1$d por toque</string>
     <string name="home_target_reached">Objetivo alcanzado</string>
@@ -106,7 +106,7 @@
     <string name="field_keep_counting_help">Si está apagado, la cuenta se detiene en el objetivo</string>
     <string name="create_reason">Tu motivo para dejarlo</string>
     <string name="create_reason_hint">p. ej. para respirar mejor en mi paseo matinal</string>
-    <string name="create_reason_help">Te lo mostramos cuando abres este contador y cuando llegan las ganas.</string>
+    <string name="create_reason_help">Te lo mostramos cuando abres este contador y cuando te vuelven las ganas.</string>
     <string name="create_motivation">Motivación</string>
     <string name="field_badges">Insignias por hitos</string>
     <string name="field_badges_help">Gana una insignia a los 1, 3, 7, 14, 30, 90 días y más</string>
@@ -159,16 +159,20 @@
     <string name="quit_your_focus">Tu foco</string>
     <string name="quit_make_focus">Poner como foco</string>
     <string name="quit_stat_money">Dinero ahorrado</string>
-    <string name="quit_stat_urges">Ganas vencidas</string>
+    <string name="quit_stat_urges">Veces que dijiste que no</string>
     <string name="quit_stat_best">Mejor racha</string>
-    <string name="quit_beat_urge">He vencido unas ganas</string>
-    <string name="quit_beaten_today">%1$s vencidas hoy. Toca cada vez que digas que no.</string>
+    <string name="quit_beat_urge">Dije que no</string>
+    <plurals name="quit_said_no_today">
+        <item quantity="one">Hoy dijiste que no %1$s vez</item>
+        <item quantity="many">Hoy dijiste que no %1$s veces</item>
+        <item quantity="other">Hoy dijiste que no %1$s veces</item>
+    </plurals>
     <string name="quit_your_reason">Tu motivo</string>
     <string name="quit_milestones">Hitos</string>
     <string name="quit_badges_earned">%1$d de 10 conseguidas</string>
     <string name="quit_slipped">He recaído</string>
     <string name="slip_title">¿Has recaído?</string>
-    <string name="slip_message">No pasa nada. Tus días sin él empiezan de nuevo desde hoy. Tu mejor racha, tus insignias y las ganas vencidas se guardan.</string>
+    <string name="slip_message">No pasa nada. Tus días libres empiezan otra vez desde hoy. Tu mejor racha, tus insignias y las veces que dijiste que no se conservan.</string>
     <string name="slip_confirm">Empezar de nuevo</string>
     <string name="badge_all_earned">Has conseguido todas las insignias</string>
     <string name="badge_day_word">insignia de días</string>
@@ -242,9 +246,9 @@
         <item quantity="other">%1$d hábitos</item>
     </plurals>
     <plurals name="home_urges_beaten_today">
-        <item quantity="one">%1$d vez vencidas hoy</item>
-        <item quantity="many">%1$d veces vencidas hoy</item>
-        <item quantity="other">%1$d veces vencidas hoy</item>
+        <item quantity="one">Hoy dijiste que no %1$d vez</item>
+        <item quantity="many">Hoy dijiste que no %1$d veces</item>
+        <item quantity="other">Hoy dijiste que no %1$d veces</item>
     </plurals>
     <plurals name="badge_days_to_next">
         <item quantity="one">%1$d día para tu insignia de %2$d días</item>
@@ -267,7 +271,7 @@
     <string name="notif_channel_description">Una nota corta cada mañana sobre los hábitos que estás dejando.</string>
     <string name="notif_daily_body">%1$s · %2$s</string>
     <string name="notif_restart_title">Otra vez el día uno</string>
-    <string name="notif_restart_body">Hoy has empezado de nuevo. Tu mejor racha, tus insignias y las ganas vencidas se mantienen.</string>
+    <string name="notif_restart_body">Hoy has empezado otra vez. Tu mejor racha, tus insignias y las veces que dijiste que no se conservan.</string>
     <plurals name="notif_days_free">
         <item quantity="one">%1$d día sin él</item>
         <item quantity="many">%1$d días sin él</item>

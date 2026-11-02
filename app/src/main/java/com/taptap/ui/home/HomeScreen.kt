@@ -9,14 +9,17 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -140,6 +143,9 @@ fun HomeScreen(
                 }
                 // Clears the floating button.
                 Spacer(Modifier.height(if (state.isEmpty) Spacing.space6 else 120.dp))
+                // ...and then the navigation bar. Only the button carried this inset
+                // before, so the end of a long list slid underneath the bar.
+                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
             }
         }
 

@@ -59,12 +59,12 @@ fun rememberFeedback(settings: Flow<AppSettings>): Feedback {
     return remember(player, vibrator) {
         object : Feedback {
             override fun tap() {
-                if (latest.vibration) vibrator?.buzz(TAP_MS)
+                if (latest.vibration) vibrator?.buzz(Buzz.TAP)
                 if (latest.sound) player.click()
             }
 
             override fun success() {
-                if (latest.vibration) vibrator?.buzz(SUCCESS_MS)
+                if (latest.vibration) vibrator?.buzz(Buzz.SUCCESS)
             }
         }
     }
@@ -74,8 +74,28 @@ fun rememberFeedback(settings: Flow<AppSettings>): Feedback {
 @Composable
 fun rememberNoFeedback(): Feedback = NoFeedback
 
-private const val TAP_MS = 10L
-private const val SUCCESS_MS = 40L
+private enum class Buzz { TAP, SUCCESS }
+
+/**
+ * Fallback durations for devices too old for the predefined effects.
+ *
+ * 10 ms — the first value here — turned out to be unfeelable: it is shorter than the
+ * rise time of the linear actuators in current phones, so the motor never reaches a
+ * perceptible amplitude before it is told to stop.
+ */
+private const val TAP_FALLBACK_MS = 22L
+private const val SUCCESS_FALLBACK_MS = 60L
+
+/**
+ * Classifies the buzz as touch feedback.
+ *
+ * Without this the vibration carries no usage, and vendor ROMs are free to attenuate or
+ * drop it — which is the other half of why a raw short one-shot was going unnoticed.
+ */
+private val TouchAttributes: AudioAttributes = AudioAttributes.Builder()
+    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+    .build()
 
 private fun Context.vibrator(): Vibrator? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
     (getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager)?.defaultVibrator
@@ -84,14 +104,46 @@ private fun Context.vibrator(): Vibrator? = if (Build.VERSION.SDK_INT >= Build.V
     getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
 }
 
-private fun Vibrator.buzz(millis: Long) {
+/**
+ * Prefers the platform's predefined effects over a raw one-shot.
+ *
+ * `EFFECT_CLICK` and `EFFECT_HEAVY_CLICK` are tuned per device by the manufacturer, so
+ * they are actually felt on hardware where a hand-rolled duration is not, and they are
+ * what the system itself uses for touch confirmation.
+ */
+private fun Vibrator.buzz(kind: Buzz) {
     if (!hasVibrator()) return
     runCatching {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrate(VibrationEffect.createOneShot(millis, VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            @Suppress("DEPRECATION")
-            vibrate(millis)
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                val effect = VibrationEffect.createPredefined(
+                    when (kind) {
+                        Buzz.TAP -> VibrationEffect.EFFECT_CLICK
+                        Buzz.SUCCESS -> VibrationEffect.EFFECT_HEAVY_CLICK
+                    },
+                )
+                vibrate(effect, TouchAttributes)
+            }
+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> {
+                val millis = when (kind) {
+                    Buzz.TAP -> TAP_FALLBACK_MS
+                    Buzz.SUCCESS -> SUCCESS_FALLBACK_MS
+                }
+                vibrate(
+                    VibrationEffect.createOneShot(millis, VibrationEffect.DEFAULT_AMPLITUDE),
+                    TouchAttributes,
+                )
+            }
+
+            else -> {
+                val millis = when (kind) {
+                    Buzz.TAP -> TAP_FALLBACK_MS
+                    Buzz.SUCCESS -> SUCCESS_FALLBACK_MS
+                }
+                @Suppress("DEPRECATION")
+                vibrate(millis)
+            }
         }
     }
 }

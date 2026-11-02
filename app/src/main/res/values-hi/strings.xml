@@ -24,8 +24,8 @@
     <string name="home_new_counter">नया काउंटर</string>
     <string name="home_days_free">दिन मुक्त</string>
     <string name="home_money_saved">पैसे बचे</string>
-    <string name="home_urges_today">आज जीती इच्छाएँ</string>
-    <string name="home_beat_urge">मैंने एक इच्छा जीती</string>
+    <string name="home_urges_today">आज आपने कितनी बार ना कहा</string>
+    <string name="home_beat_urge">मैंने ना कहा</string>
     <string name="home_no_target">कोई लक्ष्य नहीं</string>
     <string name="home_step_meta">हर टैप पर +%1$d</string>
     <string name="home_target_reached">लक्ष्य पूरा</string>
@@ -106,7 +106,7 @@
     <string name="field_keep_counting_help">बंद होने पर लक्ष्य पर गिनती रुक जाती है</string>
     <string name="create_reason">छोड़ने का आपका कारण</string>
     <string name="create_reason_hint">जैसे सुबह की सैर में बेहतर साँस लेने के लिए</string>
-    <string name="create_reason_help">जब आप यह काउंटर खोलते हैं और जब इच्छा आती है, तब हम इसे दिखाते हैं।</string>
+    <string name="create_reason_help">जब आप यह काउंटर खोलेंगे और जब फिर से करने का मन करेगा, तब हम यह दिखाएँगे।</string>
     <string name="create_motivation">प्रेरणा</string>
     <string name="field_badges">मील के पत्थर बैज</string>
     <string name="field_badges_help">1, 3, 7, 14, 30, 90 दिनों पर और उसके आगे बैज पाएँ</string>
@@ -159,16 +159,19 @@
     <string name="quit_your_focus">आपका फ़ोकस</string>
     <string name="quit_make_focus">फ़ोकस बनाएँ</string>
     <string name="quit_stat_money">पैसे बचे</string>
-    <string name="quit_stat_urges">जीती इच्छाएँ</string>
+    <string name="quit_stat_urges">कितनी बार ना कहा</string>
     <string name="quit_stat_best">सबसे लंबा दौर</string>
-    <string name="quit_beat_urge">मैंने एक इच्छा जीती</string>
-    <string name="quit_beaten_today">आज %1$s बार जीते। हर बार मना करने पर टैप करें।</string>
+    <string name="quit_beat_urge">मैंने ना कहा</string>
+    <plurals name="quit_said_no_today">
+        <item quantity="one">आज आपने %1$s बार ना कहा</item>
+        <item quantity="other">आज आपने %1$s बार ना कहा</item>
+    </plurals>
     <string name="quit_your_reason">आपका कारण</string>
     <string name="quit_milestones">मील के पत्थर</string>
     <string name="quit_badges_earned">10 में से %1$d मिले</string>
     <string name="quit_slipped">मैं फिसल गया</string>
     <string name="slip_title">क्या आप फिसल गए?</string>
-    <string name="slip_message">कोई बात नहीं। आपके मुक्त दिन आज से फिर शुरू होंगे। आपका सबसे लंबा दौर, बैज और जीती इच्छाएँ बनी रहेंगी।</string>
+    <string name="slip_message">कोई बात नहीं। आपके मुक्त दिन आज से फिर शुरू होंगे। आपकी सबसे लंबी लकीर, बैज और जितनी बार आपने ना कहा, सब रहेंगे।</string>
     <string name="slip_confirm">फिर से शुरू करें</string>
     <string name="badge_all_earned">आपने सभी बैज पा लिए</string>
     <string name="badge_day_word">दिन का बैज</string>
@@ -241,8 +244,8 @@
         <item quantity="other">%1$d आदतें</item>
     </plurals>
     <plurals name="home_urges_beaten_today">
-        <item quantity="one">आज %1$d इच्छा जीती</item>
-        <item quantity="other">आज %1$d इच्छाएँ जीतीं</item>
+        <item quantity="one">आज आपने %1$d बार ना कहा</item>
+        <item quantity="other">आज आपने %1$d बार ना कहा</item>
     </plurals>
     <plurals name="badge_days_to_next">
         <item quantity="one">आपके %2$d दिन के बैज में %1$d दिन बाक़ी</item>
@@ -262,7 +265,7 @@
     <string name="notif_channel_description">जिन आदतों को आप छोड़ रहे हैं, उन पर हर सुबह एक छोटा नोट।</string>
     <string name="notif_daily_body">%1$s · %2$s</string>
     <string name="notif_restart_title">फिर से पहला दिन</string>
-    <string name="notif_restart_body">आपने आज फिर से शुरू किया। आपका सबसे लंबा दौर, बैज और जीती इच्छाएँ सब बनी हुई हैं।</string>
+    <string name="notif_restart_body">आपने आज फिर शुरू किया। आपकी सबसे लंबी लकीर, बैज और जितनी बार आपने ना कहा, सब रहेंगे।</string>
     <plurals name="notif_days_free">
         <item quantity="one">%1$d दिन मुक्त</item>
         <item quantity="other">%1$d दिन मुक्त</item>

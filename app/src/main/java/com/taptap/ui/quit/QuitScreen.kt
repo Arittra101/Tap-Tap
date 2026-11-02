@@ -8,13 +8,16 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -218,8 +221,10 @@ fun QuitScreen(
                             modifier = Modifier.fillMaxWidth(),
                         )
                         Text(
-                            text = stringResource(
-                                R.string.quit_beaten_today,
+                            // A plural, so no language ever has to render "1 times".
+                            text = pluralStringResource(
+                                R.plurals.quit_said_no_today,
+                                state.urgesToday,
                                 Formatters.number(state.urgesToday, locale),
                             ),
                             style = TapTapType.caption,
@@ -324,7 +329,12 @@ fun QuitScreen(
                             modifier = Modifier.weight(1f),
                         )
                     }
-                    Spacer(Modifier.height(Spacing.space2).navigationBarsPadding())
+                    // The bottom inset, as its own spacer. Hanging navigationBarsPadding()
+                    // off a fixed height() does nothing: the outer height clamps the
+                    // measurement, the inset is dropped, and the navigation bar then sits
+                    // on top of the last row.
+                    Spacer(Modifier.height(Spacing.space2))
+                    Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
                 }
             }
 

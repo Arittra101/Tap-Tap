@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,10 +14,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
@@ -181,7 +184,12 @@ fun EditScreen(
                         textAlign = TextAlign.Center,
                     )
                 }
-                Spacer(Modifier.height(Spacing.space2).navigationBarsPadding())
+                // The bottom inset, as its own spacer. Hanging navigationBarsPadding()
+                // off a fixed height() does nothing: the outer height clamps the
+                // measurement, the inset is dropped, and the navigation bar then sits
+                // on top of the last row.
+                Spacer(Modifier.height(Spacing.space2))
+                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
             }
         }
 

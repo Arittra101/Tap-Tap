@@ -35,8 +35,8 @@
     <string name="home_new_counter">New counter</string>
     <string name="home_days_free">days free</string>
     <string name="home_money_saved">money saved</string>
-    <string name="home_urges_today">urges beaten today</string>
-    <string name="home_beat_urge">I beat an urge</string>
+    <string name="home_urges_today">times you said no today</string>
+    <string name="home_beat_urge">I said no</string>
     <!-- On a quit card: the make-focus control carries its word, not just an icon. -->
     <string name="home_make_focus_short">Make focus</string>
     <string name="home_no_target">no target</string>
@@ -114,7 +114,7 @@
     <string name="field_keep_counting_help">When off, counting stops at the target</string>
     <string name="create_reason">Your reason to quit</string>
     <string name="create_reason_hint">e.g. To breathe better on my morning walk</string>
-    <string name="create_reason_help">We show it to you when you open this counter and when an urge comes.</string>
+    <string name="create_reason_help">We show it to you when you open this counter and when you feel like doing it again.</string>
     <string name="create_motivation">Motivation</string>
     <string name="field_badges">Milestone badges</string>
     <string name="field_badges_help">Earn a badge at 1, 3, 7, 14, 30, 90 days and more</string>
@@ -147,8 +147,8 @@
         <item quantity="other">%1$d habits</item>
     </plurals>
     <plurals name="home_urges_beaten_today">
-        <item quantity="one">%1$d urge beaten today</item>
-        <item quantity="other">%1$d urges beaten today</item>
+        <item quantity="one">You said no %1$d time today</item>
+        <item quantity="other">You said no %1$d times today</item>
     </plurals>
     <plurals name="badge_days_to_next">
         <item quantity="one">%1$d day to your %2$d-day badge</item>
@@ -203,16 +203,19 @@
     <string name="quit_your_focus">Your focus</string>
     <string name="quit_make_focus">Make focus</string>
     <string name="quit_stat_money">Money saved</string>
-    <string name="quit_stat_urges">Urges beaten</string>
+    <string name="quit_stat_urges">Times you said no</string>
     <string name="quit_stat_best">Best streak</string>
-    <string name="quit_beat_urge">I beat an urge</string>
-    <string name="quit_beaten_today">%1$s beaten today. Tap each time you say no.</string>
+    <string name="quit_beat_urge">I said no</string>
+    <plurals name="quit_said_no_today">
+        <item quantity="one">You said no %1$s time today</item>
+        <item quantity="other">You said no %1$s times today</item>
+    </plurals>
     <string name="quit_your_reason">Your reason</string>
     <string name="quit_milestones">Milestones</string>
     <string name="quit_badges_earned">%1$d of 10 earned</string>
     <string name="quit_slipped">I slipped</string>
     <string name="slip_title">Did you slip?</string>
-    <string name="slip_message">That is okay. Your days free start again from today. Your best streak, badges and urges beaten are kept.</string>
+    <string name="slip_message">That is okay. Your days free start again from today. Your best streak, badges and the times you said no are kept.</string>
     <string name="slip_confirm">Start again</string>
     <string name="badge_day_word">day badge</string>
     <string name="badge_state_earned">earned</string>
@@ -298,7 +301,7 @@
         must not claim a streak they no longer have.
     -->
     <string name="notif_restart_title">Day one again</string>
-    <string name="notif_restart_body">You started again today. Your best streak, badges and urges beaten are all kept.</string>
+    <string name="notif_restart_body">You started again today. Your best streak, badges and the times you said no are all kept.</string>
     <plurals name="notif_days_free">
         <item quantity="one">%1$d day free</item>
         <item quantity="other">%1$d days free</item>
@@ -312,7 +315,7 @@
     <string name="a11y_quote_slide">Motivation. %1$s. Tap to start a quit counter.</string>
     <string-array name="quit_motivation_quotes">
         <item>Day one counts as much as day one hundred.</item>
-        <item>An urge lasts a few minutes. You can wait it out.</item>
+        <item>The feeling lasts a few minutes. You can wait it out.</item>
         <item>Every day you say no is a day you keep.</item>
         <item>You are not losing a habit. You are getting time back.</item>
         <item>The money adds up. So do the days.</item>

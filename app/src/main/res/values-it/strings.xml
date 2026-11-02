@@ -24,8 +24,8 @@
     <string name="home_new_counter">Nuovo contatore</string>
     <string name="home_days_free">giorni senza</string>
     <string name="home_money_saved">risparmiati</string>
-    <string name="home_urges_today">voglie vinte oggi</string>
-    <string name="home_beat_urge">Ho vinto una voglia</string>
+    <string name="home_urges_today">volte che hai detto di no oggi</string>
+    <string name="home_beat_urge">Ho detto di no</string>
     <string name="home_no_target">nessun obiettivo</string>
     <string name="home_step_meta">+%1$d per tocco</string>
     <string name="home_target_reached">Obiettivo raggiunto</string>
@@ -106,7 +106,7 @@
     <string name="field_keep_counting_help">Se è spento, il conto si ferma all\'obiettivo</string>
     <string name="create_reason">Il tuo motivo per smettere</string>
     <string name="create_reason_hint">es. per respirare meglio nella passeggiata del mattino</string>
-    <string name="create_reason_help">Te lo mostriamo quando apri questo contatore e quando arriva la voglia.</string>
+    <string name="create_reason_help">Te lo mostriamo quando apri questo contatore e quando ti torna la voglia.</string>
     <string name="create_motivation">Motivazione</string>
     <string name="field_badges">Distintivi per i traguardi</string>
     <string name="field_badges_help">Ottieni un distintivo a 1, 3, 7, 14, 30, 90 giorni e oltre</string>
@@ -159,16 +159,20 @@
     <string name="quit_your_focus">Il tuo focus</string>
     <string name="quit_make_focus">Rendi focus</string>
     <string name="quit_stat_money">Risparmiati</string>
-    <string name="quit_stat_urges">Voglie vinte</string>
+    <string name="quit_stat_urges">Volte che hai detto di no</string>
     <string name="quit_stat_best">Serie migliore</string>
-    <string name="quit_beat_urge">Ho vinto una voglia</string>
-    <string name="quit_beaten_today">%1$s vinte oggi. Tocca ogni volta che dici di no.</string>
+    <string name="quit_beat_urge">Ho detto di no</string>
+    <plurals name="quit_said_no_today">
+        <item quantity="one">Oggi hai detto di no %1$s volta</item>
+        <item quantity="many">Oggi hai detto di no %1$s volte</item>
+        <item quantity="other">Oggi hai detto di no %1$s volte</item>
+    </plurals>
     <string name="quit_your_reason">Il tuo motivo</string>
     <string name="quit_milestones">Traguardi</string>
     <string name="quit_badges_earned">%1$d di 10 ottenuti</string>
     <string name="quit_slipped">Ho ceduto</string>
     <string name="slip_title">Hai ceduto?</string>
-    <string name="slip_message">Va bene così. I tuoi giorni senza ricominciano da oggi. La serie migliore, i distintivi e le voglie vinte restano.</string>
+    <string name="slip_message">Va bene così. I tuoi giorni liberi ripartono da oggi. La tua serie migliore, i distintivi e le volte che hai detto di no restano.</string>
     <string name="slip_confirm">Ricomincia</string>
     <string name="badge_all_earned">Hai ottenuto tutti i distintivi</string>
     <string name="badge_day_word">distintivo dei giorni</string>
@@ -242,9 +246,9 @@
         <item quantity="other">%1$d abitudini</item>
     </plurals>
     <plurals name="home_urges_beaten_today">
-        <item quantity="one">%1$d voglia vinta oggi</item>
-        <item quantity="many">%1$d voglie vinte oggi</item>
-        <item quantity="other">%1$d voglie vinte oggi</item>
+        <item quantity="one">Oggi hai detto di no %1$d volta</item>
+        <item quantity="many">Oggi hai detto di no %1$d volte</item>
+        <item quantity="other">Oggi hai detto di no %1$d volte</item>
     </plurals>
     <plurals name="badge_days_to_next">
         <item quantity="one">%1$d giorno al distintivo dei %2$d giorni</item>
@@ -267,7 +271,7 @@
     <string name="notif_channel_description">Una nota breve ogni mattina sulle abitudini che stai lasciando.</string>
     <string name="notif_daily_body">%1$s · %2$s</string>
     <string name="notif_restart_title">Di nuovo giorno uno</string>
-    <string name="notif_restart_body">Hai ricominciato oggi. La serie migliore, i distintivi e le voglie vinte restano tutti.</string>
+    <string name="notif_restart_body">Oggi hai ricominciato. La tua serie migliore, i distintivi e le volte che hai detto di no restano tutti.</string>
     <plurals name="notif_days_free">
         <item quantity="one">%1$d giorno senza</item>
         <item quantity="many">%1$d giorni senza</item>

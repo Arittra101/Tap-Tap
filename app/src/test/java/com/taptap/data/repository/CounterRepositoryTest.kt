@@ -120,6 +120,20 @@ class CounterRepositoryTest {
         assertEquals(7L, countOf(id))
     }
 
+    /**
+     * The tap haptic (FR-8.4) hangs off this return value: the ViewModel emits
+     * `TapFeedback` only when [CounterRepository.tap] reports the count actually moved.
+     * So a direction that returned 0 would silently lose its buzz as well as its count.
+     */
+    @Test
+    fun `FR-8_4 a tap reports a non-zero delta counting up and counting down`() = runTest {
+        val up = repo.create(normal(count = 0, step = 2))
+        assertEquals(2L, repo.tap(up))
+
+        val down = repo.create(normal(count = 10, step = 2, reversed = true))
+        assertEquals(-2L, repo.tap(down))
+    }
+
     @Test
     fun `FR-3_5 reverse never goes below zero`() = runTest {
         val id = repo.create(normal(count = 2, step = 5, reversed = true))
