@@ -266,4 +266,21 @@
         <item quantity="one">%1$d दिन मुक्त</item>
         <item quantity="other">%1$d दिन मुक्त</item>
     </plurals>
+
+    <!--
+        The motivation slider at the top of Home (always on, including first run).
+        Design voice: short, simple, kind, no religious words, no emoji.
+    -->
+    <string name="quote_cta">छोड़ने वाला काउंटर शुरू करें</string>
+    <string name="a11y_quote_slide">प्रेरणा। %1$s। छोड़ने वाला काउंटर शुरू करने के लिए टैप करें।</string>
+    <string-array name="quit_motivation_quotes">
+        <item>पहला दिन सौवें दिन जितना ही अहम है।</item>
+        <item>इच्छा कुछ मिनट रहती है। आप रुक सकते हैं।</item>
+        <item>जिस दिन आप मना करते हैं, वह दिन आपका रहता है।</item>
+        <item>आप आदत नहीं खो रहे। आप समय वापस पा रहे हैं।</item>
+        <item>पैसे जुड़ते जाते हैं। दिन भी जुड़ते हैं।</item>
+    </string-array>
+    <string name="home_make_focus_short">फ़ोकस बनाएँ</string>
+    <string name="quit_pin">पिन करें</string>
+    <string name="quit_unpin">अनपिन</string>
 </resources>

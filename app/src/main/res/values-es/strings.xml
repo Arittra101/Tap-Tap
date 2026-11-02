@@ -272,4 +272,21 @@
         <item quantity="many">%1$d días sin él</item>
         <item quantity="other">%1$d días sin él</item>
     </plurals>
+
+    <!--
+        The motivation slider at the top of Home (always on, including first run).
+        Design voice: short, simple, kind, no religious words, no emoji.
+    -->
+    <string name="quote_cta">Empieza un contador para dejarlo</string>
+    <string name="a11y_quote_slide">Motivación. %1$s. Toca para empezar un contador para dejarlo.</string>
+    <string-array name="quit_motivation_quotes">
+        <item>El primer día cuenta tanto como el día cien.</item>
+        <item>Las ganas duran unos minutos. Puedes esperar a que pasen.</item>
+        <item>Cada día que dices que no es un día que te quedas.</item>
+        <item>No estás perdiendo un hábito. Estás recuperando tiempo.</item>
+        <item>El dinero se acumula. Los días también.</item>
+    </string-array>
+    <string name="home_make_focus_short">Poner como foco</string>
+    <string name="quit_pin">Fijar</string>
+    <string name="quit_unpin">No fijar</string>
 </resources>

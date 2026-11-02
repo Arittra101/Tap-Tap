@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -84,6 +86,7 @@ fun QuitRoute(
     )
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun QuitScreen(
     state: QuitState,
@@ -111,18 +114,12 @@ fun QuitScreen(
                     },
                     onBack = onBack,
                     backLabel = stringResource(R.string.action_back_to_home),
-                    onTitleClick = onEdit,
-                    titleClickLabel = stringResource(R.string.a11y_edit_counter),
                     action = {
                         TapTapIconButton(
-                            icon = TapTapIcons.pin(state.isPinned),
-                            contentDescription = stringResource(
-                                if (state.isPinned) R.string.a11y_unpin_from_top
-                                else R.string.a11y_pin_to_top,
-                            ),
-                            onClick = { onIntent(QuitIntent.TogglePin) },
+                            icon = TapTapIcons.Edit,
+                            contentDescription = stringResource(R.string.a11y_edit_counter),
+                            onClick = onEdit,
                             style = IconButtonStyle.Framed,
-                            pressed = state.isPinned,
                         )
                     },
                 )
@@ -285,10 +282,25 @@ fun QuitScreen(
                         }
                     }
 
-                    Row(
+                    FlowRow(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
+                        verticalArrangement = Arrangement.spacedBy(Spacing.space2),
                     ) {
+                        TapTapButton(
+                            text = stringResource(
+                                if (state.isPinned) R.string.quit_unpin else R.string.quit_pin,
+                            ),
+                            onClick = { onIntent(QuitIntent.TogglePin) },
+                            variant = if (state.isPinned) {
+                                ButtonVariant.SecondaryActive
+                            } else {
+                                ButtonVariant.Secondary
+                            },
+                            icon = TapTapIcons.pin(state.isPinned),
+                            minHeight = 52.dp,
+                            modifier = Modifier.weight(1f),
+                        )
                         TapTapButton(
                             text = stringResource(
                                 if (state.isFocus) R.string.quit_your_focus else R.string.quit_make_focus,

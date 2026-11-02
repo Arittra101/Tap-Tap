@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -22,6 +23,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import com.taptap.R
 import com.taptap.model.Counter
@@ -57,55 +59,49 @@ fun FocusCard(
 ) {
     CounterTheme(counter.color) {
         val own = TapTapTheme.colors
+        Box(modifier = modifier.fillMaxWidth()) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
-                .background(own.accent, TapTapShapes.xl)
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
+                .clip(TapTapShapes.xl)
+                // FR-1.11: the whole card opens the counter. "I beat an urge" is its own
+                // clickable, so it still consumes its own taps.
+                .clickable(
+                    role = Role.Button,
+                    onClickLabel = sectionLabels.open,
+                    onClick = onOpen,
+                )
+                .background(own.accent)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                // Clear of the floating chevron.
+                modifier = Modifier.padding(end = 32.dp),
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    // FR-1.11: tapping the name opens the counter, same as the chevron.
-                    // Not a second button — the design system's rule is about actions.
-                    modifier = Modifier
-                        .weight(1f)
-                        .clip(TapTapShapes.sm)
-                        .clickable(role = Role.Button, onClick = onOpen),
-                ) {
-                    Icon(
-                        imageVector = TapTapIcons.Focus,
-                        contentDescription = null,
-                        tint = own.onAccent,
-                        modifier = Modifier.size(18.dp),
-                    )
-                    Text(
-                        text = counter.name,
-                        style = TapTapType.label,
-                        color = own.onAccent,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
-                TapTapIconButton(
-                    icon = TapTapIcons.ChevronRight,
-                    contentDescription = sectionLabels.open,
-                    onClick = onOpen,
-                    style = IconButtonStyle.Plain,
+                Icon(
+                    imageVector = TapTapIcons.Focus,
+                    contentDescription = null,
                     tint = own.onAccent,
+                    modifier = Modifier.size(18.dp),
+                )
+                Text(
+                    text = counter.name,
+                    style = TapTapType.label,
+                    color = own.onAccent,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
                     text = localNumber(daysFree),
-                    style = TapTapType.countLg,
+                    // 72sp made the card taller than it needed to be; 56sp still reads as
+                    // the hero number on the screen.
+                    style = TapTapType.countLg.copy(fontSize = 56.sp, lineHeight = 58.sp),
                     color = own.onAccent,
                     modifier = Modifier.alignByBaseline(),
                 )
@@ -170,8 +166,24 @@ fun FocusCard(
                         fontWeight = FontWeight.Normal,
                     ),
                     color = own.onAccent,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
+        }
+
+            // Floating, so the name row is one line tall rather than 48dp, and the
+            // chevron keeps its full touch target.
+            TapTapIconButton(
+                icon = TapTapIcons.ChevronRight,
+                contentDescription = sectionLabels.open,
+                onClick = onOpen,
+                style = IconButtonStyle.Plain,
+                tint = own.onAccent,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .offset(x = (-4).dp, y = 2.dp),
+            )
         }
     }
 }
@@ -182,8 +194,8 @@ private fun FocusStat(value: String, label: String, modifier: Modifier = Modifie
     Column(
         modifier = modifier
             .border(1.dp, own.accentStrong, TapTapShapes.md)
-            .padding(horizontal = Spacing.space3, vertical = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(2.dp),
+            .padding(horizontal = Spacing.space3, vertical = 8.dp),
+        verticalArrangement = Arrangement.spacedBy(1.dp),
     ) {
         Text(text = value, style = TapTapType.statValue, color = own.onAccent)
         Text(text = label, style = TapTapType.caption, color = own.onAccent)

@@ -81,11 +81,25 @@ fun ComponentGallery(modifier: Modifier = Modifier) {
                 Modifier.horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
             ) {
-                CounterCard(sampleNormal, {}, {}, {}, "Add 1 to Push-ups", "Pin Push-ups", "Target reached", "Step 1", "/ 50")
-                CounterCard(sampleDone, {}, {}, {}, "Add", "Unpin", "Target reached", "Target reached", "/ 8")
+                CounterCard(sampleNormal, {}, {}, {}, "Add 1 to Push-ups", "Pin Push-ups", "Open Push-ups", "Target reached", "Step 1", "/ 50")
+                CounterCard(sampleDone, {}, {}, {}, "Add", "Unpin", "Open", "Target reached", "Target reached", "/ 8")
                 NewCounterCard("New counter", onClick = {})
             }
-            QuitCard(sampleQuit, 14, "days free", "৳2,100 saved", "7 days to your 21-day badge", 0.0f, {}, {}, {}, "Make focus", "Pin")
+            QuitCard(
+                counter = sampleQuit,
+                daysFree = 14,
+                daysFreeLabel = "days free",
+                sideText = "৳2,100 saved",
+                nextBadgeText = "7 days to your 21-day badge",
+                milestoneProgress = 0.4f,
+                onOpen = {},
+                onMakeFocus = {},
+                onTogglePin = {},
+                makeFocusLabel = "Make Quit cigarettes your focus",
+                makeFocusText = "Make focus",
+                pinLabel = "Pin Quit cigarettes",
+                openLabel = "Open Quit cigarettes",
+            )
             FocusCard(
                 sampleQuit, 14, 0.0f, "7 days to your 21-day badge", "৳2,100", "3",
                 FocusCardLabels("days free", "money saved", "urges beaten today", "I beat an urge", "Open"),

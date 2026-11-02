@@ -282,4 +282,21 @@
         <item quantity="many">%1$d дней без неё</item>
         <item quantity="other">%1$d дня без неё</item>
     </plurals>
+
+    <!--
+        The motivation slider at the top of Home (always on, including first run).
+        Design voice: short, simple, kind, no religious words, no emoji.
+    -->
+    <string name="quote_cta">Начать счётчик отказа</string>
+    <string name="a11y_quote_slide">Мотивация. %1$s. Нажмите, чтобы начать счётчик отказа.</string>
+    <string-array name="quit_motivation_quotes">
+        <item>Первый день важен не меньше сотого.</item>
+        <item>Желание длится несколько минут. Его можно переждать.</item>
+        <item>Каждый день, когда вы говорите «нет», остаётся вашим.</item>
+        <item>Вы не теряете привычку. Вы возвращаете себе время.</item>
+        <item>Деньги накапливаются. Дни тоже.</item>
+    </string-array>
+    <string name="home_make_focus_short">Сделать фокусом</string>
+    <string name="quit_pin">Закрепить</string>
+    <string name="quit_unpin">Открепить</string>
 </resources>

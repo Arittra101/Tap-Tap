@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -48,7 +49,9 @@ fun QuitCard(
     onMakeFocus: () -> Unit,
     onTogglePin: () -> Unit,
     makeFocusLabel: String,
+    makeFocusText: String,
     pinLabel: String,
+    openLabel: String,
     modifier: Modifier = Modifier,
 ) {
     val app = TapTapTheme.colors
@@ -56,7 +59,9 @@ fun QuitCard(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(app.surface, TapTapShapes.lg)
+            .clip(TapTapShapes.lg)
+            .clickable(role = Role.Button, onClickLabel = openLabel, onClick = onOpen)
+            .background(app.surface)
             .border(
                 width = 1.dp,
                 color = if (counter.isPinned) app.lineStrong else app.line,
@@ -82,16 +87,7 @@ fun QuitCard(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier
                         .weight(1f)
-                        .padding(start = Spacing.space2)
-                        .clip(TapTapShapes.sm)
-                        .clickable(role = Role.Button, onClick = onOpen),
-                )
-                TapTapIconButton(
-                    icon = TapTapIcons.Focus,
-                    contentDescription = makeFocusLabel,
-                    onClick = onMakeFocus,
-                    style = IconButtonStyle.Plain,
-                    tint = app.inkMuted,
+                        .padding(start = Spacing.space2),
                 )
                 TapTapIconButton(
                     icon = TapTapIcons.pin(counter.isPinned),
@@ -136,7 +132,47 @@ fun QuitCard(
 
             TapTapProgressBar(progress = milestoneProgress, fillColor = own.accent)
 
-            Text(text = nextBadgeText, style = TapTapType.caption, color = app.inkMuted)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(Spacing.space2),
+            ) {
+                Text(
+                    text = nextBadgeText,
+                    style = TapTapType.caption,
+                    color = app.inkMuted,
+                    modifier = Modifier.weight(1f),
+                )
+                // FR-1.8 needs a make-focus control here. A bare two-circles icon reads
+                // as a radio button, so it carries its word instead.
+                Row(
+                    modifier = Modifier
+                        .clip(TapTapShapes.pill)
+                        .clickable(
+                            role = Role.Button,
+                            onClickLabel = makeFocusLabel,
+                            onClick = onMakeFocus,
+                        )
+                        .background(own.accentSoft)
+                        .padding(horizontal = Spacing.space3, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Icon(
+                        imageVector = TapTapIcons.Focus,
+                        contentDescription = null,
+                        tint = own.onAccentSoft,
+                        modifier = Modifier.size(16.dp),
+                    )
+                    Text(
+                        text = makeFocusText,
+                        style = TapTapType.caption.copy(
+                            fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold,
+                        ),
+                        color = own.onAccentSoft,
+                    )
+                }
+            }
         }
     }
 }

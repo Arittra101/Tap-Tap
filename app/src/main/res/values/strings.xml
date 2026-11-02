@@ -35,6 +35,8 @@
     <string name="home_money_saved">money saved</string>
     <string name="home_urges_today">urges beaten today</string>
     <string name="home_beat_urge">I beat an urge</string>
+    <!-- On a quit card: the make-focus control carries its word, not just an icon. -->
+    <string name="home_make_focus_short">Make focus</string>
     <string name="home_no_target">no target</string>
     <string name="home_step_meta">Step %1$d</string>
     <string name="home_target_reached">Target reached</string>
@@ -298,4 +300,20 @@
         <item quantity="one">%1$d day free</item>
         <item quantity="other">%1$d days free</item>
     </plurals>
+
+    <!--
+        The motivation slider at the top of Home (always on, including first run).
+        Design voice: short, simple, kind, no religious words, no emoji.
+    -->
+    <string name="quote_cta">Start a quit counter</string>
+    <string name="a11y_quote_slide">Motivation. %1$s. Tap to start a quit counter.</string>
+    <string-array name="quit_motivation_quotes">
+        <item>Day one counts as much as day one hundred.</item>
+        <item>An urge lasts a few minutes. You can wait it out.</item>
+        <item>Every day you say no is a day you keep.</item>
+        <item>You are not losing a habit. You are getting time back.</item>
+        <item>The money adds up. So do the days.</item>
+    </string-array>
+    <string name="quit_pin">Pin</string>
+    <string name="quit_unpin">Unpin</string>
 </resources>

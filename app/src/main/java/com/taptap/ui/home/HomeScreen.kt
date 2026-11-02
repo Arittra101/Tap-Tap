@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -44,6 +45,7 @@ import com.taptap.ui.components.FocusPicker
 import com.taptap.ui.components.HomeTopBar
 import com.taptap.ui.components.NewCounterCard
 import com.taptap.ui.components.QuitCard
+import com.taptap.ui.components.QuoteSlider
 import com.taptap.ui.components.TapTapButton
 import com.taptap.ui.components.TapTapIcons
 import com.taptap.ui.theme.Spacing
@@ -106,8 +108,20 @@ fun HomeScreen(
                     .weight(1f)
                     .verticalScroll(rememberScrollState())
                     .padding(top = Spacing.space6),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
+                // Between sections. A section's own header-to-content gap is
+                // tighter (see HomeSection), so each title reads as belonging to the
+                // list under it rather than floating between two.
+                verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
+                // Always on, first run included. Tapping it opens New counter with the
+                // quit type already chosen.
+                QuoteSlider(
+                    quotes = stringArrayResource(R.array.quit_motivation_quotes).toList(),
+                    ctaText = stringResource(R.string.quote_cta),
+                    onClick = { onCreate(true) },
+                    modifier = Modifier.padding(horizontal = Spacing.space4),
+                )
+
                 when {
                     // FR-1.10: first open with no counters.
                     state.isEmpty -> EmptyState(onCreate)
@@ -160,10 +174,10 @@ private fun FocusSection(
     val hours = TimeUtils.hoursFree(focus.quitAt ?: state.nowMillis, state.nowMillis)
     val money = TimeUtils.moneySaved(days, focus.moneyPerDay)
 
-    SectionHeader(
+    HomeSection(
         title = stringResource(R.string.home_focus_heading),
         trailing = stringResource(R.string.home_focus_one_at_a_time),
-    )
+    ) {
     Box(Modifier.padding(horizontal = Spacing.space4)) {
         FocusCard(
             counter = focus,
@@ -183,14 +197,15 @@ private fun FocusSection(
             onBeatUrge = { onIntent(HomeIntent.BeatUrge(focus.id)) },
         )
     }
+    }
 }
 
 @Composable
 private fun FocusPickerSection(quitCounters: List<Counter>, onIntent: (HomeIntent) -> Unit) {
-    SectionHeader(
+    HomeSection(
         title = stringResource(R.string.home_focus_heading),
         trailing = stringResource(R.string.home_focus_not_set),
-    )
+    ) {
     Box(Modifier.padding(horizontal = Spacing.space4)) {
         FocusPicker(
             quitCounters = quitCounters,
@@ -198,6 +213,7 @@ private fun FocusPickerSection(quitCounters: List<Counter>, onIntent: (HomeInten
             help = stringResource(R.string.home_focus_pick_help),
             onPick = { onIntent(HomeIntent.MakeFocus(it)) },
         )
+    }
     }
 }
 
@@ -210,7 +226,7 @@ private fun CountersSection(
     onOpenCounter: (Long) -> Unit,
     onCreate: (quit: Boolean) -> Unit,
 ) {
-    SectionHeader(
+    HomeSection(
         title = stringResource(R.string.home_counters_heading),
         trailing = "${
             pluralStringResource(
@@ -219,7 +235,7 @@ private fun CountersSection(
                 state.normalCounters.size,
             )
         } ${stringResource(R.string.home_pinned_first)}",
-    )
+    ) {
     Row(
         modifier = Modifier
             .horizontalScroll(rememberScrollState())
@@ -239,6 +255,7 @@ private fun CountersSection(
                     counter.name,
                 ),
                 targetReachedLabel = stringResource(R.string.home_target_reached),
+                openLabel = stringResource(R.string.a11y_open_counter, counter.name),
                 metaText = if (done) {
                     stringResource(R.string.home_target_reached)
                 } else {
@@ -254,6 +271,7 @@ private fun CountersSection(
             onClick = { onCreate(false) },
         )
     }
+    }
 }
 
 // --- Quit tracker ----------------------------------------------------------------------
@@ -267,7 +285,7 @@ private fun QuitSection(
     if (state.quitCounters.isEmpty()) return
     val locale = currentLocale()
 
-    SectionHeader(
+    HomeSection(
         title = stringResource(R.string.home_quit_heading),
         trailing = "${
             pluralStringResource(
@@ -276,7 +294,7 @@ private fun QuitSection(
                 state.quitCounters.size,
             )
         } ${stringResource(R.string.home_pinned_first)}",
-    )
+    ) {
     Column(
         modifier = Modifier.padding(horizontal = Spacing.space4),
         verticalArrangement = Arrangement.spacedBy(Spacing.space3),
@@ -304,12 +322,15 @@ private fun QuitSection(
                 onMakeFocus = { onIntent(HomeIntent.MakeFocus(counter.id)) },
                 onTogglePin = { onIntent(HomeIntent.TogglePin(counter.id)) },
                 makeFocusLabel = stringResource(R.string.a11y_make_focus, counter.name),
+                makeFocusText = stringResource(R.string.home_make_focus_short),
+                openLabel = stringResource(R.string.a11y_open_counter, counter.name),
                 pinLabel = stringResource(
                     if (counter.isPinned) R.string.a11y_unpin else R.string.a11y_pin,
                     counter.name,
                 ),
             )
         }
+    }
     }
 }
 
@@ -398,6 +419,19 @@ private fun EmptyState(onCreate: (quit: Boolean) -> Unit) {
 }
 
 // --- Shared ----------------------------------------------------------------------------
+
+/** A section: its header tight against its own content. */
+@Composable
+private fun HomeSection(
+    title: String,
+    trailing: String,
+    content: @Composable () -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        SectionHeader(title = title, trailing = trailing)
+        content()
+    }
+}
 
 @Composable
 private fun SectionHeader(title: String, trailing: String) {

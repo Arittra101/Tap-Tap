@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.toggleableState
 import androidx.compose.ui.state.ToggleableState
@@ -63,19 +64,26 @@ fun TapTapIconButton(
         else -> c.ink
     }
 
-    val toggleSemantics = if (pressed != null) {
-        Modifier.semantics {
+    /*
+     * The label lives on this outer box, not on the Icon.
+     *
+     * With it on the Icon, the node an accessibility service sees is the 20dp glyph —
+     * the touch area was 48dp but the reported target was not, which fails NFR-4 for
+     * anyone using touch exploration or an a11y scanner. Merging here makes the
+     * announced node the same size as the thing you can actually press.
+     */
+    val buttonSemantics = Modifier.semantics(mergeDescendants = true) {
+        this.contentDescription = contentDescription
+        if (pressed != null) {
             toggleableState = if (pressed) ToggleableState.On else ToggleableState.Off
         }
-    } else {
-        Modifier
     }
 
     Box(
         modifier = modifier
             // NFR-4: the 40dp plain variant still gets a 48dp touch area.
             .sizeIn(minWidth = MinTouchTarget, minHeight = MinTouchTarget)
-            .then(toggleSemantics)
+            .then(buttonSemantics)
             .clickable(
                 enabled = enabled,
                 onClick = onClick,
@@ -101,7 +109,8 @@ fun TapTapIconButton(
         ) {
             Icon(
                 imageVector = icon,
-                contentDescription = contentDescription,
+                // The label is on the button above.
+                contentDescription = null,
                 tint = resolvedTint,
                 modifier = Modifier.size(iconSize),
             )

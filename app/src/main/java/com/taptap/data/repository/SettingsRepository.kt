@@ -4,7 +4,12 @@ import com.taptap.data.settings.SettingsStore
 import com.taptap.model.AppSettings
 import com.taptap.model.ThemeColor
 import com.taptap.model.ThemeMode
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 
 /**
  * The app's settings, as one stream plus one setter per key (tech spec 7.4).
@@ -13,7 +18,20 @@ import kotlinx.coroutines.flow.Flow
  */
 class SettingsRepository(private val store: SettingsStore) {
 
-    val settings: Flow<AppSettings> = store.settings
+    /**
+     * Application-scoped: this class is a singleton, so the latest settings stay cached
+     * across an Activity recreation (a system light/dark switch causes one).
+     *
+     * Without the cache the first frame after recreation used [AppSettings] defaults —
+     * Pink — which visibly overrode whatever colour the user had chosen.
+     */
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    val settings: StateFlow<AppSettings> = store.settings
+        .stateIn(scope, SharingStarted.Eagerly, AppSettings())
+
+    /** The latest known settings, for seeding a composition without a default frame. */
+    val current: AppSettings get() = settings.value
 
     suspend fun setThemeColor(value: ThemeColor) = store.setThemeColor(value)
 

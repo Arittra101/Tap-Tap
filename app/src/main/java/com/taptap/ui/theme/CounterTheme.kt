@@ -51,3 +51,12 @@ fun counterAccent(color: ThemeColor?): androidx.compose.ui.graphics.Color =
     } else {
         accentSet(color, LocalIsDark.current).accent
     }
+
+/** A counter's own `accent-strong`, for an icon tint outside a themed subtree. */
+@Composable
+fun counterAccentStrong(color: ThemeColor?): androidx.compose.ui.graphics.Color =
+    if (color == null) {
+        LocalTapTapColors.current.accentStrong
+    } else {
+        accentSet(color, LocalIsDark.current).accentStrong
+    }

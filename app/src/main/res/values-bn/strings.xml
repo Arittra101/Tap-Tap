@@ -268,4 +268,21 @@
         <item quantity="one">%1$d দিন মুক্ত</item>
         <item quantity="other">%1$d দিন মুক্ত</item>
     </plurals>
+
+    <!--
+        The motivation slider at the top of Home (always on, including first run).
+        Design voice: short, simple, kind, no religious words, no emoji.
+    -->
+    <string name="quote_cta">একটি ছাড়ার কাউন্টার শুরু করুন</string>
+    <string name="a11y_quote_slide">অনুপ্রেরণা। %1$s। ছাড়ার কাউন্টার শুরু করতে ট্যাপ করুন।</string>
+    <string-array name="quit_motivation_quotes">
+        <item>প্রথম দিনটি একশতম দিনের মতোই দামি।</item>
+        <item>ইচ্ছা কয়েক মিনিট থাকে। আপনি অপেক্ষা করতে পারেন।</item>
+        <item>যে দিন আপনি না বলেন, সেই দিনটি আপনার থাকে।</item>
+        <item>আপনি অভ্যাস হারাচ্ছেন না। আপনি সময় ফিরে পাচ্ছেন।</item>
+        <item>টাকা জমতে থাকে। দিনগুলোও জমে।</item>
+    </string-array>
+    <string name="home_make_focus_short">ফোকাস বানান</string>
+    <string name="quit_pin">পিন করুন</string>
+    <string name="quit_unpin">আনপিন</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.taptap.ui.theme
 
+import android.app.Activity
+import android.graphics.drawable.ColorDrawable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -7,7 +9,11 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 import com.taptap.model.ThemeColor
 import com.taptap.model.ThemeMode
 
@@ -39,6 +45,36 @@ fun TapTapTheme(
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
     }
     val colors = tapTapColors(color, dark)
+
+    /*
+     * The status and navigation bar icons follow the APP's mode, not the system's.
+     *
+     * enableEdgeToEdge() decides this once at start-up from the system configuration, so
+     * with the phone in dark mode and the app set to Light the icons stayed light on a
+     * light background and vanished (and the reverse). FR-6.2 lets the two disagree, so
+     * the bars have to be told which one actually won.
+     */
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        val window = (view.context as? Activity)?.window
+        SideEffect {
+            if (window != null) {
+                WindowCompat.getInsetsController(window, view).apply {
+                    isAppearanceLightStatusBars = !dark
+                    isAppearanceLightNavigationBars = !dark
+                }
+                /*
+                 * The window background too. `Theme.TapTap` descends from
+                 * Theme.AppCompat.DayNight, so its `tt_bg` resolves against the SYSTEM
+                 * night setting — with the phone dark and the app set to Light, every
+                 * pixel Compose has not painted yet (start-up, recreation, overscroll)
+                 * came out dark. FR-6.2 lets the two disagree, so the window has to be
+                 * told which one won.
+                 */
+                window.setBackgroundDrawable(ColorDrawable(colors.bg.toArgb()))
+            }
+        }
+    }
 
     CompositionLocalProvider(
         LocalTapTapColors provides colors,
