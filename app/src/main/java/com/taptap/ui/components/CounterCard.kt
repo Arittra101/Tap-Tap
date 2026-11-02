@@ -5,10 +5,13 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -25,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.taptap.model.Counter
 import com.taptap.util.localNumber
 import com.taptap.ui.theme.CounterTheme
+import com.taptap.ui.theme.MinTouchTarget
 import com.taptap.ui.theme.Spacing
 import com.taptap.ui.theme.TapTapShapes
 import com.taptap.ui.theme.TapTapTheme
@@ -52,10 +56,16 @@ fun CounterCard(
 ) {
     val app = TapTapTheme.colors
     val isDone = counter.isTargetReached && !counter.keepCountingAfterTarget
-    val progress = counter.target?.takeIf { it > 0 }
-        ?.let { (counter.count.toFloat() / it).coerceIn(0f, 1f) } ?: 1f
+    val hasTarget = counter.target != null && counter.target > 0
+    val progress = if (hasTarget) {
+        (counter.count.toFloat() / counter.target!!).coerceIn(0f, 1f)
+    } else {
+        0f
+    }
 
-    val cardWidth = 164.dp * LocalDensity.current.fontScale.coerceIn(1f, 2f)
+    val fontScale = LocalDensity.current.fontScale.coerceIn(1f, 2f)
+    val cardWidth = 164.dp * fontScale
+    val cardMinHeight = 168.dp * fontScale
 
     Column(
         modifier = modifier
@@ -67,6 +77,7 @@ fun CounterCard(
                 color = if (counter.isPinned) app.lineStrong else app.line,
                 shape = TapTapShapes.lg,
             )
+            .heightIn(min = cardMinHeight)
             .padding(14.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
@@ -76,7 +87,6 @@ fun CounterCard(
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Top,
-                modifier = Modifier.heightIn(min = 40.dp),
             ) {
                 Text(
                     text = counter.name,
@@ -91,32 +101,50 @@ fun CounterCard(
                         .clip(TapTapShapes.sm)
                         .clickable(role = Role.Button, onClick = onOpen),
                 )
-                TapTapIconButton(
-                    icon = TapTapIcons.pin(counter.isPinned),
-                    contentDescription = pinLabel,
-                    onClick = onTogglePin,
-                    style = IconButtonStyle.Plain,
-                    pressed = counter.isPinned,
-                    tint = if (counter.isPinned) own.accentStrong else app.inkMuted,
-                )
+                // The pin reserves 40dp and is pulled up and right, so its glyph sits on
+                // the title's first line rather than in the middle of its own touch
+                // target. The 48dp target itself is kept by overflowing the slot (NFR-4).
+                // This is the canvas's `margin: -10px -10px 0 0`.
+                Box(
+                    modifier = Modifier
+                        .offset(x = 10.dp, y = (-10).dp)
+                        .size(40.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    TapTapIconButton(
+                        icon = TapTapIcons.pin(counter.isPinned),
+                        contentDescription = pinLabel,
+                        onClick = onTogglePin,
+                        style = IconButtonStyle.Plain,
+                        pressed = counter.isPinned,
+                        tint = if (counter.isPinned) own.accentStrong else app.inkMuted,
+                        modifier = Modifier.requiredSize(MinTouchTarget),
+                    )
+                }
             }
 
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.spacedBy(Spacing.space1),
-            ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space1)) {
                 Text(
                     text = localNumber(counter.count),
                     style = TapTapType.stat,
                     color = own.accentStrong,
+                    modifier = Modifier.alignByBaseline(),
                 )
-                Text(text = ofText, style = TapTapType.label, color = app.inkMuted)
+                Text(
+                    text = ofText,
+                    style = TapTapType.label,
+                    color = app.inkMuted,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.alignByBaseline(),
+                )
             }
 
-            TapTapProgressBar(
-                progress = progress,
-                fillColor = if (counter.target != null) own.accent else own.accentSoft,
-            )
+            // Takes up whatever height a one-line name leaves over, so the bar and the
+            // + button sit at the same place on every card in the row.
+            Spacer(Modifier.weight(1f))
+
+            TapTapProgressBar(progress = progress, fillColor = own.accent)
 
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,

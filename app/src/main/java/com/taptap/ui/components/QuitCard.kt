@@ -109,7 +109,6 @@ fun QuitCard(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Row(
-                    verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                     modifier = Modifier.weight(1f, fill = false),
                 ) {
@@ -117,8 +116,14 @@ fun QuitCard(
                         text = localNumber(daysFree),
                         style = TapTapType.stat.copy(fontSize = 36.sp, lineHeight = 40.sp),
                         color = own.accentStrong,
+                        modifier = Modifier.alignByBaseline(),
                     )
-                    Text(text = daysFreeLabel, style = TapTapType.label, color = app.inkMuted)
+                    Text(
+                        text = daysFreeLabel,
+                        style = TapTapType.label,
+                        color = app.inkMuted,
+                        modifier = Modifier.alignByBaseline(),
+                    )
                 }
                 Text(
                     text = sideText,

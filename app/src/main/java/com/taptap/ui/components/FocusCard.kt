@@ -102,16 +102,20 @@ fun FocusCard(
                 )
             }
 
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
-                Text(text = localNumber(daysFree), style = TapTapType.countLg, color = own.onAccent)
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text(
+                    text = localNumber(daysFree),
+                    style = TapTapType.countLg,
+                    color = own.onAccent,
+                    modifier = Modifier.alignByBaseline(),
+                )
                 Text(
                     text = sectionLabels.daysFree,
                     style = TapTapType.body.copy(fontWeight = FontWeight.SemiBold),
                     color = own.onAccent,
-                    modifier = Modifier.padding(bottom = 6.dp),
+                    // Baseline alignment, not a hand-tuned bottom nudge: it stays correct
+                    // when the font scale changes.
+                    modifier = Modifier.alignByBaseline(),
                 )
             }
 
