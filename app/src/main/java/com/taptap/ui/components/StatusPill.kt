@@ -34,7 +34,7 @@ enum class PillTone {
 /**
  * A 26dp pill that says a counter's state in a word.
  *
- * NFR-6 is the reason this exists at all: no state in Tap Tap may be signalled by colour
+ * NFR-6 is the reason this exists at all: no state in HabitTap may be signalled by colour
  * alone, so the state always arrives as text, with an icon where it matters.
  */
 @Composable

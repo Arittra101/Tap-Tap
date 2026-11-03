@@ -102,7 +102,7 @@ object TapTapTheme {
 }
 
 /**
- * Material 3 components that Tap Tap uses need a scheme too. The mapping keeps Material's
+ * Material 3 components that HabitTap uses need a scheme too. The mapping keeps Material's
  * defaults in step with the design tokens so a stray Material component never paints
  * itself an off-brand colour.
  */

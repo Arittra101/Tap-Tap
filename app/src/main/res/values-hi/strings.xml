@@ -30,7 +30,7 @@
     <string name="home_step_meta">हर टैप पर +%1$d</string>
     <string name="home_target_reached">लक्ष्य पूरा</string>
     <string name="home_of_target">/ %1$d</string>
-    <string name="home_welcome_title">Tap Tap में आपका स्वागत है</string>
+    <string name="home_welcome_title">HabitTap में आपका स्वागत है</string>
     <string name="home_welcome_body">आप जो भी करते हैं उसे गिनें, या दिन-ब-दिन एक बुरी आदत छोड़ें। अपने पहले काउंटर से शुरू करें।</string>
     <string name="home_choice_normal_title">सामान्य काउंटर</string>
     <string name="home_choice_normal_sub">कसरत, पानी के गिलास, पन्ने, कुछ भी</string>

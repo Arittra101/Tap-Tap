@@ -19,7 +19,7 @@ six.
 - **`TopBar`** — 64dp, **the same colour as the page** (`bg`), a 1px `line` divider under
   it, no shadow. Two shapes:
   - Home: the `tt-mark` 40dp `radius-md` square in `accent` with a plus glyph in
-    `onAccent`, "Tap Tap" in `titleLg`, one action on the right.
+    `onAccent`, "HabitTap" in `titleLg`, one action on the right.
   - Inner screens: 48dp back button, centred 20dp display title with an optional
     `caption` subtitle beneath, and either one action or an empty 48dp slot so the title
     stays centred.

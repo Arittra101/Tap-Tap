@@ -30,7 +30,7 @@
     <string name="home_step_meta">+%1$d por toque</string>
     <string name="home_target_reached">Objetivo alcanzado</string>
     <string name="home_of_target">/ %1$d</string>
-    <string name="home_welcome_title">Te damos la bienvenida a Tap Tap</string>
+    <string name="home_welcome_title">Te damos la bienvenida a HabitTap</string>
     <string name="home_welcome_body">Cuenta lo que hagas o deja un mal hábito día a día. Empieza con tu primer contador.</string>
     <string name="home_choice_normal_title">Contador normal</string>
     <string name="home_choice_normal_sub">Repeticiones, vasos de agua, páginas, lo que sea</string>

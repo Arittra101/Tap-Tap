@@ -32,7 +32,7 @@
     <string name="home_step_meta">প্রতি ট্যাপে +%1$d</string>
     <string name="home_target_reached">লক্ষ্য পূর্ণ</string>
     <string name="home_of_target">/ %1$d</string>
-    <string name="home_welcome_title">Tap Tap-এ স্বাগতম</string>
+    <string name="home_welcome_title">HabitTap-এ স্বাগতম</string>
     <string name="home_welcome_body">আপনি যা করেন তা গুনুন, বা দিনে দিনে একটি খারাপ অভ্যাস ছাড়ুন। আপনার প্রথম কাউন্টার দিয়ে শুরু করুন।</string>
     <string name="home_choice_normal_title">সাধারণ কাউন্টার</string>
     <string name="home_choice_normal_sub">ব্যায়াম, গ্লাস পানি, পৃষ্ঠা, যেকোনো কিছু</string>

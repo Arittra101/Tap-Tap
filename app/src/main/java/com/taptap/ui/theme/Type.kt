@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.sp
 import com.taptap.R
 
 /**
- * Tap Tap's type scale, from the design system's `tokens.json` -> `type`.
+ * HabitTap's type scale, from the design system's `tokens.json` -> `type`.
  *
  * FR-7.5: Outfit for numbers and titles, Noto Sans for text, and tabular figures
  * everywhere a number appears so the count does not jump width while you tap.
@@ -144,7 +144,7 @@ object TapTapType {
 
 /**
  * Material 3's scale, mapped onto the design's styles so a stock Material component
- * inherits Tap Tap's type instead of Roboto.
+ * inherits HabitTap's type instead of Roboto.
  */
 val TapTapTypography = Typography(
     displayLarge = TapTapType.countXl,

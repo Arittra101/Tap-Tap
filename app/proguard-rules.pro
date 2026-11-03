@@ -1,4 +1,4 @@
-# Tap Tap release rules (NFR-9).
+# HabitTap release rules (NFR-9).
 #
 # Most of the stack needs nothing: Compose, Koin and DataStore ship their own rules, and
 # Room generates plain classes. The entries below cover the three places where something

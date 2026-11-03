@@ -33,7 +33,7 @@ import com.taptap.ui.theme.TapTapTheme
 import com.taptap.ui.theme.TapTapType
 
 /**
- * The Home top bar: the app mark, "Tap Tap", and one action (FR-1.1).
+ * The Home top bar: the app mark, "HabitTap", and one action (FR-1.1).
  *
  * The bar is the same colour as the page and carries no shadow — the 1dp `line` divider
  * is what separates it. That is a "Don't" in the design system's TopBar page.
@@ -86,7 +86,7 @@ fun AppMark(modifier: Modifier = Modifier, size: androidx.compose.ui.unit.Dp = 4
     ) {
         Icon(
             imageVector = TapTapIcons.Plus,
-            // Decorative: the "Tap Tap" wordmark beside it carries the meaning.
+            // Decorative: the "HabitTap" wordmark beside it carries the meaning.
             contentDescription = null,
             tint = c.onAccent,
             modifier = Modifier.size(size * 0.55f),

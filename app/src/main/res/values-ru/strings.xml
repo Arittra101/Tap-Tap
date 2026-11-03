@@ -32,7 +32,7 @@
     <string name="home_step_meta">+%1$d за касание</string>
     <string name="home_target_reached">Цель достигнута</string>
     <string name="home_of_target">/ %1$d</string>
-    <string name="home_welcome_title">Добро пожаловать в Tap Tap</string>
+    <string name="home_welcome_title">Добро пожаловать в HabitTap</string>
     <string name="home_welcome_body">Считайте всё, что делаете, или бросайте вредную привычку день за днём. Начните с первого счётчика.</string>
     <string name="home_choice_normal_title">Обычный счётчик</string>
     <string name="home_choice_normal_sub">Повторения, стаканы воды, страницы, что угодно</string>

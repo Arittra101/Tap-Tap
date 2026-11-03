@@ -1,11 +1,11 @@
-# Tap Tap — release checklist
+# HabitTap — release checklist
 
 ## Play Store listing
 
 | Field | Value |
 | --- | --- |
-| App name (on device) | **Tap Tap** |
-| Store title | **Tap Tap — Counter & Quit Habit** (TT-031 decision 3) |
+| App name (on device) | **HabitTap** |
+| Store title | **HabitTap — Counter & Quit Habit** (TT-031 decision 3) |
 | Category | Health & Fitness |
 | Content rating | Everyone |
 | Privacy policy URL | must serve `PRIVACY.md`; the app links to `https://taptap.app/privacy` (`SettingsScreen.PRIVACY_POLICY_URL` — **update both together**) |
@@ -68,3 +68,12 @@ than downloaded so a first launch with no network still shows the real typefaces
 - [ ] **Have a native speaker review the five translations** — they were produced without one
 - [ ] Store screenshots and feature graphic
 - [ ] Decide whether `versionCode`/`versionName` move off 1 / "1.0"
+
+## Open after the rename to HabitTap
+
+- `applicationId` is still `com.taptap`, and the Gradle module/dir are still `TapTap`.
+  This is invisible to users, but it is permanent once the app is published: the Play
+  listing is keyed to it and it can never be changed afterwards. Decide before the first
+  upload whether it should become `com.habittap`.
+- The design system and the artboards still carry the old "Tap Tap" wordmark. The app no
+  longer matches them, so the design source needs the same rename.

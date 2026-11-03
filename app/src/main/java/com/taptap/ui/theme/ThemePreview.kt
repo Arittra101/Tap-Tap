@@ -105,7 +105,7 @@ private fun TypeScalePreview() {
             Text("32", style = TapTapType.countXl, color = c.ink)
             Text("14", style = TapTapType.countLg, color = c.ink)
             Text("32", style = TapTapType.stat, color = c.ink)
-            Text("Tap Tap", style = TapTapType.titleLg, color = c.ink)
+            Text("HabitTap", style = TapTapType.titleLg, color = c.ink)
             Text("Quit cigarettes", style = TapTapType.title, color = c.ink)
             Text("নোট: সকালের জপ", style = TapTapType.body, color = c.ink)
             Text("हिन्दी में टेक्स्ट", style = TapTapType.body, color = c.ink)

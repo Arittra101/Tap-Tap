@@ -18,7 +18,7 @@ with a `variant` prop of `full` / `noFocus` / `empty`.
 
 **In:** `HomeContract.kt`, `HomeViewModel.kt`, `HomeScreen.kt`.
 
-- `TopBar`: the app mark, "Tap Tap", a Settings button, and the `line` divider.
+- `TopBar`: the app mark, "HabitTap", a Settings button, and the `line` divider.
 - **Focus area**, one of three:
   1. A `FocusCard` when a focus quit counter exists.
   2. A `FocusPicker` ("Your focus" / "Not set yet") when quit counters exist but none is
@@ -29,7 +29,7 @@ with a `variant` prop of `full` / `noFocus` / `empty`.
   the dashed "New counter" card.
 - **"Quit tracker"** — section header, then a vertical list of `QuitCard`s for every quit
   counter **except** the focus, pinned first.
-- **First run** (no counters at all): the 168dp ring illustration, "Welcome to Tap Tap",
+- **First run** (no counters at all): the 168dp ring illustration, "Welcome to HabitTap",
   "Count anything you do, or quit a bad habit day by day. Start with your first counter.",
   two big choice rows (Normal counter — "Reps, glasses of water, pages, anything"; Quit
   counter — "Stay away from a bad habit and watch the days add up"), then "Popular ideas"
@@ -47,7 +47,7 @@ with a `variant` prop of `full` / `noFocus` / `empty`.
 
 ## Acceptance criteria
 
-- [ ] Top bar shows the app mark, "Tap Tap", a Settings button and a thin divider — `FR-1.1`.
+- [ ] Top bar shows the app mark, "HabitTap", a Settings button and a thin divider — `FR-1.1`.
 - [ ] A focus counter renders the Focus card first with name, days free, next-badge
       progress, money saved, urges today, the reason and "I beat an urge" — `FR-1.2`.
 - [ ] Quit counters but no focus → the "Pick one habit to focus on" card with one chip per

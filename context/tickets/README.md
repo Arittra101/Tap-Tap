@@ -1,4 +1,4 @@
-# Tap Tap — ticket board
+# HabitTap — ticket board
 
 > **Status: all 31 tickets complete.** The app builds, runs and is verified on device.
 > See `../../RELEASE.md` for what remains before a Play upload (a real upload key, a

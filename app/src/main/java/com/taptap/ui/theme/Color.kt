@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.taptap.model.ThemeColor
 
 /**
- * Every colour Tap Tap draws.
+ * Every colour HabitTap draws.
  *
  * The values come from the design system's `project/tokens.json` and are copied, never
  * computed — FR-7.4 forbids hard-coded colours anywhere else in the app, which only works

@@ -3,15 +3,15 @@
     <!-- "per tap" counts the amount added, not the taps, so the unit never inflects:
          "+1 per tap" / "+5 per tap". Hence tools:ignore="PluralsCandidate" below. -->
     <!--
-        Every user-visible string in Tap Tap (FR-8.1). The English here is the design's
+        Every user-visible string in HabitTap (FR-8.1). The English here is the design's
         own copy, taken from the artboards verbatim; TT-027 translates it into bn, hi, ru,
         es and it. Voice rules live in the design system README: short sentences, sentence
         case, verbs on buttons, no emoji.
     -->
     <!-- The product name. Not translated in any language. -->
-    <string name="app_name" translatable="false">Tap Tap</string>
+    <string name="app_name" translatable="false">HabitTap</string>
     <!-- The wordmark in the Home top bar. Not translated: it is the product name. -->
-    <string name="app_wordmark" translatable="false">Tap Tap</string>
+    <string name="app_wordmark" translatable="false">HabitTap</string>
     <!-- Typographic markers, not prose. -->
     <string name="required_marker" translatable="false">*</string>
     <string name="quoted" translatable="false">\u201C%1$s\u201D</string>
@@ -43,7 +43,7 @@
     <string name="home_step_meta" tools:ignore="PluralsCandidate">+%1$d per tap</string>
     <string name="home_target_reached">Target reached</string>
     <string name="home_of_target">/ %1$d</string>
-    <string name="home_welcome_title">Welcome to Tap Tap</string>
+    <string name="home_welcome_title">Welcome to HabitTap</string>
     <string name="home_welcome_body">Count anything you do, or quit a bad habit day by day. Start with your first counter.</string>
     <string name="home_choice_normal_title">Normal counter</string>
     <string name="home_choice_normal_sub">Reps, glasses of water, pages, anything</string>

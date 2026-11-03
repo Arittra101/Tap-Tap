@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    FR-8.1 / FR-8.2: the six languages Tap Tap ships in. Declaring them here is what
+    FR-8.1 / FR-8.2: the six languages HabitTap ships in. Declaring them here is what
     lets the user pick one inside the app without changing the phone language.
 -->
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">

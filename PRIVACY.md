@@ -1,15 +1,15 @@
-# Tap Tap — Privacy Policy
+# HabitTap — Privacy Policy
 
 _Last updated: 2 November 2026_
 
 ## The short version
 
-**Tap Tap keeps everything on your phone.** There is no account, no sign-in, and no
+**HabitTap keeps everything on your phone.** There is no account, no sign-in, and no
 server. Nothing you count, quit, or write is ever sent anywhere.
 
 ## What the app stores
 
-Tap Tap saves the following on your device only:
+HabitTap saves the following on your device only:
 
 - Your counters: names, notes, counts, targets, colours and backgrounds.
 - Your quit counters: habit names, the date you stopped, money per day, goals and the
@@ -33,10 +33,10 @@ This data lives in the app's private storage. Other apps cannot read it.
 
 | Permission | Why |
 | --- | --- |
-| Notifications | Only if you turn on the daily motivation message, so Tap Tap can send one short note each morning. You can refuse, and the app works the same otherwise. |
+| Notifications | Only if you turn on the daily motivation message, so HabitTap can send one short note each morning. You can refuse, and the app works the same otherwise. |
 | Vibration | The short buzz when you tap, if you leave vibration on in Settings. |
 
-Tap Tap asks for nothing else. No camera, no contacts, no location, no files.
+HabitTap asks for nothing else. No camera, no contacts, no location, no files.
 
 ## Backup
 
@@ -47,13 +47,13 @@ can turn it off in your phone's system settings.
 
 ## Deleting your data
 
-Deleting a counter removes it and its history immediately. Uninstalling Tap Tap removes
+Deleting a counter removes it and its history immediately. Uninstalling HabitTap removes
 everything. Because nothing is stored anywhere else, there is nothing left to request or
 erase.
 
 ## Children
 
-Tap Tap collects no personal data from anyone, including children.
+HabitTap collects no personal data from anyone, including children.
 
 ## Changes
 

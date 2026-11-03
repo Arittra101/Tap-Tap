@@ -42,16 +42,23 @@ current zone; the repository's "since" queries use it. Binds **TT-006**, **TT-00
 
 ## Decision 3 — Final app name
 
-**Decided:** the app is **"Tap Tap"**. The Play Store title is
-**"Tap Tap — Counter & Quit Habit"**.
+**Decided:** the app is **"HabitTap"**. The Play Store title is
+**"HabitTap — Counter & Quit Habit"**.
 
-**Why:** "Tap Tap" is already the name through the entire design system, every artboard,
-`settings.gradle.kts` and the brand book; renaming to "One More" would invalidate the app
-mark and the Home top bar for no stated benefit. The store title carries the searchable
-words, which is where they are actually useful.
+**Superseded:** this ticket originally recorded the name as "Tap Tap", on the grounds that
+it was already the name throughout the design system, every artboard and the brand book,
+so renaming would invalidate the app mark for no stated benefit. The product owner has
+since chosen **HabitTap**, which also says what the app is for. That reasoning no longer
+applies and the rename has been made.
 
-**How to apply:** `app_name` stays "Tap Tap"; the longer form is a store-listing field,
-not a string resource. Binds **TT-001**, **TT-030**.
+**Why:** "HabitTap" names the job (habits) as well as the gesture (tap), so the launcher
+label carries meaning on its own. The store title keeps the searchable words, which is
+where they are actually useful.
+
+**How to apply:** `app_name` and `app_wordmark` are both "HabitTap"; the longer form is a
+store-listing field, not a string resource. `home_welcome_title` embeds the name and is
+translated per locale. Note the applicationId is still `com.taptap` — see the open
+question in TT-030. Binds **TT-001**, **TT-030**.
 
 ## Decision 4 — The daily message on a day the user slipped
 
