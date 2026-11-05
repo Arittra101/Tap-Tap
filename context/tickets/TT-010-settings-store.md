@@ -47,8 +47,8 @@ Spec §7.4 puts them in DataStore Preferences, read as one `Flow<AppSettings>`.
 
 ## Files
 
-- `app/src/main/java/com/taptap/data/settings/SettingsStore.kt`
-- `app/src/main/java/com/taptap/data/repository/SettingsRepository.kt`
+- `app/src/main/java/com/habitTap/data/settings/SettingsStore.kt`
+- `app/src/main/java/com/habitTap/data/repository/SettingsRepository.kt`
 
 ## Verification
 

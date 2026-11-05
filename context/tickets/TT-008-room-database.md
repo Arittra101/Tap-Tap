@@ -51,12 +51,12 @@ None — no UI. Field semantics come from requirements §6.
 
 ## Files
 
-- `app/src/main/java/com/taptap/data/db/CounterEntity.kt`
-- `app/src/main/java/com/taptap/data/db/CounterEventEntity.kt`
-- `app/src/main/java/com/taptap/data/db/CounterDao.kt`
-- `app/src/main/java/com/taptap/data/db/Converters.kt`
-- `app/src/main/java/com/taptap/data/db/AppDatabase.kt`
-- `app/schemas/com.taptap.data.db.AppDatabase/1.json` (generated, committed)
+- `app/src/main/java/com/habitTap/data/db/CounterEntity.kt`
+- `app/src/main/java/com/habitTap/data/db/CounterEventEntity.kt`
+- `app/src/main/java/com/habitTap/data/db/CounterDao.kt`
+- `app/src/main/java/com/habitTap/data/db/Converters.kt`
+- `app/src/main/java/com/habitTap/data/db/AppDatabase.kt`
+- `app/schemas/com.habitTap.data.db.AppDatabase/1.json` (generated, committed)
 
 ## Verification
 

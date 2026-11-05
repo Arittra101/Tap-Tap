@@ -57,7 +57,7 @@ where they are actually useful.
 
 **How to apply:** `app_name` and `app_wordmark` are both "HabitTap"; the longer form is a
 store-listing field, not a string resource. `home_welcome_title` embeds the name and is
-translated per locale. Note the applicationId is still `com.taptap` — see the open
+translated per locale. Note the applicationId is still `com.habitTap` — see the open
 question in TT-030. Binds **TT-001**, **TT-030**.
 
 ## Decision 4 — The daily message on a day the user slipped

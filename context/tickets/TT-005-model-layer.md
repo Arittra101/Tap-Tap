@@ -41,9 +41,9 @@ Requirements §6 (data model tables). No visual surface.
 
 ## Files
 
-- `app/src/main/java/com/taptap/model/Counter.kt`
-- `app/src/main/java/com/taptap/model/AppSettings.kt`
-- `app/src/main/java/com/taptap/model/Enums.kt`
+- `app/src/main/java/com/habitTap/model/Counter.kt`
+- `app/src/main/java/com/habitTap/model/AppSettings.kt`
+- `app/src/main/java/com/habitTap/model/Enums.kt`
 
 ## Verification
 

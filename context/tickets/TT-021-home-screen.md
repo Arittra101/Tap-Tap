@@ -74,9 +74,9 @@ header captions ("{n} counters · pinned first", "{n} habits · pinned first"), 
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/home/HomeContract.kt`
-- `app/src/main/java/com/taptap/ui/home/HomeViewModel.kt`
-- `app/src/main/java/com/taptap/ui/home/HomeScreen.kt`
+- `app/src/main/java/com/habitTap/ui/home/HomeContract.kt`
+- `app/src/main/java/com/habitTap/ui/home/HomeViewModel.kt`
+- `app/src/main/java/com/habitTap/ui/home/HomeScreen.kt`
 
 ## Verification
 

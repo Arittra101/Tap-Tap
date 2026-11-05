@@ -49,7 +49,7 @@ rows and their help text.
 
 ## Files
 
-- `app/src/main/java/com/taptap/util/Feedback.kt`
+- `app/src/main/java/com/habitTap/util/Feedback.kt`
 - `app/src/main/res/raw/click.ogg`
 
 ## Verification

@@ -38,7 +38,7 @@ Use the **latest stable versions** in `gradle/libs.versions.toml`. Do not use al
 One app module. Packages by feature for UI, by type for data.
 
 ```
-com.taptap
+com.habitTap
 ├── TapTapApp.kt                 // Application: starts Koin
 ├── MainActivity.kt              // sets content: TapTapTheme + AppNavigation
 ├── di/

@@ -52,8 +52,8 @@ functions that are cheap to test.
 
 ## Files
 
-- `app/src/main/java/com/taptap/util/TimeUtils.kt`
-- `app/src/test/java/com/taptap/util/TimeUtilsTest.kt`
+- `app/src/main/java/com/habitTap/util/TimeUtils.kt`
+- `app/src/test/java/com/habitTap/util/TimeUtilsTest.kt`
 
 ## Verification
 

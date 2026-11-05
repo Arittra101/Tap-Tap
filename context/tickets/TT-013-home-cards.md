@@ -71,10 +71,10 @@ give the exact geometry, the `sideText` rule (money when `perDay > 0`, else urge
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/CounterCard.kt`
-- `app/src/main/java/com/taptap/ui/components/QuitCard.kt`
-- `app/src/main/java/com/taptap/ui/components/FocusCard.kt`
-- `app/src/main/java/com/taptap/ui/components/FocusPicker.kt`
+- `app/src/main/java/com/habitTap/ui/components/CounterCard.kt`
+- `app/src/main/java/com/habitTap/ui/components/QuitCard.kt`
+- `app/src/main/java/com/habitTap/ui/components/FocusCard.kt`
+- `app/src/main/java/com/habitTap/ui/components/FocusPicker.kt`
 
 ## Verification
 

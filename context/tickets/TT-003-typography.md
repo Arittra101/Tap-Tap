@@ -57,7 +57,7 @@ jump width while the user taps. The design system fixes the whole scale in
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/theme/Type.kt`
+- `app/src/main/java/com/habitTap/ui/theme/Type.kt`
 - `app/src/main/res/font/` (fallback faces)
 - `app/src/main/res/values/font_certs.xml` if downloadable fonts need it
 

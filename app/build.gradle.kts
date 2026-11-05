@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -6,13 +8,13 @@ plugins {
 }
 
 android {
-    namespace = "com.taptap"
+    namespace = "com.habitTap"
     // Compiled against 37 because the latest stable AndroidX artifacts require it.
     // minSdk (NFR-8) and targetSdk are independent of this.
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.taptap"
+        applicationId = "com.habitTap"
         // NFR-8: Android 7.0 and up.
         minSdk = 24
         targetSdk = 36
@@ -27,9 +29,26 @@ android {
         }
     }
 
+    val keystoreDir = rootProject.file("keystore")
+    val props = Properties().apply {
+        providers.fileContents(
+            rootProject.layout.projectDirectory.file("keystore/release.properties"),
+        ).asText.orNull?.let { load(it.reader()) }
+    }
+    val hasUploadKey = props.getProperty("keyStore") != null
+
     signingConfigs {
-        // Debug-signed release, so the shrunk build can be installed and tested. A real
-        // upload key belongs in Play App Signing, never in the repo.
+        if (hasUploadKey) {
+            create("release") {
+                storeFile = File(keystoreDir, props.getProperty("keyStore"))
+                storePassword = props.getProperty("keyStorePassword")
+                keyAlias = props.getProperty("keyAlias")
+                keyPassword = props.getProperty("keyAliasPassword")
+            }
+        }
+
+        // Fallback so the shrunk build still installs on a machine without the upload key.
+        // Play rejects anything signed with this — it is for local testing only.
         create("releaseTest") {
             storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
             storePassword = "android"
@@ -40,16 +59,24 @@ android {
 
     buildTypes {
         release {
-            // NFR-9: R8 shrinks and obfuscates; resource shrinking drops unused resources.
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            signingConfig = signingConfigs.getByName("releaseTest")
+            signingConfig = signingConfigs.getByName(
+                if (hasUploadKey) "release" else "releaseTest",
+            )
         }
     }
+    // Stop a debug-signed bundle before it reaches the Play Console, which rejects it.
+    tasks.matching { it.name == "bundleRelease" }.configureEach {
+        doFirst {
+            check(hasUploadKey) { "Missing keystore/release.properties — see RELEASE.md." }
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

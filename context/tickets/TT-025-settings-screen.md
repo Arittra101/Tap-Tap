@@ -64,9 +64,9 @@ the exact two forms of the mode note; the `langs` array gives the six native/Eng
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/settings/SettingsContract.kt`
-- `app/src/main/java/com/taptap/ui/settings/SettingsViewModel.kt`
-- `app/src/main/java/com/taptap/ui/settings/SettingsScreen.kt`
+- `app/src/main/java/com/habitTap/ui/settings/SettingsContract.kt`
+- `app/src/main/java/com/habitTap/ui/settings/SettingsViewModel.kt`
+- `app/src/main/java/com/habitTap/ui/settings/SettingsScreen.kt`
 
 ## Verification
 

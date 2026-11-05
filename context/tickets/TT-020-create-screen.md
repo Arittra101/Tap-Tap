@@ -90,9 +90,9 @@ which abbreviates the real set. Keep the design's copy — the full ten mileston
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/create/CreateContract.kt`
-- `app/src/main/java/com/taptap/ui/create/CreateViewModel.kt`
-- `app/src/main/java/com/taptap/ui/create/CreateScreen.kt`
+- `app/src/main/java/com/habitTap/ui/create/CreateContract.kt`
+- `app/src/main/java/com/habitTap/ui/create/CreateViewModel.kt`
+- `app/src/main/java/com/habitTap/ui/create/CreateScreen.kt`
 
 ## Verification
 

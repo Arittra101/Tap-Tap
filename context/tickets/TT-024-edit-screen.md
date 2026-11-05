@@ -75,9 +75,9 @@ color, with a first option 'App'").
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/edit/EditContract.kt`
-- `app/src/main/java/com/taptap/ui/edit/EditViewModel.kt`
-- `app/src/main/java/com/taptap/ui/edit/EditScreen.kt`
+- `app/src/main/java/com/habitTap/ui/edit/EditContract.kt`
+- `app/src/main/java/com/habitTap/ui/edit/EditViewModel.kt`
+- `app/src/main/java/com/habitTap/ui/edit/EditScreen.kt`
 
 ## Verification
 

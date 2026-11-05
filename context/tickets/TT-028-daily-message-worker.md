@@ -54,8 +54,8 @@ kind, no emoji — `project/README.md` → "Content and voice".
 
 ## Files
 
-- `app/src/main/java/com/taptap/util/DailyMessageWorker.kt`
-- `app/src/main/java/com/taptap/TapTapApp.kt` (scheduling)
+- `app/src/main/java/com/habitTap/util/DailyMessageWorker.kt`
+- `app/src/main/java/com/habitTap/TapTapApp.kt` (scheduling)
 - `app/src/main/res/values*/strings.xml` (notification copy)
 
 ## Verification

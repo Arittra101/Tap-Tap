@@ -57,7 +57,7 @@ counter's color. A soft layer keeps the number easy to read."
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/CounterBackground.kt`
+- `app/src/main/java/com/habitTap/ui/components/CounterBackground.kt`
 
 ## Verification
 

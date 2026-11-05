@@ -63,8 +63,8 @@ for grammar.
 
 - `app/src/main/res/values/strings.xml`
 - `app/src/main/res/values-{bn,hi,ru,es,it}/strings.xml`
-- `app/src/main/java/com/taptap/util/Formatters.kt` (new — number, date and money)
-- `app/src/main/java/com/taptap/ui/settings/SettingsViewModel.kt` (locale apply)
+- `app/src/main/java/com/habitTap/util/Formatters.kt` (new — number, date and money)
+- `app/src/main/java/com/habitTap/ui/settings/SettingsViewModel.kt` (locale apply)
 
 ## Verification
 

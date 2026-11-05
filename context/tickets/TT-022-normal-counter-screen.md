@@ -59,9 +59,9 @@ block gives the stat labels, the per-state colours and the reset sheet copy.
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/counter/CounterContract.kt`
-- `app/src/main/java/com/taptap/ui/counter/CounterViewModel.kt`
-- `app/src/main/java/com/taptap/ui/counter/CounterScreen.kt`
+- `app/src/main/java/com/habitTap/ui/counter/CounterContract.kt`
+- `app/src/main/java/com/habitTap/ui/counter/CounterViewModel.kt`
+- `app/src/main/java/com/habitTap/ui/counter/CounterScreen.kt`
 
 ## Verification
 

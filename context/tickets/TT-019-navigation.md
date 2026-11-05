@@ -51,8 +51,8 @@ Create, Home → Counter/Quit, Counter → Edit, Quit → Edit, and every inner 
 
 ## Files
 
-- `app/src/main/java/com/taptap/navigation/Routes.kt`
-- `app/src/main/java/com/taptap/navigation/AppNavigation.kt`
+- `app/src/main/java/com/habitTap/navigation/Routes.kt`
+- `app/src/main/java/com/habitTap/navigation/AppNavigation.kt`
 
 ## Verification
 

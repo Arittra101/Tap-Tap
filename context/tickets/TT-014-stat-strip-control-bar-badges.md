@@ -59,9 +59,9 @@ gives the exact label and aria text).
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/StatStrip.kt`
-- `app/src/main/java/com/taptap/ui/components/ControlBar.kt`
-- `app/src/main/java/com/taptap/ui/components/MilestoneBadge.kt`
+- `app/src/main/java/com/habitTap/ui/components/StatStrip.kt`
+- `app/src/main/java/com/habitTap/ui/components/ControlBar.kt`
+- `app/src/main/java/com/habitTap/ui/components/MilestoneBadge.kt`
 
 ## Verification
 

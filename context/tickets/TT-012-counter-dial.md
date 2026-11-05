@@ -60,7 +60,7 @@ block holds the exact pill/hint/helper strings and the colour choices per state;
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/CounterDial.kt`
+- `app/src/main/java/com/habitTap/ui/components/CounterDial.kt`
 
 ## Verification
 

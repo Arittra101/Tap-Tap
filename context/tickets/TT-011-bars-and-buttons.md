@@ -59,10 +59,10 @@ six.
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/TopBar.kt`
-- `app/src/main/java/com/taptap/ui/components/IconButton.kt`
-- `app/src/main/java/com/taptap/ui/components/Button.kt`
-- `app/src/main/java/com/taptap/ui/components/StatusPill.kt`
+- `app/src/main/java/com/habitTap/ui/components/TopBar.kt`
+- `app/src/main/java/com/habitTap/ui/components/IconButton.kt`
+- `app/src/main/java/com/habitTap/ui/components/Button.kt`
+- `app/src/main/java/com/habitTap/ui/components/StatusPill.kt`
 
 ## Verification
 

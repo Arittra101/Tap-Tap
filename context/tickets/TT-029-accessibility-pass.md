@@ -54,8 +54,8 @@ implementation bug, not a token problem.
 
 ## Files
 
-Touches all of `app/src/main/java/com/taptap/ui/` plus
-`app/src/androidTest/java/com/taptap/` for the semantics tests.
+Touches all of `app/src/main/java/com/habitTap/ui/` plus
+`app/src/androidTest/java/com/habitTap/` for the semantics tests.
 
 ## Verification
 

@@ -46,7 +46,7 @@ block; `project/Quit.dc.html` → the `confirmSlip` block (both hold the exact c
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/ConfirmSheet.kt`
+- `app/src/main/java/com/habitTap/ui/components/ConfirmSheet.kt`
 
 ## Verification
 

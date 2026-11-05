@@ -45,9 +45,9 @@ None directly; the theme call is TT-002's `TapTapTheme`.
 
 ## Files
 
-- `app/src/main/java/com/taptap/di/AppModule.kt`
-- `app/src/main/java/com/taptap/TapTapApp.kt`
-- `app/src/main/java/com/taptap/MainActivity.kt`
+- `app/src/main/java/com/habitTap/di/AppModule.kt`
+- `app/src/main/java/com/habitTap/TapTapApp.kt`
+- `app/src/main/java/com/habitTap/MainActivity.kt`
 
 ## Verification
 

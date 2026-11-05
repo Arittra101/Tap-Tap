@@ -17,8 +17,8 @@ without. This ticket makes the module match the spec so every later ticket compi
 ## Scope
 
 **In:**
-- Rename `namespace` and `applicationId` from `com.example.taptap` to `com.taptap`, and
-  move the source tree to `app/src/main/java/com/taptap/` (tests too).
+- Rename `namespace` and `applicationId` from `com.example.taptap` to `com.habitTap`, and
+  move the source tree to `app/src/main/java/com/habitTap/` (tests too).
 - `minSdk` 26 → 24.
 - Replace AGP `9.3.0-rc01` with **AGP 9.3.0 stable**. The spec forbids RC libraries, and
   9.3.0 was promoted to stable, so the RC is simply out of date.
@@ -63,7 +63,7 @@ without. This ticket makes the module match the spec so every later ticket compi
       stable release exists (note the exception inline if so) — spec §2.
 - [ ] Auto Backup is enabled so counters survive a move to a new phone — `NFR-10`.
 - [ ] `locales_config.xml` declares exactly the six supported locales — `FR-8.1`.
-- [ ] Every package in spec §3 exists under `com.taptap`.
+- [ ] Every package in spec §3 exists under `com.habitTap`.
 
 ## Design references
 
@@ -75,7 +75,7 @@ None — this ticket touches no UI.
 - `app/build.gradle.kts`, `build.gradle.kts`, `settings.gradle.kts`
 - `app/src/main/AndroidManifest.xml`
 - `app/src/main/res/xml/locales_config.xml` (new)
-- `app/src/main/java/com/taptap/**` (moved from `com/example/taptap`)
+- `app/src/main/java/com/habitTap/**` (moved from `com/example/taptap`)
 - `app/schemas/` (new, committed)
 
 ## Verification

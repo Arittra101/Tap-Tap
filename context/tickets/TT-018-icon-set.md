@@ -57,7 +57,7 @@ The inline SVGs in each artboard show the intended shape.
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/components/TapTapIcons.kt`
+- `app/src/main/java/com/habitTap/ui/components/TapTapIcons.kt`
 - `app/src/main/res/drawable/ic_*.xml` (only where a Material symbol does not fit)
 
 ## Verification

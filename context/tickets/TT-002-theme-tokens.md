@@ -61,9 +61,9 @@ values into Kotlin once and exposes them the way the tech spec §9 describes.
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/theme/Color.kt`
-- `app/src/main/java/com/taptap/ui/theme/Theme.kt`
-- `app/src/main/java/com/taptap/ui/theme/CounterTheme.kt`
+- `app/src/main/java/com/habitTap/ui/theme/Color.kt`
+- `app/src/main/java/com/habitTap/ui/theme/Theme.kt`
+- `app/src/main/java/com/habitTap/ui/theme/CounterTheme.kt`
 
 ## Verification
 

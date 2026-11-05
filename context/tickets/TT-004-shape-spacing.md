@@ -41,10 +41,10 @@ touch targets ≥44px and usually 48px).
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/theme/Shape.kt`
-- `app/src/main/java/com/taptap/ui/theme/Spacing.kt`
+- `app/src/main/java/com/habitTap/ui/theme/Shape.kt`
+- `app/src/main/java/com/habitTap/ui/theme/Spacing.kt`
 
 ## Verification
 
-`grep -rnE '[0-9]+\.dp' app/src/main/java/com/taptap/ui/(home|create|counter|quit|edit|settings)`
+`grep -rnE '[0-9]+\.dp' app/src/main/java/com/habitTap/ui/(home|create|counter|quit|edit|settings)`
 returns nothing once Epic E lands.

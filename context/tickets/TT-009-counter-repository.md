@@ -63,8 +63,8 @@ implementation. This is the single most test-worthy file in the app.
 
 ## Files
 
-- `app/src/main/java/com/taptap/data/repository/CounterRepository.kt`
-- `app/src/test/java/com/taptap/data/repository/CounterRepositoryTest.kt`
+- `app/src/main/java/com/habitTap/data/repository/CounterRepository.kt`
+- `app/src/test/java/com/habitTap/data/repository/CounterRepositoryTest.kt`
 
 ## Verification
 

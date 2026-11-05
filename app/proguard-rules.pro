@@ -8,22 +8,22 @@
 # Navigation 3 keys are @Serializable; the generated serializers are looked up reflectively.
 -keepattributes *Annotation*, InnerClasses
 -dontnote kotlinx.serialization.**
--keepclassmembers class com.taptap.navigation.** {
+-keepclassmembers class com.habitTap.navigation.** {
     *** Companion;
     kotlinx.serialization.KSerializer serializer(...);
 }
--keepclasseswithmembers class com.taptap.navigation.** {
+-keepclasseswithmembers class com.habitTap.navigation.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
--keep,includedescriptorclasses class com.taptap.navigation.**$$serializer { *; }
+-keep,includedescriptorclasses class com.habitTap.navigation.**$$serializer { *; }
 
 # --- Room ---------------------------------------------------------------------------
 # Entities are instantiated by the generated DAO implementation.
--keep class com.taptap.data.db.CounterEntity { *; }
--keep class com.taptap.data.db.CounterEventEntity { *; }
--keep class com.taptap.data.db.UrgeCount { *; }
+-keep class com.habitTap.data.db.CounterEntity { *; }
+-keep class com.habitTap.data.db.CounterEventEntity { *; }
+-keep class com.habitTap.data.db.UrgeCount { *; }
 # Enums are stored and read back by name, so their names must survive obfuscation.
--keepclassmembers enum com.taptap.model.** {
+-keepclassmembers enum com.habitTap.model.** {
     public static **[] values();
     public static ** valueOf(java.lang.String);
     public java.lang.String name();

@@ -64,9 +64,9 @@ streak, badges and urges beaten are kept." → "Start again".
 
 ## Files
 
-- `app/src/main/java/com/taptap/ui/quit/QuitContract.kt`
-- `app/src/main/java/com/taptap/ui/quit/QuitViewModel.kt`
-- `app/src/main/java/com/taptap/ui/quit/QuitScreen.kt`
+- `app/src/main/java/com/habitTap/ui/quit/QuitContract.kt`
+- `app/src/main/java/com/habitTap/ui/quit/QuitViewModel.kt`
+- `app/src/main/java/com/habitTap/ui/quit/QuitScreen.kt`
 
 ## Verification
 
