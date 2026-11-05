@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -76,7 +77,13 @@ fun HomeTopBar(
     }
 }
 
-/** The `tt-mark`: a 40dp `radius-md` square in `accent` with the plus glyph. */
+/**
+ * The `tt-mark`: a 40dp `radius-md` square in `accent` carrying the launcher icon's glyph.
+ *
+ * The glyph is the app icon's heart-and-plus, tinted `onAccent`, so the mark is the app
+ * icon but its square follows whichever accent the theme is on rather than the launcher
+ * art's fixed orange.
+ */
 @Composable
 fun AppMark(modifier: Modifier = Modifier, size: androidx.compose.ui.unit.Dp = 40.dp) {
     val c = TapTapTheme.colors
@@ -85,11 +92,11 @@ fun AppMark(modifier: Modifier = Modifier, size: androidx.compose.ui.unit.Dp = 4
         contentAlignment = Alignment.Center,
     ) {
         Icon(
-            imageVector = TapTapIcons.Plus,
+            painter = painterResource(R.drawable.ic_app_mark),
             // Decorative: the "HabitTap" wordmark beside it carries the meaning.
             contentDescription = null,
             tint = c.onAccent,
-            modifier = Modifier.size(size * 0.55f),
+            modifier = Modifier.size(size * 0.6f),
         )
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The launcher icon's glyph — the heart with the plus — as a single tintable path.
+
+  The launcher drawable bakes in its own orange gradient and paints the heart and the
+  plus in two colours, so it cannot be tinted. Here the plus is an even-odd hole in the
+  heart instead: one fill colour, so the `tt-mark` background shows through the plus and
+  the whole glyph follows the app's accent. The plus arms end in semicircles to match the
+  round stroke caps of the launcher art.
+
+  The group centres the glyph (whose own bounds are 45.24 x 39.78 about 36,36 in the
+  launcher art) in a tight 48 x 48 viewport, so the drawable has no built-in padding and
+  the caller's size is the glyph's size.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <group
+        android:translateX="-12"
+        android:translateY="-12">
+        <path
+            android:fillColor="#FFFFFFFF"
+            android:fillType="evenOdd"
+            android:pathData="M36,55.89C20.01,45.36 13.38,37.17 13.38,28.98C13.38,21.57 18.84,16.11 25.47,16.11C30.15,16.11 33.66,18.606 36,22.74C38.34,18.606 41.85,16.11 46.53,16.11C53.16,16.11 58.62,21.57 58.62,28.98C58.62,37.17 51.99,45.36 36,55.89ZM33.465,31.125L33.465,27.42A2.535,2.535 0 0 1 38.535,27.42L38.535,31.125L42.24,31.125A2.535,2.535 0 0 1 42.24,36.195L38.535,36.195L38.535,39.9A2.535,2.535 0 0 1 33.465,39.9L33.465,36.195L29.76,36.195A2.535,2.535 0 0 1 29.76,31.125Z" />
+    </group>
+</vector>
