@@ -1,13 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-    The app mark's plus glyph in `on-accent`, inside the 72dp adaptive-icon safe zone.
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
+    android:viewportWidth="72"
+    android:viewportHeight="72">
+  <group android:scaleX="0.61"
+      android:scaleY="0.61"
+      android:translateX="14.04"
+      android:translateY="14.04">
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M50,32h8v18h18v8h-18v18h-8v-18h-18v-8h18z" />
+        android:pathData="M-18,-18h108v108h-108z">
+      <aapt:attr name="android:fillColor">
+        <gradient
+            android:startX="-18"
+            android:startY="-18"
+            android:endX="90"
+            android:endY="90"
+            android:type="linear">
+          <item android:offset="0" android:color="#FFE68A2E"/>
+          <item android:offset="1" android:color="#FF9C4607"/>
+        </gradient>
+      </aapt:attr>
+    </path>
+    <path
+        android:pathData="M36,55.89C20.01,45.36 13.38,37.17 13.38,28.98C13.38,21.57 18.84,16.11 25.47,16.11C30.15,16.11 33.66,18.606 36,22.74C38.34,18.606 41.85,16.11 46.53,16.11C53.16,16.11 58.62,21.57 58.62,28.98C58.62,37.17 51.99,45.36 36,55.89Z"
+        android:fillColor="#FFFFFF"/>
+    <path
+        android:pathData="M36,27.42l0,12.48M29.76,33.66l12.48,0"
+        android:strokeWidth="5.07"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFE0B3"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M20.79,26.64C21.57,23.52 23.91,21.57 26.64,21.18"
+        android:strokeAlpha="0.8"
+        android:strokeWidth="2.73"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFE0B3"
+        android:fillAlpha="0.8"
+        android:strokeLineCap="round"/>
+  </group>
 </vector>
