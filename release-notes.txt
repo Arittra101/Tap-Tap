@@ -1,0 +1,65 @@
+<en-US>
+🎉 HabitTap is here — your offline counter and quit-habit buddy.
+
+🔢 Count anything — reps, water, pages, cups of tea. One big tap.
+🚭 Quit a habit — days free, money saved, times you said no.
+🏅 10 milestone badges, from day 1 to day 365.
+💭 Save your reason. Get one gentle nudge a day.
+🎨 4 colour themes, light & dark, 6 languages.
+🔒 No account, no ads, no internet. Your data never leaves your phone.
+</en-US>
+
+<bn-BD>
+🎉 HabitTap এসে গেছে — অফলাইন কাউন্টার ও অভ্যাস ছাড়ার সঙ্গী।
+
+🔢 যা খুশি গুনুন — ব্যায়াম, পানি, পড়া পৃষ্ঠা, চায়ের কাপ। একটি বড় ট্যাপ।
+🚭 অভ্যাস ছাড়ুন — দিন মুক্ত, সঞ্চয়, কতবার না বলেছেন।
+🏅 ১ম দিন থেকে ৩৬৫তম দিন পর্যন্ত ১০টি মাইলফলক ব্যাজ।
+💭 নিজের কারণ লিখুন। দিনে একবার মৃদু মনে করিয়ে দেওয়া।
+🎨 ৪টি রঙ, লাইট ও ডার্ক, ৬টি ভাষা।
+🔒 অ্যাকাউন্ট নেই, বিজ্ঞাপন নেই, ইন্টারনেট নেই। সব তথ্য ফোনেই থাকে।
+</bn-BD>
+
+<hi-IN>
+🎉 HabitTap आ गया — ऑफ़लाइन काउंटर और आदत छोड़ने का साथी।
+
+🔢 कुछ भी गिनें — कसरत, पानी, पढ़े पन्ने, चाय के कप। एक बड़ा टैप।
+🚭 आदत छोड़ें — दिन मुक्त, बचाया पैसा, कितनी बार ना कहा।
+🏅 दिन 1 से दिन 365 तक, 10 माइलस्टोन बैज।
+💭 अपनी वजह सहेजें। दिन में एक हल्का रिमाइंडर।
+🎨 4 रंग, लाइट और डार्क, 6 भाषाएँ।
+🔒 कोई खाता नहीं, कोई विज्ञापन नहीं, इंटरनेट नहीं। डेटा फ़ोन में ही रहता है।
+</hi-IN>
+
+<ru-RU>
+🎉 Встречайте HabitTap — офлайн-счётчик и трекер отказа от привычек.
+
+🔢 Считайте что угодно — подходы, воду, страницы, чашки чая. Одно касание.
+🚭 Бросайте привычку — дней без неё, сэкономлено, сколько раз вы сказали нет.
+🏅 10 значков: от 1-го дня до 365-го.
+💭 Сохраните свою причину. Одно мягкое напоминание в день.
+🎨 4 цвета, светлая и тёмная тема, 6 языков.
+🔒 Без аккаунта, без рекламы, без интернета. Данные остаются на телефоне.
+</ru-RU>
+
+<es-ES>
+🎉 Llega HabitTap: tu contador sin conexión y tu apoyo para dejar hábitos.
+
+🔢 Cuenta lo que quieras: series, agua, páginas, tazas de té. Un solo toque.
+🚭 Deja un hábito: días sin él, dinero ahorrado, veces que dijiste no.
+🏅 10 insignias, del día 1 al día 365.
+💭 Guarda tu motivo. Un recordatorio suave al día.
+🎨 4 colores, claro y oscuro, 6 idiomas.
+🔒 Sin cuenta, sin anuncios, sin internet. Tus datos no salen del teléfono.
+</es-ES>
+
+<it-IT>
+🎉 Arriva HabitTap: il contatore offline e il tuo alleato per smettere.
+
+🔢 Conta quello che vuoi: ripetizioni, acqua, pagine, tazze di tè. Un tocco.
+🚭 Smetti con un'abitudine: giorni senza, denaro risparmiato, quante volte hai detto di no.
+🏅 10 badge, dal giorno 1 al giorno 365.
+💭 Salva il tuo motivo. Un promemoria gentile al giorno.
+🎨 4 colori, chiaro e scuro, 6 lingue.
+🔒 Nessun account, nessuna pubblicità, nessuna connessione. I dati restano sul telefono.
+</it-IT>

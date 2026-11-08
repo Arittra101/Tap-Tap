@@ -11,6 +11,24 @@
 | Privacy policy URL | `https://habit-tap-privacy-policy.vercel.app/` — serves `PRIVACY.md`; the app links to the same URL (`SettingsScreen.PRIVACY_POLICY_URL` — **update both together**) |
 | Data safety form | "No data collected", "No data shared". Nothing leaves the device (`NFR-1`, `FR-8.7`) |
 | Languages | English, Bangla, Hindi, Russian, Spanish, Italian |
+| Release notes | `release-notes.txt` — paste the whole file into "What's new" |
+
+## Release notes
+
+`release-notes.txt` holds the "What's new" text for all six languages in the tagged
+format the Play Console accepts, so the file can be pasted in whole. Rules it already
+follows, worth keeping for later versions:
+
+- **500 characters per language**, counted inside the tags. Play silently truncates
+  anything longer.
+- **A tag must name a language already enabled on the listing**, or Play rejects the
+  entire paste. With English only, paste just the `<en-US>` block.
+- Bengali is written as `bn-BD`; if the Play Console dropdown lists it as `bn-IN`,
+  change the tag to match.
+- Claims in the text are checked against the code — "10 milestone badges, day 1 to
+  day 365" is `TimeUtils.MILESTONES`. Re-check them when the features change.
+- The five translations have **not** been reviewed by a native speaker, same as the
+  in-app strings.
 
 ## Signing
 
