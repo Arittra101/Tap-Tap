@@ -1,0 +1,46 @@
+{
+  "voice": "Samantha",
+  "rate": 162,
+  "note": "Each scene is a list of clauses with the pause (ms) that follows it. Phrasing is what makes a read sound human, so write the pauses where a person would breathe. Override the voice with: VOICE='Karen' RATE=155 npm run vo",
+  "lines": {
+    "Intro": [
+      {"text": "HabitTap.", "pause": 430},
+      {"text": "Count anything.", "pause": 270},
+      {"text": "Quit anything.", "pause": 0, "rate": 152}
+    ],
+    "Count": [
+      {"text": "One big tap counts it.", "pause": 390},
+      {"text": "Reps, water, pages,", "pause": 170},
+      {"text": "cups of tea.", "pause": 370},
+      {"text": "Set a target,", "pause": 190},
+      {"text": "and watch the ring close.", "pause": 0, "rate": 152}
+    ],
+    "Quit": [
+      {"text": "Quitting something?", "pause": 400},
+      {"text": "Your days free count themselves.", "pause": 380},
+      {"text": "See the money you saved,", "pause": 210},
+      {"text": "and every time you said no.", "pause": 0, "rate": 152}
+    ],
+    "Milestones": [
+      {"text": "Ten badges,", "pause": 200},
+      {"text": "from day one, to day three hundred and sixty five.", "pause": 420},
+      {"text": "Every one you earn stays yours.", "pause": 0, "rate": 152}
+    ],
+    "Themes": [
+      {"text": "Four colours,", "pause": 180},
+      {"text": "light and dark,", "pause": 180},
+      {"text": "in six languages.", "pause": 0, "rate": 152}
+    ],
+    "Privacy": [
+      {"text": "No account.", "pause": 290, "rate": 155},
+      {"text": "No ads.", "pause": 290, "rate": 155},
+      {"text": "No internet.", "pause": 430, "rate": 155},
+      {"text": "Your data never leaves your phone.", "pause": 0, "rate": 150}
+    ],
+    "Outro": [
+      {"text": "HabitTap.", "pause": 390},
+      {"text": "Counter, and quit habit.", "pause": 420},
+      {"text": "Free, offline, and private.", "pause": 0, "rate": 150}
+    ]
+  }
+}

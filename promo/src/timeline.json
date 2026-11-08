@@ -1,0 +1,78 @@
+{
+  "fps": 30,
+  "voice": "Samantha",
+  "rate": 162,
+  "totalFrames": 1338,
+  "scenes": [
+    {
+      "name": "Intro",
+      "frames": 122,
+      "start": 0,
+      "voStart": 12,
+      "voFrames": 92,
+      "voSeconds": 3.083,
+      "file": "vo/Intro.wav",
+      "line": "HabitTap. Count anything. Quit anything."
+    },
+    {
+      "name": "Count",
+      "frames": 249,
+      "start": 122,
+      "voStart": 12,
+      "voFrames": 219,
+      "voSeconds": 7.31,
+      "file": "vo/Count.wav",
+      "line": "One big tap counts it. Reps, water, pages, cups of tea. Set a target, and watch the ring close."
+    },
+    {
+      "name": "Quit",
+      "frames": 229,
+      "start": 371,
+      "voStart": 12,
+      "voFrames": 199,
+      "voSeconds": 6.626,
+      "file": "vo/Quit.wav",
+      "line": "Quitting something? Your days free count themselves. See the money you saved, and every time you said no."
+    },
+    {
+      "name": "Milestones",
+      "frames": 220,
+      "start": 600,
+      "voStart": 12,
+      "voFrames": 190,
+      "voSeconds": 6.318,
+      "file": "vo/Milestones.wav",
+      "line": "Ten badges, from day one, to day three hundred and sixty five. Every one you earn stays yours."
+    },
+    {
+      "name": "Themes",
+      "frames": 150,
+      "start": 820,
+      "voStart": 12,
+      "voFrames": 101,
+      "voSeconds": 3.367,
+      "file": "vo/Themes.wav",
+      "line": "Four colours, light and dark, in six languages."
+    },
+    {
+      "name": "Privacy",
+      "frames": 177,
+      "start": 970,
+      "voStart": 12,
+      "voFrames": 147,
+      "voSeconds": 4.89,
+      "file": "vo/Privacy.wav",
+      "line": "No account. No ads. No internet. Your data never leaves your phone."
+    },
+    {
+      "name": "Outro",
+      "frames": 191,
+      "start": 1147,
+      "voStart": 12,
+      "voFrames": 161,
+      "voSeconds": 5.357,
+      "file": "vo/Outro.wav",
+      "line": "HabitTap. Counter, and quit habit. Free, offline, and private."
+    }
+  ]
+}
