@@ -1,0 +1,24 @@
+{
+  "name": "habittap-promo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Programmatic promo video for HabitTap, built with Remotion.",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render PromoVertical out/habittap-promo-vertical.mp4",
+    "render:landscape": "remotion render PromoLandscape out/habittap-promo-landscape.mp4",
+    "render:gif": "remotion render PromoVertical out/habittap-promo.gif --codec=gif --every-nth-frame=2 --scale=0.5",
+    "still": "remotion still PromoVertical out/poster.png --frame=90"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.429",
+    "@remotion/fonts": "4.0.429",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.429"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "typescript": "5.8.2"
+  }
+}
