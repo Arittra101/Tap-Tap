@@ -5,8 +5,9 @@
  * describes what it shows and the stage decides where it goes.
  */
 import React from 'react';
-import {AbsoluteFill, Series} from 'remotion';
+import {AbsoluteFill, Audio, Series, staticFile} from 'remotion';
 import {Layout, LayoutContext} from './Stage';
+import {musicVolume, TOTAL_FRAMES as TIMELINE_FRAMES} from './timing';
 import {Intro, INTRO_FRAMES} from './scenes/Intro';
 import {Count, COUNT_FRAMES} from './scenes/Count';
 import {Quit, QUIT_FRAMES} from './scenes/Quit';
@@ -27,9 +28,18 @@ export const SCENES = [
 
 export const TOTAL_FRAMES = SCENES.reduce((sum, s) => sum + s.frames, 0);
 
+if (TOTAL_FRAMES !== TIMELINE_FRAMES) {
+  // The scenes and the voice track have drifted apart; re-run audio/build_vo.py.
+  console.warn(
+    `Scene lengths total ${TOTAL_FRAMES} frames but timeline.json says ${TIMELINE_FRAMES}.`,
+  );
+}
+
 export const Promo: React.FC<{layout: Layout}> = ({layout}) => (
   <LayoutContext.Provider value={layout}>
     <AbsoluteFill style={{backgroundColor: '#100F0E'}}>
+      {/* The score, ducking under each line — see `musicVolume`. */}
+      <Audio src={staticFile('music/bed.wav')} volume={musicVolume} />
       <Series>
         {SCENES.map((scene) => {
           const Scene = scene.component;

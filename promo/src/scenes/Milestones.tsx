@@ -2,6 +2,8 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Stage, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Voice} from '../components/Voice';
 import {colors, MILESTONES, radius, space, type, DISPLAY} from '../theme';
 import {
   BadgeState,
@@ -14,7 +16,7 @@ import {
   useTheme,
 } from '../components/ui';
 
-export const MILESTONES_FRAMES = 130;
+export const MILESTONES_FRAMES = sceneFrames('Milestones');
 
 const DAYS = 18;
 
@@ -142,6 +144,7 @@ export const Milestones: React.FC = () => {
   const fade = useSceneFade(MILESTONES_FRAMES);
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Milestones" />
       <Theme color="teal" dark={false}>
         <Stage
           accent={colors('teal', false).accent}

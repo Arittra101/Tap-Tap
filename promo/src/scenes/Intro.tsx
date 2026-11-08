@@ -2,10 +2,12 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {StageBackdrop, Rise, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Voice} from '../components/Voice';
 import {colors, DISPLAY, TEXT} from '../theme';
 import * as Icon from '../components/Icon';
 
-export const INTRO_FRAMES = 80;
+export const INTRO_FRAMES = sceneFrames('Intro');
 
 export const Intro: React.FC = () => {
   const frame = useCurrentFrame();
@@ -19,6 +21,7 @@ export const Intro: React.FC = () => {
 
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Intro" />
       <StageBackdrop accent={c.accent} />
       <AbsoluteFill
         style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}

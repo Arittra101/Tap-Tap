@@ -7,6 +7,8 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import {Stage, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Sfx, Voice} from '../components/Voice';
 import {colors, space, type} from '../theme';
 import {
   ControlBar,
@@ -18,9 +20,10 @@ import {
   useTheme,
 } from '../components/ui';
 
-export const COUNT_FRAMES = 170;
+export const COUNT_FRAMES = sceneFrames('Count');
 
-const TAPS = [30, 42, 54, 66, 78, 90, 102, 114];
+/* Eight taps, one every 21 frames — the tempo of the score, so they fall with it. */
+const TAPS = [50, 71, 93, 114, 136, 157, 179, 200];
 const START = 12;
 const TARGET = 20;
 const STEP = 1;
@@ -119,6 +122,11 @@ export const Count: React.FC = () => {
   const accent = colors('saffron', false).accent;
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Count" />
+      {TAPS.map((at) => (
+        <Sfx key={at} file="tap" at={at} volume={0.4} />
+      ))}
+      <Sfx file="success" at={TAPS[TAPS.length - 1]} volume={0.4} />
       <Theme color="saffron" dark={false}>
         <Stage
           accent={accent}

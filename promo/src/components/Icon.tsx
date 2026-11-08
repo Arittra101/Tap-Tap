@@ -124,6 +124,43 @@ export const Globe: React.FC<Props> = (p) => (
   </Svg>
 );
 
+export const ChevronLeft: React.FC<Props> = (p) => (
+  <Svg {...p} strokeWidth={p.strokeWidth ?? 2.2}>
+    <path d="M14.5 5.5l-7 6.5 7 6.5" />
+  </Svg>
+);
+
+/** Edit, in the counter top bar. */
+export const Edit: React.FC<Props> = (p) => (
+  <Svg {...p}>
+    <path d="M4 20h4L19 9a2.83 2.83 0 0 0-4-4L4 16v4z" />
+    <path d="M14 6l4 4" />
+  </Svg>
+);
+
+export const Unlock: React.FC<Props> = (p) => (
+  <Svg {...p}>
+    <rect x="4.5" y="10.5" width="15" height="9.5" rx="2.5" />
+    <path d="M8 10.5V8a4 4 0 0 1 7.9-0.9" />
+  </Svg>
+);
+
+/** Vibration, in Settings. */
+export const Vibrate: React.FC<Props> = (p) => (
+  <Svg {...p}>
+    <rect x="8.5" y="4" width="7" height="16" rx="2" />
+    <path d="M5 9v6M2.5 10.5v3M19 9v6M21.5 10.5v3" />
+  </Svg>
+);
+
+/** Sound, in Settings. */
+export const Sound: React.FC<Props> = (p) => (
+  <Svg {...p}>
+    <path d="M4 9.5h3L11.5 6v12L7 14.5H4z" />
+    <path d="M15 9.5a3.5 3.5 0 0 1 0 5M17.8 7a7 7 0 0 1 0 10" />
+  </Svg>
+);
+
 /**
  * The app mark — the heart with the plus, as an even-odd hole. The path is the app's own
  * `drawable/ic_app_mark.xml`, whose glyph sits at 12..60 in a 72 viewport.

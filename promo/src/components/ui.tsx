@@ -771,6 +771,7 @@ export const CounterCard: React.FC<{
   metaText: string;
   progress: number;
   width?: number;
+  minHeight?: number;
   plusScale?: number;
   done?: boolean;
 }> = ({
@@ -782,6 +783,7 @@ export const CounterCard: React.FC<{
   metaText,
   progress,
   width = 168,
+  minHeight = 170,
   plusScale = 1,
   done = false,
 }) => {
@@ -792,7 +794,7 @@ export const CounterCard: React.FC<{
         <div
           style={{
             width,
-            minHeight: 170,
+            minHeight,
             background: app.surface,
             border: `1px solid ${app.line}`,
             borderRadius: radius.lg,

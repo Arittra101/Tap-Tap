@@ -2,10 +2,12 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {StageBackdrop, Rise, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Sfx, Voice} from '../components/Voice';
 import {colors, DISPLAY, radius, TEXT} from '../theme';
 import * as Icon from '../components/Icon';
 
-export const OUTRO_FRAMES = 100;
+export const OUTRO_FRAMES = sceneFrames('Outro');
 
 export const Outro: React.FC = () => {
   const frame = useCurrentFrame();
@@ -16,6 +18,8 @@ export const Outro: React.FC = () => {
 
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Outro" />
+      <Sfx file="whoosh" at={0} volume={0.3} />
       <StageBackdrop accent={c.accent} />
       <AbsoluteFill
         style={{alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}

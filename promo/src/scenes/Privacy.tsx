@@ -2,10 +2,12 @@
 import React from 'react';
 import {AbsoluteFill, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {LayoutContext, Stage, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Voice} from '../components/Voice';
 import {colors, DISPLAY, radius, TEXT} from '../theme';
 import * as Icon from '../components/Icon';
 
-export const PRIVACY_FRAMES = 100;
+export const PRIVACY_FRAMES = sceneFrames('Privacy');
 
 const items = [
   {icon: Icon.Shield, title: 'No account', body: 'Nothing to sign up for'},
@@ -23,6 +25,7 @@ export const Privacy: React.FC = () => {
 
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Privacy" />
       <Stage
         accent={c.accent}
         phone={false}

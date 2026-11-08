@@ -5,6 +5,8 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import {Stage, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Sfx, Voice} from '../components/Voice';
 import {colors, radius, space, type, DISPLAY} from '../theme';
 import {
   DaysRing,
@@ -20,14 +22,14 @@ import {
 } from '../components/ui';
 import * as Icon from '../components/Icon';
 
-export const QUIT_FRAMES = 170;
+export const QUIT_FRAMES = sceneFrames('Quit');
 
 const DAYS = 18;
 const HOURS = 6;
 /** TimeUtils.milestoneProgress(18, 6): previous badge 14, next 21. */
 const PROGRESS = (DAYS - 14 + HOURS / 24) / (21 - 14);
 const SAID_NO = 36;
-const PRESS_AT = 104;
+const PRESS_AT = 150;
 
 const QuitScreen: React.FC = () => {
   const frame = useCurrentFrame();
@@ -146,6 +148,8 @@ export const Quit: React.FC = () => {
   const fade = useSceneFade(QUIT_FRAMES);
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Quit" />
+      <Sfx file="press" at={PRESS_AT} volume={0.45} />
       <Theme color="teal" dark={false}>
         <Stage
           accent={colors('teal', false).accent}

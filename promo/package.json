@@ -5,10 +5,15 @@
   "description": "Programmatic promo video for HabitTap, built with Remotion.",
   "scripts": {
     "studio": "remotion studio",
-    "render": "remotion render PromoVertical out/habittap-promo-vertical.mp4",
-    "render:landscape": "remotion render PromoLandscape out/habittap-promo-landscape.mp4",
+    "vo": "python3 audio/build_vo.py",
+    "music": "python3 audio/make_music.py && python3 audio/make_sfx.py",
+    "audio": "npm run vo && npm run music",
+    "render": "remotion render PromoVertical out/habittap-promo-vertical.mp4 && python3 audio/master.py out/habittap-promo-vertical.mp4",
+    "render:landscape": "remotion render PromoLandscape out/habittap-promo-landscape.mp4 && python3 audio/master.py out/habittap-promo-landscape.mp4",
+    "render:all": "npm run render && npm run render:landscape",
     "render:gif": "remotion render PromoVertical out/habittap-promo.gif --codec=gif --every-nth-frame=2 --scale=0.5",
-    "still": "remotion still PromoVertical out/poster.png --frame=90"
+    "still": "remotion still PromoVertical out/poster.png --frame=240",
+    "feature": "remotion still FeatureGraphic out/feature-graphic.png"
   },
   "dependencies": {
     "@remotion/cli": "4.0.429",

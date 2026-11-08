@@ -7,6 +7,8 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import {Stage, useSceneFade} from '../Stage';
+import {sceneFrames} from '../timing';
+import {Voice} from '../components/Voice';
 import {colors, radius, space, swatch, ThemeColor} from '../theme';
 import {
   CounterCard,
@@ -19,7 +21,7 @@ import {
   useTheme,
 } from '../components/ui';
 
-export const THEMES_FRAMES = 130;
+export const THEMES_FRAMES = sceneFrames('Themes');
 
 const SEQUENCE: {color: ThemeColor; dark: boolean}[] = [
   {color: 'saffron', dark: false},
@@ -148,6 +150,7 @@ export const Themes: React.FC = () => {
 
   return (
     <AbsoluteFill style={{opacity: fade}}>
+      <Voice scene="Themes" />
       <Theme color={shown.color} dark={shown.dark}>
         <Stage
           accent={colors(shown.color, shown.dark).accent}
