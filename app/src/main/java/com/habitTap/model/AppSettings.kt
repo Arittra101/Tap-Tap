@@ -10,6 +10,11 @@ data class AppSettings(
     val themeColor: ThemeColor = ThemeColor.SAFFRON,
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
     val languageTag: String = "",
+    /**
+     * The currency for the money a quit counter saves, as an ISO code. Empty means follow
+     * the phone's region, which is the default.
+     */
+    val currencyCode: String = Currencies.FOLLOW_DEVICE,
     val vibration: Boolean = true,
     val sound: Boolean = false,
     /**

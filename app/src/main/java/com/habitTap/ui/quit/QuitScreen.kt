@@ -62,6 +62,7 @@ import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.theme.TapTapType
 import com.habitTap.util.Formatters
 import com.habitTap.util.TimeUtils
+import com.habitTap.util.currencyCode
 import com.habitTap.util.currentLocale
 
 @Composable
@@ -101,6 +102,7 @@ fun QuitScreen(
     CounterTheme(state.color) {
         val c = TapTapTheme.colors
         val locale = currentLocale()
+        val currency = currencyCode()
         // NFR-7: the day count is display-sized already, so its growth is capped while
         // every label around it scales normally.
         val fontScale = LocalDensity.current.fontScale
@@ -187,7 +189,7 @@ fun QuitScreen(
                     StatStrip(
                         stats = listOf(
                             Stat(
-                                state.moneySaved?.let { Formatters.money(it, locale) }
+                                state.moneySaved?.let { Formatters.money(it, locale, currency) }
                                     ?: stringResource(R.string.counter_no_value),
                                 stringResource(R.string.quit_stat_money),
                             ),

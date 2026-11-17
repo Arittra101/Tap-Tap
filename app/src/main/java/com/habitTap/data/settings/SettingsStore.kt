@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.habitTap.model.AppSettings
+import com.habitTap.model.Currencies
 import com.habitTap.model.ThemeColor
 import com.habitTap.model.ThemeMode
 import kotlinx.coroutines.flow.Flow
@@ -33,6 +34,7 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
         val themeColor = stringPreferencesKey("theme_color")
         val themeMode = stringPreferencesKey("theme_mode")
         val language = stringPreferencesKey("language")
+        val currency = stringPreferencesKey("currency")
         val vibration = booleanPreferencesKey("vibration")
         val sound = booleanPreferencesKey("sound")
         val tutorialSeen = booleanPreferencesKey("tutorial_seen")
@@ -49,6 +51,9 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
                 themeColor = prefs[Keys.themeColor].toThemeColor(),
                 themeMode = prefs[Keys.themeMode].toThemeMode(),
                 languageTag = prefs[Keys.language].orEmpty(),
+                // Sanitised, so a code dropped from the list in a later version falls
+                // back to the phone's currency rather than failing to format at all.
+                currencyCode = Currencies.sanitize(prefs[Keys.currency]),
                 vibration = prefs[Keys.vibration] ?: DEFAULT_VIBRATION,
                 sound = prefs[Keys.sound] ?: DEFAULT_SOUND,
                 tutorialSeen = prefs[Keys.tutorialSeen] ?: DEFAULT_TUTORIAL_SEEN,
@@ -67,6 +72,11 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
     /** An empty tag means "follow the phone" (requirements 6). */
     suspend fun setLanguageTag(tag: String) {
         dataStore.edit { it[Keys.language] = tag }
+    }
+
+    /** An empty code means "follow the phone" (requirements 6). */
+    suspend fun setCurrencyCode(code: String) {
+        dataStore.edit { it[Keys.currency] = Currencies.sanitize(code) }
     }
 
     suspend fun setVibration(enabled: Boolean) {

@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -197,8 +198,26 @@ private fun FocusStat(value: String, label: String, modifier: Modifier = Modifie
             .padding(horizontal = Spacing.space3, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(1.dp),
     ) {
-        Text(text = value, style = TapTapType.statValue, color = own.onAccent)
-        Text(text = label, style = TapTapType.caption, color = own.onAccent)
+        // Shrinks to fit rather than spilling out of the tile: money saved grows a digit
+        // at a time and the three tiles share one row.
+        Text(
+            text = value,
+            style = TapTapType.statValue,
+            color = own.onAccent,
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 13.sp,
+                maxFontSize = TapTapType.statValue.fontSize,
+                stepSize = 1.sp,
+            ),
+        )
+        Text(
+            text = label,
+            style = TapTapType.caption,
+            color = own.onAccent,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
     }
 }
 

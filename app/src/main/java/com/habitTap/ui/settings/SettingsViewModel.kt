@@ -31,6 +31,7 @@ class SettingsViewModel(
                         color = s.themeColor,
                         mode = s.themeMode,
                         languageTag = s.languageTag.ifEmpty { SettingsRepository.FALLBACK_LANGUAGE },
+                        currencyCode = s.currencyCode,
                         vibration = s.vibration,
                         sound = s.sound,
                     )
@@ -46,6 +47,14 @@ class SettingsViewModel(
             is SettingsIntent.ChangeLanguage -> viewModelScope.launch {
                 repository.setLanguageTag(intent.tag)
                 _effects.send(SettingsEffect.ApplyLanguage(intent.tag))
+            }
+            SettingsIntent.CurrencyClicked -> _state.update { it.copy(showCurrencyPicker = true) }
+            SettingsIntent.CurrencyDismissed -> _state.update { it.copy(showCurrencyPicker = false) }
+            is SettingsIntent.ChangeCurrency -> {
+                // Closed here rather than when the store comes back, so the sheet goes
+                // away on the same frame as the tap.
+                _state.update { it.copy(showCurrencyPicker = false) }
+                viewModelScope.launch { repository.setCurrencyCode(intent.code) }
             }
             is SettingsIntent.ToggleVibration -> viewModelScope.launch { repository.setVibration(intent.on) }
             is SettingsIntent.ToggleSound -> viewModelScope.launch { repository.setSound(intent.on) }

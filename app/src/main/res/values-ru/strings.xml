@@ -330,4 +330,10 @@
     <string name="journey_name">Дайте ему имя: подходы, стаканы воды, страницы. Что угодно.</string>
     <string name="journey_create_button">Теперь нажмите «Создать счётчик».</string>
     <string name="journey_first_tap">Готово. Нажмите + на карточке, чтобы прибавить один.</string>
+
+    <!-- Currency -->
+    <string name="settings_money">Деньги</string>
+    <string name="settings_currency">Валюта</string>
+    <string name="settings_currency_help">Для денег, которые экономят счётчики отказа.</string>
+    <string name="settings_currency_device">Как на телефоне</string>
 </resources>

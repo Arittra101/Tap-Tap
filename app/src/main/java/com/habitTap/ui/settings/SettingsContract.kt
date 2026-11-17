@@ -1,5 +1,6 @@
 package com.habitTap.ui.settings
 
+import com.habitTap.model.Currencies
 import com.habitTap.model.ThemeColor
 import com.habitTap.model.ThemeMode
 
@@ -8,16 +9,23 @@ data class SettingsState(
     val color: ThemeColor = ThemeColor.PINK,
     val mode: ThemeMode = ThemeMode.SYSTEM,
     val languageTag: String = "en",
+    /** Empty means follow the phone's region (FR-8.3). */
+    val currencyCode: String = Currencies.FOLLOW_DEVICE,
     val vibration: Boolean = true,
     val sound: Boolean = false,
     /** FR-6.2: true when the phone's own setting is dark, for the result note. */
     val phoneIsDark: Boolean = false,
+    /** Screen-only: the currency list is open. */
+    val showCurrencyPicker: Boolean = false,
 )
 
 sealed interface SettingsIntent {
     data class ChangeColor(val color: ThemeColor) : SettingsIntent
     data class ChangeMode(val mode: ThemeMode) : SettingsIntent
     data class ChangeLanguage(val tag: String) : SettingsIntent
+    data object CurrencyClicked : SettingsIntent
+    data object CurrencyDismissed : SettingsIntent
+    data class ChangeCurrency(val code: String) : SettingsIntent
     data class ToggleVibration(val on: Boolean) : SettingsIntent
     data class ToggleSound(val on: Boolean) : SettingsIntent
     data object OpenPrivacyPolicy : SettingsIntent

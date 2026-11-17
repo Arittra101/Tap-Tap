@@ -319,4 +319,10 @@
     <string name="journey_name">Ponle un nombre: repeticiones, vasos de agua, páginas. Lo que quieras contar.</string>
     <string name="journey_create_button">Ahora toca Crear contador.</string>
     <string name="journey_first_tap">Ahí está. Toca + en la tarjeta para contar uno.</string>
+
+    <!-- Currency -->
+    <string name="settings_money">Dinero</string>
+    <string name="settings_currency">Moneda</string>
+    <string name="settings_currency_help">Se usa para el dinero que ahorran tus contadores de dejar un hábito.</string>
+    <string name="settings_currency_device">Seguir el teléfono</string>
 </resources>

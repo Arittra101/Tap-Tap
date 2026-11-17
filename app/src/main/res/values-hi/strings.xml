@@ -312,4 +312,10 @@
     <string name="journey_name">इसे एक नाम दें — कसरत, पानी के गिलास, पन्ने। जो चाहें गिनें।</string>
     <string name="journey_create_button">अब “काउंटर बनाएँ” पर टैप करें।</string>
     <string name="journey_first_tap">यह तैयार है। गिनने के लिए कार्ड पर + टैप करें।</string>
+
+    <!-- Currency -->
+    <string name="settings_money">पैसा</string>
+    <string name="settings_currency">मुद्रा</string>
+    <string name="settings_currency_help">आपके क्विट काउंटर जो पैसे बचाते हैं, उसके लिए।</string>
+    <string name="settings_currency_device">फ़ोन के अनुसार</string>
 </resources>

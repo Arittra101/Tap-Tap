@@ -314,4 +314,10 @@
     <string name="journey_name">একটা নাম দিন — ব্যায়াম, পানির গ্লাস, পড়া পাতা। যা খুশি গুনতে পারেন।</string>
     <string name="journey_create_button">এখন “কাউন্টার তৈরি করুন”-এ ট্যাপ করুন।</string>
     <string name="journey_first_tap">এই তো হয়ে গেল। গুনতে কার্ডের + এ ট্যাপ করুন।</string>
+
+    <!-- Currency -->
+    <string name="settings_money">টাকা</string>
+    <string name="settings_currency">মুদ্রা</string>
+    <string name="settings_currency_help">কুইট কাউন্টারে যে টাকা সঞ্চয় হয়, তার জন্য।</string>
+    <string name="settings_currency_device">ফোনের সেটিং অনুসরণ করুন</string>
 </resources>

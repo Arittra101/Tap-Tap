@@ -63,6 +63,7 @@ import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.theme.TapTapType
 import com.habitTap.util.Formatters
 import com.habitTap.util.TimeUtils
+import com.habitTap.util.currencyCode
 import com.habitTap.util.currentLocale
 
 @Composable
@@ -227,6 +228,7 @@ private fun FocusSection(
     onOpenQuit: (Long) -> Unit,
 ) {
     val locale = currentLocale()
+    val currency = currencyCode()
     val days = TimeUtils.daysFree(focus.quitAt ?: state.nowMillis, state.nowMillis)
     val hours = TimeUtils.hoursFree(focus.quitAt ?: state.nowMillis, state.nowMillis)
     val money = TimeUtils.moneySaved(days, focus.moneyPerDay)
@@ -241,7 +243,7 @@ private fun FocusSection(
             daysFree = days,
             milestoneProgress = TimeUtils.milestoneProgress(days, hours),
             nextBadgeText = nextBadgeText(days),
-            moneySavedText = money?.let { Formatters.money(it, locale) } ?: "—",
+            moneySavedText = money?.let { Formatters.money(it, locale, currency) } ?: "—",
             urgesTodayText = Formatters.number(state.focusUrgesToday, locale),
             sectionLabels = FocusCardLabels(
                 daysFree = stringResource(R.string.home_days_free),
@@ -356,6 +358,7 @@ private fun QuitSection(
 ) {
     if (state.quitCounters.isEmpty()) return
     val locale = currentLocale()
+    val currency = currencyCode()
 
     HomeSection(
         title = stringResource(R.string.home_quit_heading),
@@ -384,7 +387,10 @@ private fun QuitSection(
                 // The design swaps money for urges when no daily spend is set, rather
                 // than showing a meaningless zero.
                 sideText = if (money != null) {
-                    stringResource(R.string.home_money_saved_value, Formatters.money(money, locale))
+                    stringResource(
+                        R.string.home_money_saved_value,
+                        Formatters.money(money, locale, currency),
+                    )
                 } else {
                     pluralStringResource(R.plurals.home_urges_beaten_today, urges, urges)
                 },

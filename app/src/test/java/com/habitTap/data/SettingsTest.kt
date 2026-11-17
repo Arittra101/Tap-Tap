@@ -38,6 +38,7 @@ class SettingsTest {
         assertEquals(ThemeColor.SAFFRON, s.themeColor)
         assertEquals(ThemeMode.SYSTEM, s.themeMode)
         assertEquals("", s.languageTag)
+        assertEquals("the currency follows the phone until it is chosen", "", s.currencyCode)
         assertTrue("vibration defaults on (FR-6.4)", s.vibration)
         assertFalse("sound defaults off (FR-6.4)", s.sound)
         assertFalse("a fresh install has not seen the tutorial", s.tutorialSeen)
@@ -57,6 +58,7 @@ class SettingsTest {
         r.setThemeColor(ThemeColor.TEAL)
         r.setThemeMode(ThemeMode.DARK)
         r.setLanguageTag("bn")
+        r.setCurrencyCode("INR")
         r.setVibration(false)
         r.setSound(true)
 
@@ -64,8 +66,16 @@ class SettingsTest {
         assertEquals(ThemeColor.TEAL, s.themeColor)
         assertEquals(ThemeMode.DARK, s.themeMode)
         assertEquals("bn", s.languageTag)
+        assertEquals("INR", s.currencyCode)
         assertFalse(s.vibration)
         assertTrue(s.sound)
+    }
+
+    @Test
+    fun `a currency the app no longer offers falls back to the phone's`() = runTest {
+        val r = repo()
+        r.setCurrencyCode("ZWD")
+        assertEquals("", r.settings.first().currencyCode)
     }
 
     @Test

@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -77,6 +78,12 @@ fun StatStrip(
                     style = valueStyle,
                     color = c.ink,
                     textAlign = TextAlign.Center,
+                    maxLines = 1,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 13.sp,
+                        maxFontSize = valueStyle.fontSize,
+                        stepSize = 1.sp,
+                    ),
                     modifier = Modifier.clearAndSetSemantics { },
                 )
                 Text(

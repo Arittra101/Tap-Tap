@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,6 +20,7 @@ import com.habitTap.data.repository.SettingsRepository
 import com.habitTap.navigation.AppNavigation
 import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.tutorial.TutorialScreen
+import com.habitTap.util.LocalCurrencyCode
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
             )
             // FR-6.1 / FR-6.2: a theme change repaints at once, with no restart.
             TapTapTheme(color = current.themeColor, mode = current.themeMode) {
+                // Every screen that draws money reads this rather than taking a parameter.
+                CompositionLocalProvider(LocalCurrencyCode provides current.currencyCode) {
                 // null until the stored flag has been read. The flag's default is "not
                 // seen", so showing the tutorial while the answer is unknown would flash
                 // it at everyone on every launch; an empty background for the one frame
@@ -64,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                         modifier = Modifier.fillMaxSize(),
                     )
                     else -> AppNavigation(modifier = Modifier.fillMaxSize())
+                }
                 }
             }
         }

@@ -347,4 +347,10 @@
     <string name="journey_name">Give it a name — push-ups, glasses of water, pages. Anything you want to count.</string>
     <string name="journey_create_button">Now tap Create counter.</string>
     <string name="journey_first_tap">There it is. Tap + on the card to count one.</string>
+
+    <!-- Currency -->
+    <string name="settings_money">Money</string>
+    <string name="settings_currency">Currency</string>
+    <string name="settings_currency_help">Used for the money your quit counters save.</string>
+    <string name="settings_currency_device">Follow the phone</string>
 </resources>

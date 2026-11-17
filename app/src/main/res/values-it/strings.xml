@@ -319,4 +319,10 @@
     <string name="journey_name">Dagli un nome: ripetizioni, bicchieri d\'acqua, pagine. Quello che vuoi contare.</string>
     <string name="journey_create_button">Ora tocca Crea contatore.</string>
     <string name="journey_first_tap">Eccolo. Tocca + sulla scheda per contare uno.</string>
+
+    <!-- Currency -->
+    <string name="settings_money">Soldi</string>
+    <string name="settings_currency">Valuta</string>
+    <string name="settings_currency_help">Usata per i soldi che risparmiano i tuoi contatori di abbandono.</string>
+    <string name="settings_currency_device">Segui il telefono</string>
 </resources>

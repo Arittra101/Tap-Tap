@@ -40,6 +40,8 @@ class SettingsRepository(private val store: SettingsStore) {
 
     suspend fun setLanguageTag(tag: String) = store.setLanguageTag(tag)
 
+    suspend fun setCurrencyCode(code: String) = store.setCurrencyCode(code)
+
     suspend fun setVibration(enabled: Boolean) = store.setVibration(enabled)
 
     suspend fun setSound(enabled: Boolean) = store.setSound(enabled)
