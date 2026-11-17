@@ -170,7 +170,7 @@ fun CreateScreen(
                 title = stringResource(R.string.create_exit_title),
                 message = stringResource(R.string.create_exit_message),
                 confirmLabel = stringResource(R.string.create_button_normal),
-                cancelLabel = stringResource(R.string.create_exit_discard),
+                cancelLabel = stringResource(R.string.action_discard),
                 onConfirm = { onIntent(CreateIntent.Create) },
                 onDismiss = { onIntent(CreateIntent.ExitSheetDismissed) },
                 confirmVariant = ButtonVariant.Primary,

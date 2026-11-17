@@ -20,6 +20,7 @@
     <string name="action_back">Back</string>
     <string name="action_back_to_home">Back to Home</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_discard">Discard</string>
     <string name="action_save_changes">Save changes</string>
     <string name="label_optional">Optional</string>
 
@@ -132,7 +133,6 @@
     <string name="create_footer">You can change the color, background and these options later.</string>
     <string name="create_exit_title">Create this counter?</string>
     <string name="create_exit_message">Your counter isn\'t saved yet. Go back now and you\'ll lose it.</string>
-    <string name="create_exit_discard">Discard</string>
 
     <string name="home_money_saved_value">%1$s saved</string>
     <string name="badge_all_earned">You earned every badge</string>
@@ -231,6 +231,8 @@
 
     <!-- Edit counter -->
     <string name="edit_title">Edit counter</string>
+    <string name="edit_exit_title">Save your changes?</string>
+    <string name="edit_exit_message">You changed this counter. Go back now and your changes are lost.</string>
     <string name="edit_name">Name</string>
     <string name="edit_background">Background image</string>
     <string name="edit_background_help">Default images take the counter\'s color. A soft layer keeps the number easy to read.</string>

@@ -9,6 +9,7 @@
     <string name="action_back">वापस</string>
     <string name="action_back_to_home">होम पर वापस</string>
     <string name="action_cancel">रद्द करें</string>
+    <string name="action_discard">छोड़ दें</string>
     <string name="action_save_changes">बदलाव सहेजें</string>
     <string name="label_optional">वैकल्पिक</string>
 
@@ -124,7 +125,6 @@
     <string name="create_footer">रंग, पृष्ठभूमि और ये विकल्प बाद में बदल सकते हैं।</string>
     <string name="create_exit_title">यह काउंटर बनाएँ?</string>
     <string name="create_exit_message">आपका काउंटर अभी सेव नहीं हुआ है। अभी वापस जाने पर यह खो जाएगा।</string>
-    <string name="create_exit_discard">छोड़ दें</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">आज</string>
@@ -184,6 +184,8 @@
 
     <!-- Edit counter -->
     <string name="edit_title">काउंटर बदलें</string>
+    <string name="edit_exit_title">बदलाव सहेजें?</string>
+    <string name="edit_exit_message">आपने इस काउंटर में बदलाव किए हैं। अभी वापस जाने पर बदलाव खो जाएंगे।</string>
     <string name="edit_name">नाम</string>
     <string name="edit_background">पृष्ठभूमि की तस्वीर</string>
     <string name="edit_background_help">डिफ़ॉल्ट तस्वीरें काउंटर का रंग लेती हैं। एक हल्की परत संख्या को पढ़ने में आसान रखती है।</string>

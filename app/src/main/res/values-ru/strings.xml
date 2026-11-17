@@ -11,6 +11,7 @@
     <string name="action_back">Назад</string>
     <string name="action_back_to_home">Назад на главную</string>
     <string name="action_cancel">Отмена</string>
+    <string name="action_discard">Не сохранять</string>
     <string name="action_save_changes">Сохранить изменения</string>
     <string name="label_optional">Необязательно</string>
 
@@ -126,7 +127,6 @@
     <string name="create_footer">Цвет, фон и эти настройки можно изменить позже.</string>
     <string name="create_exit_title">Создать этот счётчик?</string>
     <string name="create_exit_message">Счётчик ещё не сохранён. Если выйти сейчас, он будет потерян.</string>
-    <string name="create_exit_discard">Не сохранять</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">Сегодня</string>
@@ -188,6 +188,8 @@
 
     <!-- Edit counter -->
     <string name="edit_title">Изменить счётчик</string>
+    <string name="edit_exit_title">Сохранить изменения?</string>
+    <string name="edit_exit_message">Вы изменили этот счётчик. Если выйти сейчас, изменения будут потеряны.</string>
     <string name="edit_name">Название</string>
     <string name="edit_background">Фоновое изображение</string>
     <string name="edit_background_help">Стандартные изображения берут цвет счётчика. Мягкий слой оставляет число читаемым.</string>

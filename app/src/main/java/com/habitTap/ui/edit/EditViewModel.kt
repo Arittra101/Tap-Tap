@@ -31,6 +31,9 @@ class EditViewModel(
     /** The counter as it was loaded, so Save can send back the fields Edit does not own. */
     private var loaded: Counter? = null
 
+    /** The form as it was loaded, so back can tell whether anything was changed. */
+    private var pristine: EditState? = null
+
     init {
         viewModelScope.launch {
             // Loaded once, not observed: a form that rewrites itself underneath the user
@@ -63,8 +66,13 @@ class EditViewModel(
                     isFocus = counter.isFocus,
                 )
             }
+            pristine = _state.value
         }
     }
+
+    /** Nothing to lose until the form has loaded and the user has moved something. */
+    private val isDirty: Boolean
+        get() = pristine?.let { _state.value.fields() != it.fields() } ?: false
 
     fun onIntent(intent: EditIntent) {
         when (intent) {
@@ -97,6 +105,9 @@ class EditViewModel(
             is EditIntent.ToggleFocus -> _state.update { it.copy(isFocus = intent.on) }
             is EditIntent.TogglePin -> _state.update { it.copy(isPinned = intent.on) }
             EditIntent.Save -> save()
+            EditIntent.Back -> back()
+            EditIntent.ExitSheetDismissed -> _state.update { it.copy(showExitSheet = false) }
+            EditIntent.Discard -> leave()
             EditIntent.DeleteClicked -> _state.update { it.copy(showDeleteDialog = true) }
             EditIntent.DeleteDismissed -> _state.update { it.copy(showDeleteDialog = false) }
             EditIntent.DeleteConfirmed -> {
@@ -109,10 +120,29 @@ class EditViewModel(
         }
     }
 
+    /**
+     * Back with edits pending asks instead of leaving: the sheet's Save runs the same
+     * [save] the form's button does, and Discard drops the edits. An untouched form just
+     * goes back.
+     */
+    private fun back() {
+        if (isDirty) {
+            _state.update { it.copy(showExitSheet = true) }
+        } else {
+            leave()
+        }
+    }
+
+    private fun leave() {
+        _state.update { it.copy(showExitSheet = false) }
+        viewModelScope.launch { _effects.send(EditEffect.Leave) }
+    }
+
     private fun save() {
         val s = _state.value
         val original = loaded ?: return
         if (!s.canSave) return
+        _state.update { it.copy(showExitSheet = false) }
 
         viewModelScope.launch {
             repository.update(

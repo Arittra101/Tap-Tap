@@ -11,6 +11,7 @@
     <string name="action_back">ফিরে যান</string>
     <string name="action_back_to_home">হোমে ফিরে যান</string>
     <string name="action_cancel">বাতিল</string>
+    <string name="action_discard">বাদ দিন</string>
     <string name="action_save_changes">পরিবর্তন সংরক্ষণ করুন</string>
     <string name="label_optional">ঐচ্ছিক</string>
 
@@ -126,7 +127,6 @@
     <string name="create_footer">রং, পটভূমি আর এই বিকল্পগুলো পরে বদলাতে পারবেন।</string>
     <string name="create_exit_title">এই কাউন্টার তৈরি করবেন?</string>
     <string name="create_exit_message">আপনার কাউন্টার এখনো সেভ হয়নি। এখন ফিরে গেলে এটি মুছে যাবে।</string>
-    <string name="create_exit_discard">বাদ দিন</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">আজ</string>
@@ -186,6 +186,8 @@
 
     <!-- Edit counter -->
     <string name="edit_title">কাউন্টার সম্পাদনা</string>
+    <string name="edit_exit_title">পরিবর্তন সংরক্ষণ করবেন?</string>
+    <string name="edit_exit_message">আপনি এই কাউন্টারে বদল করেছেন। এখন ফিরে গেলে পরিবর্তনগুলো মুছে যাবে।</string>
     <string name="edit_name">নাম</string>
     <string name="edit_background">পটভূমির ছবি</string>
     <string name="edit_background_help">ডিফল্ট ছবি কাউন্টারের রং নেয়। একটি নরম স্তর সংখ্যাটি পড়তে সহজ রাখে।</string>

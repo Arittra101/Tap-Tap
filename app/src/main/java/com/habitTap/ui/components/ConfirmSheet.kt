@@ -49,6 +49,12 @@ fun ConfirmSheet(
      * the screen, and that must not also be what a stray tap on the scrim does.
      */
     onCancel: () -> Unit = onDismiss,
+    /**
+     * Off greys the confirm button out, the way the Create button greys out before a name
+     * is typed. The edit sheet's Save needs it: the name may have been cleared, and a
+     * button that does nothing when tapped is worse than one that says it can't.
+     */
+    confirmEnabled: Boolean = true,
 ) {
     val c = TapTapTheme.colors
     val sheetState = rememberModalBottomSheetState()
@@ -90,6 +96,7 @@ fun ConfirmSheet(
                     text = confirmLabel,
                     onClick = onConfirm,
                     variant = confirmVariant,
+                    enabled = confirmEnabled,
                     minHeight = 48.dp,
                     modifier = Modifier.weight(1f),
                 )

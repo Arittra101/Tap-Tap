@@ -9,6 +9,7 @@
     <string name="action_back">Indietro</string>
     <string name="action_back_to_home">Torna alla home</string>
     <string name="action_cancel">Annulla</string>
+    <string name="action_discard">Scarta</string>
     <string name="action_save_changes">Salva le modifiche</string>
     <string name="label_optional">Facoltativo</string>
 
@@ -124,7 +125,6 @@
     <string name="create_footer">Puoi cambiare colore, sfondo e queste opzioni più tardi.</string>
     <string name="create_exit_title">Creare questo contatore?</string>
     <string name="create_exit_message">Il contatore non è ancora salvato. Se torni indietro ora, lo perdi.</string>
-    <string name="create_exit_discard">Scarta</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">Oggi</string>
@@ -185,6 +185,8 @@
 
     <!-- Edit counter -->
     <string name="edit_title">Modifica contatore</string>
+    <string name="edit_exit_title">Salvare le modifiche?</string>
+    <string name="edit_exit_message">Hai modificato questo contatore. Se torni indietro ora, perdi le modifiche.</string>
     <string name="edit_name">Nome</string>
     <string name="edit_background">Immagine di sfondo</string>
     <string name="edit_background_help">Le immagini prendono il colore del contatore. Uno strato leggero mantiene il numero facile da leggere.</string>

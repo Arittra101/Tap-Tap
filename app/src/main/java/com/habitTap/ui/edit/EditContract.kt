@@ -30,6 +30,8 @@ data class EditState(
     val isFocus: Boolean = false,
     // Screen-only
     val showDeleteDialog: Boolean = false,
+    /** The leave-form sheet: open after [EditIntent.Back] with unsaved changes. */
+    val showExitSheet: Boolean = false,
 ) {
     val isQuit: Boolean get() = type == CounterType.QUIT
 
@@ -40,6 +42,13 @@ data class EditState(
      * that a reset will already be past it.
      */
     val startAboveTarget: Boolean get() = targetOn && startValue > target
+
+    /**
+     * The form's own fields, with the sheet flags dropped. The ViewModel compares this
+     * against the state it loaded to tell a changed form from an untouched one — field by
+     * field is a list that would silently go stale the next time Edit gains an option.
+     */
+    internal fun fields(): EditState = copy(showDeleteDialog = false, showExitSheet = false)
 }
 
 sealed interface EditIntent {
@@ -65,9 +74,21 @@ sealed interface EditIntent {
     data object DeleteClicked : EditIntent
     data object DeleteConfirmed : EditIntent
     data object DeleteDismissed : EditIntent
+
+    /** The top bar arrow or the system back. May open the sheet instead of leaving. */
+    data object Back : EditIntent
+
+    /** Closing the sheet without deciding: the scrim, a swipe down, or back again. */
+    data object ExitSheetDismissed : EditIntent
+
+    /** "Discard" in the sheet: drop the edits and leave. */
+    data object Discard : EditIntent
 }
 
 sealed interface EditEffect {
     data object Saved : EditEffect
     data object Deleted : EditEffect
+
+    /** Leave with the edits dropped: nothing was changed, or "Discard" was tapped. */
+    data object Leave : EditEffect
 }

@@ -1,6 +1,7 @@
 package com.habitTap.ui.edit
 
 import android.app.DatePickerDialog
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -86,26 +87,32 @@ fun EditRoute(
             when (effect) {
                 EditEffect.Saved -> onSaved()
                 EditEffect.Deleted -> onDeleted()
+                EditEffect.Leave -> onBack()
             }
         }
     }
-    EditScreen(state = state, onIntent = viewModel::onIntent, onBack = onBack, modifier = modifier)
+    EditScreen(state = state, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
 @Composable
 fun EditScreen(
     state: EditState,
     onIntent: (EditIntent) -> Unit,
-    onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = TapTapTheme.colors
+
+    // The system back goes through the same intent as the arrow, so both get the sheet.
+    // A sheet already open handles its own back press, so this one stands down.
+    BackHandler(enabled = !state.showExitSheet && !state.showDeleteDialog) {
+        onIntent(EditIntent.Back)
+    }
 
     Box(modifier = modifier.fillMaxSize().background(c.bg)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(
                 title = stringResource(R.string.edit_title),
-                onBack = onBack,
+                onBack = { onIntent(EditIntent.Back) },
                 backLabel = stringResource(R.string.a11y_back_to_counter),
             )
 
@@ -191,6 +198,24 @@ fun EditScreen(
                 Spacer(Modifier.height(Spacing.space2))
                 Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
             }
+        }
+
+        // Leaving with edits pending: the sheet offers the save the form's own button
+        // would have done, so back is never a silent loss.
+        if (state.showExitSheet) {
+            ConfirmSheet(
+                title = stringResource(R.string.edit_exit_title),
+                message = stringResource(R.string.edit_exit_message),
+                confirmLabel = stringResource(R.string.action_save_changes),
+                cancelLabel = stringResource(R.string.action_discard),
+                onConfirm = { onIntent(EditIntent.Save) },
+                onDismiss = { onIntent(EditIntent.ExitSheetDismissed) },
+                confirmVariant = ButtonVariant.Primary,
+                // Discard leaves. The scrim and a swipe down only close the sheet, so a
+                // stray tap outside it never costs the user their edits.
+                onCancel = { onIntent(EditIntent.Discard) },
+                confirmEnabled = state.canSave,
+            )
         }
 
         if (state.showDeleteDialog) {
@@ -515,7 +540,7 @@ private fun EditNormalPreview() {
                 notes = "Sets of 10 after the morning walk.", color = ThemeColor.TEAL,
                 background = Background.WAVES, targetOn = true, target = 50,
             ),
-            {}, {},
+            {},
         )
     }
 }
@@ -530,7 +555,7 @@ private fun EditQuitPreview() {
                 quitAtMillis = 1_760_000_000_000L, moneyPerDay = "150", goalOn = true,
                 reason = "To breathe better on my morning walk.", isFocus = true,
             ),
-            {}, {},
+            {},
         )
     }
 }
@@ -541,7 +566,7 @@ private fun EditWarningPreview() {
     TapTapTheme(ThemeColor.PINK, ThemeMode.LIGHT) {
         EditScreen(
             EditState(isLoading = false, name = "Countdown", startValue = 80, targetOn = true, target = 50),
-            {}, {},
+            {},
         )
     }
 }
