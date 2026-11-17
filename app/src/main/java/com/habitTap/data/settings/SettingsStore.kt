@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.map
 import java.io.IOException
 
 /**
- * The five stored preferences (requirements 6, tech spec 7.4).
+ * The stored preferences (requirements 6, tech spec 7.4).
  *
  * The [DataStore] is injected rather than reached for through a Context delegate: the
  * delegate caches one instance per process, which makes the store impossible to isolate
@@ -35,6 +35,7 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
         val language = stringPreferencesKey("language")
         val vibration = booleanPreferencesKey("vibration")
         val sound = booleanPreferencesKey("sound")
+        val tutorialSeen = booleanPreferencesKey("tutorial_seen")
     }
 
     val settings: Flow<AppSettings> = dataStore.data
@@ -49,6 +50,7 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
                 languageTag = prefs[Keys.language].orEmpty(),
                 vibration = prefs[Keys.vibration] ?: DEFAULT_VIBRATION,
                 sound = prefs[Keys.sound] ?: DEFAULT_SOUND,
+                tutorialSeen = prefs[Keys.tutorialSeen] ?: DEFAULT_TUTORIAL_SEEN,
             )
         }
 
@@ -73,6 +75,11 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
         dataStore.edit { it[Keys.sound] = enabled }
     }
 
+    /** Set once, when the tutorial is finished or skipped. It never goes back to false. */
+    suspend fun setTutorialSeen() {
+        dataStore.edit { it[Keys.tutorialSeen] = true }
+    }
+
     private fun String?.toThemeColor(): ThemeColor =
         enumValues<ThemeColor>().firstOrNull { it.name == this } ?: DEFAULT_COLOR
 
@@ -86,6 +93,9 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
         val DEFAULT_MODE = ThemeMode.SYSTEM
         const val DEFAULT_VIBRATION = true
         const val DEFAULT_SOUND = false
+
+        /** A fresh install has not seen the tutorial, which is what shows it. */
+        const val DEFAULT_TUTORIAL_SEEN = false
 
         /** The app's real preferences file. Wired up once, in the Koin module. */
         fun create(context: Context): DataStore<Preferences> =

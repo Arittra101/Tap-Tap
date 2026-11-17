@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
@@ -42,6 +43,17 @@ class SettingsRepository(private val store: SettingsStore) {
     suspend fun setVibration(enabled: Boolean) = store.setVibration(enabled)
 
     suspend fun setSound(enabled: Boolean) = store.setSound(enabled)
+
+    suspend fun setTutorialSeen() = store.setTutorialSeen()
+
+    /**
+     * Read straight from the store, once.
+     *
+     * [settings] is seeded eagerly with [AppSettings] defaults, and that default says the
+     * tutorial has not been seen — collecting it would flash the tutorial at everyone on
+     * every launch until DataStore caught up.
+     */
+    suspend fun isTutorialSeen(): Boolean = store.settings.first().tutorialSeen
 
     /**
      * The tag to actually apply.

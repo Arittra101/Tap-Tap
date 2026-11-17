@@ -40,6 +40,15 @@ class SettingsTest {
         assertEquals("", s.languageTag)
         assertTrue("vibration defaults on (FR-6.4)", s.vibration)
         assertFalse("sound defaults off (FR-6.4)", s.sound)
+        assertFalse("a fresh install has not seen the tutorial", s.tutorialSeen)
+    }
+
+    @Test
+    fun `the tutorial is seen only once it is finished`() = runTest {
+        val r = repo()
+        assertFalse(r.isTutorialSeen())
+        r.setTutorialSeen()
+        assertTrue(r.isTutorialSeen())
     }
 
     @Test

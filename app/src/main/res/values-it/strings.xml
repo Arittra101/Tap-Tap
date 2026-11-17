@@ -299,4 +299,17 @@
     <string name="home_make_focus_short">Rendi focus</string>
     <string name="quit_pin">Fissa</string>
     <string name="quit_unpin">Togli</string>
+
+    <!-- First-run tutorial -->
+    <string name="tutorial_skip">Salta</string>
+    <string name="tutorial_next">Avanti</string>
+    <string name="tutorial_start">Inizia</string>
+    <string name="tutorial_page_of">Passo %1$d di %2$d</string>
+    <string name="tutorial_1_body">Due tipi di contatore, un tocco ciascuno. Conta quello che vuoi fare di più e i giorni liberi da quello che vuoi lasciare.</string>
+    <string name="tutorial_2_title">Conta qualsiasi cosa</string>
+    <string name="tutorial_2_body">Tocca il cerchio grande per aggiungere uno. Ripetizioni, bicchieri d\'acqua, pagine: se vuoi, imposta il passo e un obiettivo.</string>
+    <string name="tutorial_3_title">Lascia un\'abitudine</string>
+    <string name="tutorial_3_body">Scegli il giorno in cui hai smesso. HabitTap conta da sé i tuoi giorni liberi e mostra quanto hai risparmiato.</string>
+    <string name="tutorial_4_title">Fallo tuo</string>
+    <string name="tutorial_4_body">Colore, sfondo, lingua e messaggio del giorno sono nelle Impostazioni. Tutto resta sul tuo telefono.</string>
 </resources>

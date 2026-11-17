@@ -292,4 +292,17 @@
     <string name="home_make_focus_short">फ़ोकस बनाएँ</string>
     <string name="quit_pin">पिन करें</string>
     <string name="quit_unpin">अनपिन</string>
+
+    <!-- First-run tutorial -->
+    <string name="tutorial_skip">छोड़ें</string>
+    <string name="tutorial_next">आगे</string>
+    <string name="tutorial_start">शुरू करें</string>
+    <string name="tutorial_page_of">%2$d में से %1$d चरण</string>
+    <string name="tutorial_1_body">दो तरह के काउंटर, दोनों में एक टैप। जो बढ़ाना है उसे गिनें, और जो छोड़ना है उसके बिना बीते दिन गिनें।</string>
+    <string name="tutorial_2_title">कुछ भी गिनें</string>
+    <string name="tutorial_2_body">बड़े डायल पर टैप करें और एक जुड़ जाएगा। कसरत, पानी के गिलास, पढ़े पन्ने — चाहें तो स्टेप और लक्ष्य भी तय करें।</string>
+    <string name="tutorial_3_title">आदत छोड़ें</string>
+    <string name="tutorial_3_body">वह दिन चुनें जब आपने छोड़ा था। HabitTap खुद आपके मुक्त दिन गिनेगा और बताएगा कितनी बचत हुई।</string>
+    <string name="tutorial_4_title">अपने मन का बनाएँ</string>
+    <string name="tutorial_4_body">रंग, पृष्ठभूमि, भाषा और रोज़ का संदेश सब सेटिंग्स में हैं। सब कुछ आपके फ़ोन में ही रहता है।</string>
 </resources>

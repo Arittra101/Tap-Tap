@@ -310,4 +310,17 @@
     <string name="home_make_focus_short">Сделать фокусом</string>
     <string name="quit_pin">Закрепить</string>
     <string name="quit_unpin">Открепить</string>
+
+    <!-- First-run tutorial -->
+    <string name="tutorial_skip">Пропустить</string>
+    <string name="tutorial_next">Далее</string>
+    <string name="tutorial_start">Начать</string>
+    <string name="tutorial_page_of">Шаг %1$d из %2$d</string>
+    <string name="tutorial_1_body">Два вида счётчиков, по одному касанию. Считайте то, чего хотите больше, и дни без того, что хотите бросить.</string>
+    <string name="tutorial_2_title">Считайте что угодно</string>
+    <string name="tutorial_2_body">Коснитесь большого круга — и прибавится один. Подходы, стаканы воды, страницы: при желании задайте шаг и цель.</string>
+    <string name="tutorial_3_title">Бросьте привычку</string>
+    <string name="tutorial_3_body">Выберите день, когда вы остановились. HabitTap сам считает дни без привычки и показывает, сколько вы сэкономили.</string>
+    <string name="tutorial_4_title">Настройте под себя</string>
+    <string name="tutorial_4_body">Цвет, фон, язык и ежедневное сообщение — всё в настройках. Всё остаётся на вашем телефоне.</string>
 </resources>

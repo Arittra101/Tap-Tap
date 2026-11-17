@@ -327,4 +327,17 @@
     </string-array>
     <string name="quit_pin">Pin</string>
     <string name="quit_unpin">Unpin</string>
+
+    <!-- First-run tutorial -->
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_start">Get started</string>
+    <string name="tutorial_page_of">Step %1$d of %2$d</string>
+    <string name="tutorial_1_body">Two kinds of counter, one tap each. Count what you want more of, and the days free of what you want less of.</string>
+    <string name="tutorial_2_title">Count anything</string>
+    <string name="tutorial_2_body">Tap the big dial to add one. Reps, glasses of water, pages — set the step and a target if you like.</string>
+    <string name="tutorial_3_title">Quit a habit</string>
+    <string name="tutorial_3_body">Pick the day you stopped. HabitTap counts your days free on its own, and shows what you have saved.</string>
+    <string name="tutorial_4_title">Make it yours</string>
+    <string name="tutorial_4_body">Colour, background, language and the daily message are all in Settings. Everything stays on your phone.</string>
 </resources>

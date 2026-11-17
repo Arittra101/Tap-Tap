@@ -294,4 +294,17 @@
     <string name="home_make_focus_short">ফোকাস বানান</string>
     <string name="quit_pin">পিন করুন</string>
     <string name="quit_unpin">আনপিন</string>
+
+    <!-- First-run tutorial -->
+    <string name="tutorial_skip">এড়িয়ে যান</string>
+    <string name="tutorial_next">পরবর্তী</string>
+    <string name="tutorial_start">শুরু করুন</string>
+    <string name="tutorial_page_of">%2$d-এর মধ্যে %1$d ধাপ</string>
+    <string name="tutorial_1_body">দুই ধরনের কাউন্টার, দুটোতেই এক ট্যাপ। যা বাড়াতে চান তা গুনুন, আর যা ছাড়তে চান তা ছাড়া দিন গুনুন।</string>
+    <string name="tutorial_2_title">যা খুশি গুনুন</string>
+    <string name="tutorial_2_body">বড় ডায়ালে ট্যাপ করলেই এক বাড়ে। ব্যায়াম, পানির গ্লাস, পড়া পাতা — চাইলে ধাপ আর লক্ষ্যও ঠিক করুন।</string>
+    <string name="tutorial_3_title">বদভ্যাস ছাড়ুন</string>
+    <string name="tutorial_3_body">যেদিন থেমেছেন সেই দিনটা বেছে নিন। HabitTap নিজেই মুক্ত দিন গুনবে, আর কত সঞ্চয় হলো দেখাবে।</string>
+    <string name="tutorial_4_title">নিজের মতো সাজান</string>
+    <string name="tutorial_4_body">রং, পটভূমি, ভাষা আর দৈনিক বার্তা সবই সেটিংসে। সব কিছু আপনার ফোনেই থাকে।</string>
 </resources>
