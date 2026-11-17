@@ -21,6 +21,7 @@ import com.habitTap.navigation.AppNavigation
 import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.tutorial.TutorialScreen
 import com.habitTap.util.LocalCurrencyCode
+import kotlin.system.exitProcess
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -67,7 +68,16 @@ class MainActivity : AppCompatActivity() {
                         },
                         modifier = Modifier.fillMaxSize(),
                     )
-                    else -> AppNavigation(modifier = Modifier.fillMaxSize())
+                    else -> AppNavigation(
+                        modifier = Modifier.fillMaxSize(),
+                        // Asked for explicitly: leaving ends the app rather than
+                        // backgrounding it. finishAffinity() first, so nothing is left
+                        // to be restored, and only then the process.
+                        onExit = {
+                            finishAffinity()
+                            exitProcess(0)
+                        },
+                    )
                 }
                 }
             }

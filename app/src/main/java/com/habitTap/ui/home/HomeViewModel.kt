@@ -129,6 +129,12 @@ class HomeViewModel(
                 repository.beatUrge(intent.counterId)
                 _effects.send(HomeEffect.TapFeedback)
             }
+            HomeIntent.BackPressed -> _state.update { it.copy(showExitSheet = true) }
+            HomeIntent.ExitDismissed -> _state.update { it.copy(showExitSheet = false) }
+            HomeIntent.ExitConfirmed -> {
+                _state.update { it.copy(showExitSheet = false) }
+                viewModelScope.launch { _effects.send(HomeEffect.Exit) }
+            }
             is HomeIntent.TogglePin -> viewModelScope.launch { repository.togglePin(intent.counterId) }
             is HomeIntent.MakeFocus -> viewModelScope.launch { repository.setFocus(intent.counterId) }
         }

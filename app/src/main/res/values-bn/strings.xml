@@ -320,4 +320,10 @@
     <string name="settings_currency">মুদ্রা</string>
     <string name="settings_currency_help">কুইট কাউন্টারে যে টাকা সঞ্চয় হয়, তার জন্য।</string>
     <string name="settings_currency_device">ফোনের সেটিং অনুসরণ করুন</string>
+
+    <!-- Leaving the app -->
+    <string name="home_exit_title">চলে যাচ্ছেন?</string>
+    <string name="home_exit_message">আপনার কাউন্টার আর ধারাবাহিকতা এখানেই থাকবে। কাল আবার এসে চালিয়ে যান।</string>
+    <string name="home_exit_confirm">বন্ধ করুন</string>
+    <string name="home_exit_stay">থাকুন</string>
 </resources>

@@ -318,4 +318,10 @@
     <string name="settings_currency">मुद्रा</string>
     <string name="settings_currency_help">आपके क्विट काउंटर जो पैसे बचाते हैं, उसके लिए।</string>
     <string name="settings_currency_device">फ़ोन के अनुसार</string>
+
+    <!-- Leaving the app -->
+    <string name="home_exit_title">अभी जा रहे हैं?</string>
+    <string name="home_exit_message">आपके काउंटर और स्ट्रीक यहीं रहेंगे। कल फिर आकर इन्हें जारी रखें।</string>
+    <string name="home_exit_confirm">बंद करें</string>
+    <string name="home_exit_stay">रुकें</string>
 </resources>

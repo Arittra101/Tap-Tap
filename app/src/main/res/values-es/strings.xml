@@ -325,4 +325,10 @@
     <string name="settings_currency">Moneda</string>
     <string name="settings_currency_help">Se usa para el dinero que ahorran tus contadores de dejar un hábito.</string>
     <string name="settings_currency_device">Seguir el teléfono</string>
+
+    <!-- Leaving the app -->
+    <string name="home_exit_title">¿Ya te vas?</string>
+    <string name="home_exit_message">Tus contadores y tus rachas seguirán aquí. Vuelve mañana y sigue sumando.</string>
+    <string name="home_exit_confirm">Salir</string>
+    <string name="home_exit_stay">Quedarme</string>
 </resources>

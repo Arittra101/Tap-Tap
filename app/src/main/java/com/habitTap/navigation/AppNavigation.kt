@@ -34,7 +34,7 @@ import org.koin.core.parameter.parametersOf
  * lambdas named for what the user did, not for where they go (tech spec 5).
  */
 @Composable
-fun AppNavigation(modifier: Modifier = Modifier) {
+fun AppNavigation(modifier: Modifier = Modifier, onExit: () -> Unit = {}) {
     val backStack = rememberNavBackStack(HomeKey)
     // FR-8.4 / FR-8.5: one Feedback for the whole app, reading the live settings.
     val settingsRepository = koinInject<SettingsRepository>()
@@ -78,6 +78,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                     },
                     onSettings = { open(SettingsKey) },
                     onTapFeedback = feedback::tap,
+                    onExit = onExit,
                 )
             }
 

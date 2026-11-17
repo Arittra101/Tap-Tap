@@ -165,9 +165,11 @@ class CounterRepository(
             sortOrder = dao.nextSortOrder(counter.type.name),
             isFocus = false,
         )
-        val id = dao.insert(entity)
-        if (counter.type == CounterType.QUIT && counter.isFocus) dao.setFocus(id)
-        id
+        if (counter.type == CounterType.QUIT && counter.isFocus) {
+            dao.insertAsFocus(entity)
+        } else {
+            dao.insert(entity)
+        }
     }
 
     /**

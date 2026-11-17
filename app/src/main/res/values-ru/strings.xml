@@ -336,4 +336,10 @@
     <string name="settings_currency">Валюта</string>
     <string name="settings_currency_help">Для денег, которые экономят счётчики отказа.</string>
     <string name="settings_currency_device">Как на телефоне</string>
+
+    <!-- Leaving the app -->
+    <string name="home_exit_title">Уже уходите?</string>
+    <string name="home_exit_message">Счётчики и серии останутся на месте. Возвращайтесь завтра и продолжайте.</string>
+    <string name="home_exit_confirm">Выйти</string>
+    <string name="home_exit_stay">Остаться</string>
 </resources>

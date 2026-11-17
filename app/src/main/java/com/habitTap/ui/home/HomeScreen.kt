@@ -1,5 +1,6 @@
 package com.habitTap.ui.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -73,6 +74,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalDensity
+import com.habitTap.ui.components.ConfirmSheet
 import com.habitTap.util.currencyCode
 import com.habitTap.util.currentLocale
 
@@ -109,6 +111,8 @@ fun HomeRoute(
     onSettings: () -> Unit,
     modifier: Modifier = Modifier,
     onTapFeedback: () -> Unit = {},
+    /** Closes the app. Home is the one screen where back has nowhere else to go. */
+    onExit: () -> Unit = {},
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     // Hoisted, because an effect scrolls it.
@@ -145,6 +149,7 @@ fun HomeRoute(
                     }
                 }
                 HomeEffect.ScrollToTop -> scrollState.animateScrollTo(0)
+                HomeEffect.Exit -> onExit()
             }
         }
     }
@@ -174,6 +179,12 @@ fun HomeScreen(
     anchors: HomeScrollAnchors = remember { HomeScrollAnchors() },
 ) {
     val c = TapTapTheme.colors
+
+    // Back on Home would close the app, so it asks first. While the sheet is open it
+    // handles its own back press, and during a journey step the coach's handler is
+    // registered after this one and takes precedence — a step is not the moment to be
+    // asked about leaving.
+    BackHandler(enabled = !state.showExitSheet) { onIntent(HomeIntent.BackPressed) }
 
     // The guided journey, when one is running. Null in previews and in tests, which is
     // why none of this needs a parameter on the screen.
@@ -273,6 +284,23 @@ fun HomeScreen(
                     .navigationBarsPadding()
                     .padding(end = Spacing.space4, bottom = 28.dp)
                     .journeyAnchor(createAnchor),
+            )
+        }
+
+        // Leaving is a decision, and the words are the app's chance to say come back.
+        // Stay is the accented button; Exit is the quiet one.
+        if (state.showExitSheet) {
+            ConfirmSheet(
+                title = stringResource(R.string.home_exit_title),
+                message = stringResource(R.string.home_exit_message),
+                confirmLabel = stringResource(R.string.home_exit_stay),
+                cancelLabel = stringResource(R.string.home_exit_confirm),
+                onConfirm = { onIntent(HomeIntent.ExitDismissed) },
+                onDismiss = { onIntent(HomeIntent.ExitDismissed) },
+                confirmVariant = ButtonVariant.Primary,
+                // The quiet button is the one that leaves, so the scrim and a swipe down
+                // only close the sheet.
+                onCancel = { onIntent(HomeIntent.ExitConfirmed) },
             )
         }
 

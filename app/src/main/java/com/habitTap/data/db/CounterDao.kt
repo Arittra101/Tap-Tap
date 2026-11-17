@@ -55,6 +55,20 @@ interface CounterDao {
         setFocusFlag(id)
     }
 
+    /**
+     * Insert and focus as one write (FR-2.6).
+     *
+     * Two writes would leave a moment where the new counter exists but is not the focus
+     * yet, and Room would publish it: Home would see a counter that is about to be the
+     * focus sitting in the quit list, and act on it.
+     */
+    @Transaction
+    suspend fun insertAsFocus(counter: CounterEntity): Long {
+        val id = insert(counter)
+        setFocus(id)
+        return id
+    }
+
     @Insert
     suspend fun insertEvent(event: CounterEventEntity)
 

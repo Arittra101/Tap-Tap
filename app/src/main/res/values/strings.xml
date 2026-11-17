@@ -353,4 +353,10 @@
     <string name="settings_currency">Currency</string>
     <string name="settings_currency_help">Used for the money your quit counters save.</string>
     <string name="settings_currency_device">Follow the phone</string>
+
+    <!-- Leaving the app -->
+    <string name="home_exit_title">Leaving already?</string>
+    <string name="home_exit_message">Your counters and streaks stay right here. Come back tomorrow and keep them going.</string>
+    <string name="home_exit_confirm">Exit</string>
+    <string name="home_exit_stay">Stay</string>
 </resources>

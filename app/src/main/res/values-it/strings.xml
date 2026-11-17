@@ -325,4 +325,10 @@
     <string name="settings_currency">Valuta</string>
     <string name="settings_currency_help">Usata per i soldi che risparmiano i tuoi contatori di abbandono.</string>
     <string name="settings_currency_device">Segui il telefono</string>
+
+    <!-- Leaving the app -->
+    <string name="home_exit_title">Vai già via?</string>
+    <string name="home_exit_message">I tuoi contatori e le tue serie restano qui. Torna domani e continua.</string>
+    <string name="home_exit_confirm">Esci</string>
+    <string name="home_exit_stay">Resto</string>
 </resources>

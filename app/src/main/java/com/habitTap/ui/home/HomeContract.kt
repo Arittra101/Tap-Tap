@@ -17,9 +17,15 @@ data class HomeState(
     /** Quit counters exist but none is the focus: show the picker (FR-1.3). */
     val showFocusPicker: Boolean = false,
     val nowMillis: Long = 0L,
+    /** Screen-only: back was pressed and the app is asking before it closes. */
+    val showExitSheet: Boolean = false,
 )
 
 sealed interface HomeIntent {
+    /** The system back, on the one screen where it would otherwise close the app. */
+    data object BackPressed : HomeIntent
+    data object ExitDismissed : HomeIntent
+    data object ExitConfirmed : HomeIntent
     data class AddTap(val counterId: Long) : HomeIntent
     data class BeatUrge(val counterId: Long) : HomeIntent
     data class TogglePin(val counterId: Long) : HomeIntent
@@ -45,4 +51,7 @@ sealed interface HomeEffect {
 
     /** A new quit counter was made the focus, which has its own card at the top of Home. */
     data object ScrollToTop : HomeEffect
+
+    /** The user confirmed they are leaving. */
+    data object Exit : HomeEffect
 }
