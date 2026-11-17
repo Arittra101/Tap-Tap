@@ -2,6 +2,7 @@ package com.habitTap.ui.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -14,7 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.habitTap.ui.theme.Spacing
@@ -22,6 +25,15 @@ import com.habitTap.ui.theme.TapTapElevation
 import com.habitTap.ui.theme.TapTapShapes
 import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.theme.TapTapType
+
+/** The label style every [TapTapButton] uses; shared so a caller can measure it. */
+val ButtonTextStyle = TapTapType.label.copy(fontSize = 15.sp, lineHeight = 20.sp)
+
+/** The design system's button padding. */
+val DefaultContentPadding = PaddingValues(horizontal = Spacing.space6, vertical = Spacing.space2)
+
+/** Room for one more character where buttons share a row. */
+val CompactContentPadding = PaddingValues(horizontal = Spacing.space3, vertical = Spacing.space2)
 
 /**
  * The button variants the design system defines.
@@ -67,6 +79,11 @@ fun TapTapButton(
     icon: ImageVector? = null,
     enabled: Boolean = true,
     minHeight: androidx.compose.ui.unit.Dp = 52.dp,
+    /**
+     * Narrow it where buttons share a row. The default is the design system's roomy
+     * button; three of those side by side leave almost nothing for their labels.
+     */
+    contentPadding: PaddingValues = DefaultContentPadding,
 ) {
     val c = TapTapTheme.colors
 
@@ -111,10 +128,7 @@ fun TapTapButton(
             disabledContainerColor = c.surfaceSunken,
             disabledContentColor = c.inkMuted,
         ),
-        contentPadding = androidx.compose.foundation.layout.PaddingValues(
-            horizontal = Spacing.space6,
-            vertical = Spacing.space2,
-        ),
+        contentPadding = contentPadding,
         modifier = modifier.heightIn(min = minHeight),
     ) {
         Row(
@@ -131,8 +145,18 @@ fun TapTapButton(
             }
             Text(
                 text = text,
-                style = TapTapType.label.copy(fontSize = 15.sp, lineHeight = 20.sp),
+                style = ButtonTextStyle,
                 textAlign = TextAlign.Center,
+                // A label that does not fit shrinks a little and then ellipsises, rather
+                // than wrapping into a second line that the button has no height for.
+                // Labels differ wildly in length between the app's six languages.
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 12.sp,
+                    maxFontSize = 15.sp,
+                    stepSize = 1.sp,
+                ),
             )
         }
     }

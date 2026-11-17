@@ -3,9 +3,8 @@ package com.habitTap.ui.quit
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -32,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,7 +41,9 @@ import com.habitTap.R
 import com.habitTap.model.ThemeColor
 import com.habitTap.model.ThemeMode
 import com.habitTap.ui.components.BadgeState
+import com.habitTap.ui.components.ButtonTextStyle
 import com.habitTap.ui.components.ButtonVariant
+import com.habitTap.ui.components.CompactContentPadding
 import com.habitTap.ui.components.ConfirmSheet
 import com.habitTap.ui.components.DaysRing
 import com.habitTap.ui.components.IconButtonStyle
@@ -90,7 +92,6 @@ fun QuitRoute(
     )
 }
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun QuitScreen(
     state: QuitState,
@@ -289,48 +290,8 @@ fun QuitScreen(
                         }
                     }
 
-                    FlowRow(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
-                        verticalArrangement = Arrangement.spacedBy(Spacing.space2),
-                    ) {
-                        TapTapButton(
-                            text = stringResource(
-                                if (state.isPinned) R.string.quit_unpin else R.string.quit_pin,
-                            ),
-                            onClick = { onIntent(QuitIntent.TogglePin) },
-                            variant = if (state.isPinned) {
-                                ButtonVariant.SecondaryActive
-                            } else {
-                                ButtonVariant.Secondary
-                            },
-                            icon = TapTapIcons.pin(state.isPinned),
-                            minHeight = 52.dp,
-                            modifier = Modifier.weight(1f),
-                        )
-                        TapTapButton(
-                            text = stringResource(
-                                if (state.isFocus) R.string.quit_your_focus else R.string.quit_make_focus,
-                            ),
-                            onClick = { onIntent(QuitIntent.ToggleFocus) },
-                            variant = if (state.isFocus) {
-                                ButtonVariant.SecondaryActive
-                            } else {
-                                ButtonVariant.Secondary
-                            },
-                            icon = TapTapIcons.Focus,
-                            minHeight = 52.dp,
-                            modifier = Modifier.weight(1f),
-                        )
-                        TapTapButton(
-                            text = stringResource(R.string.quit_slipped),
-                            onClick = { onIntent(QuitIntent.SlipClicked) },
-                            variant = ButtonVariant.DangerOutline,
-                            icon = TapTapIcons.Reset,
-                            minHeight = 52.dp,
-                            modifier = Modifier.weight(1f),
-                        )
-                    }
+                    QuitActions(state = state, onIntent = onIntent)
+
                     // The bottom inset, as its own spacer. Hanging navigationBarsPadding()
                     // off a fixed height() does nothing: the outer height clamps the
                     // measurement, the inset is dropped, and the navigation bar then sits
@@ -386,6 +347,99 @@ private fun badgeData(days: Int, next: Int?): List<MilestoneBadgeData> {
         )
     }
 }
+
+/**
+ * Pin, Focus and "I slipped".
+ *
+ * Three buttons in a row when the three labels actually fit, and two over one when they
+ * do not. The labels are measured rather than the screen: "I slipped" is "আমি পিছলে গেছি"
+ * in Bangla and "Сделать фокусом" is half as wide again as "Make focus", and the font
+ * scale can grow any of them. A width threshold would be right for English on the phone
+ * it was chosen on, and wrong everywhere else — which is how the row came to break with
+ * its last button squeezed to nothing.
+ */
+@Composable
+private fun QuitActions(state: QuitState, onIntent: (QuitIntent) -> Unit) {
+    val pinLabel = stringResource(if (state.isPinned) R.string.quit_unpin else R.string.quit_pin)
+    val focusLabel = stringResource(
+        if (state.isFocus) R.string.quit_your_focus else R.string.quit_make_focus,
+    )
+    val slipLabel = stringResource(R.string.quit_slipped)
+
+    val measurer = rememberTextMeasurer()
+    val density = LocalDensity.current
+
+    BoxWithConstraints(Modifier.fillMaxWidth()) {
+        // What one button needs: its label, its icon, the gap between them, and the
+        // padding either side.
+        val widest = listOf(pinLabel, focusLabel, slipLabel).maxOf { label ->
+            with(density) { measurer.measure(label, ButtonTextStyle).size.width.toDp() }
+        }
+        val perButton = widest + ActionIconWidth + Spacing.space2 + Spacing.space3 * 2
+        val threeFit = maxWidth >= perButton * 3 + Spacing.space3 * 2
+
+        val pin: @Composable (Modifier) -> Unit = { m ->
+            TapTapButton(
+                text = pinLabel,
+                onClick = { onIntent(QuitIntent.TogglePin) },
+                variant = if (state.isPinned) ButtonVariant.SecondaryActive else ButtonVariant.Secondary,
+                icon = TapTapIcons.pin(state.isPinned),
+                minHeight = 52.dp,
+                contentPadding = CompactContentPadding,
+                modifier = m,
+            )
+        }
+        val focus: @Composable (Modifier) -> Unit = { m ->
+            TapTapButton(
+                text = focusLabel,
+                onClick = { onIntent(QuitIntent.ToggleFocus) },
+                variant = if (state.isFocus) ButtonVariant.SecondaryActive else ButtonVariant.Secondary,
+                icon = TapTapIcons.Focus,
+                minHeight = 52.dp,
+                contentPadding = CompactContentPadding,
+                modifier = m,
+            )
+        }
+        val slip: @Composable (Modifier) -> Unit = { m ->
+            TapTapButton(
+                text = slipLabel,
+                onClick = { onIntent(QuitIntent.SlipClicked) },
+                variant = ButtonVariant.DangerOutline,
+                icon = TapTapIcons.Reset,
+                minHeight = 52.dp,
+                contentPadding = CompactContentPadding,
+                modifier = m,
+            )
+        }
+
+        if (threeFit) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
+            ) {
+                pin(Modifier.weight(1f))
+                focus(Modifier.weight(1f))
+                slip(Modifier.weight(1f))
+            }
+        } else {
+            // Two and one, with the slip on its own full-width row. It is the screen's
+            // weightiest action, so a row of its own suits it anyway.
+            Column(verticalArrangement = Arrangement.spacedBy(Spacing.space2)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
+                ) {
+                    pin(Modifier.weight(1f))
+                    focus(Modifier.weight(1f))
+                }
+                slip(Modifier.fillMaxWidth())
+            }
+        }
+    }
+}
+
+/** The icon every one of these buttons carries, as [TapTapButton] sizes it. */
+private val ActionIconWidth = 20.dp
 
 // --- Previews ---------------------------------------------------------------------------
 

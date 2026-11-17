@@ -29,4 +29,20 @@ sealed interface HomeIntent {
 sealed interface HomeEffect {
     /** A tap landed: vibrate and click, per the Settings switches (FR-3.8). */
     data object TapFeedback : HomeEffect
+
+    /**
+     * A new quit counter has appeared at the bottom of the page, so show the end.
+     *
+     * Quit counters live below the normal ones, far enough down that a new one can land
+     * off screen entirely. Which of the three scrolls is sent depends on where the new
+     * counter actually went, not on what the user ticked: pinning and focus both move it
+     * somewhere else on the page.
+     */
+    data object ScrollToEnd : HomeEffect
+
+    /** A new quit counter was pinned, so it is the first card of the quit list. */
+    data object ScrollToQuitTop : HomeEffect
+
+    /** A new quit counter was made the focus, which has its own card at the top of Home. */
+    data object ScrollToTop : HomeEffect
 }

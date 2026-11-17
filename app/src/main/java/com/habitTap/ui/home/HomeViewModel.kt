@@ -50,6 +50,14 @@ class HomeViewModel(
         }
     }
 
+    /**
+     * The quit counters the last emission had, by id, or null before the first one.
+     *
+     * Null rather than an empty set so that opening the app with quit counters already
+     * there is not mistaken for them having just been made.
+     */
+    private var lastQuitIds: Set<Long>? = null
+
     init {
         viewModelScope.launch {
             minuteTicker
@@ -80,8 +88,34 @@ class HomeViewModel(
                             nowMillis = now,
                         )
                     }
+
+                    // Sent while the user is still on the New counter screen — this
+                    // ViewModel outlives that trip, since Home stays on the back stack —
+                    // and picked up by Home when it comes back.
+                    val quitIds = quits.mapTo(mutableSetOf()) { it.id }
+                    val before = lastQuitIds
+                    lastQuitIds = quitIds
+                    if (before != null) {
+                        // The newest of them, in case more than one arrived at once.
+                        quits.filter { it.id !in before }
+                            .maxByOrNull { it.createdAt }
+                            ?.let { made -> _effects.send(scrollFor(made)) }
+                    }
                 }
         }
+    }
+
+    /**
+     * Where a newly made quit counter ended up.
+     *
+     * The focus card is at the top of Home and a pinned counter is the first card of the
+     * quit list; everything else joins the end of that list. Focus wins over pinned,
+     * because a focus counter is drawn as the focus card and leaves the list entirely.
+     */
+    private fun scrollFor(made: com.habitTap.model.Counter): HomeEffect = when {
+        made.isFocus -> HomeEffect.ScrollToTop
+        made.isPinned -> HomeEffect.ScrollToQuitTop
+        else -> HomeEffect.ScrollToEnd
     }
 
     fun onIntent(intent: HomeIntent) {

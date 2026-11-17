@@ -20,11 +20,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.pluralStringResource
@@ -63,8 +67,38 @@ import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.theme.TapTapType
 import com.habitTap.util.Formatters
 import com.habitTap.util.TimeUtils
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeoutOrNull
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.platform.LocalDensity
 import com.habitTap.util.currencyCode
 import com.habitTap.util.currentLocale
+
+/**
+ * Where Home's page sits and where the quit list starts inside it.
+ *
+ * Both in root coordinates, because that is what a layout can report about itself. The
+ * difference between them, plus the current scroll, is the offset the quit list would
+ * need to be at the top of the page — which is a thing no one can know until Home has
+ * been laid out, and the scrolls all arrive before that.
+ */
+class HomeScrollAnchors {
+    var viewportTopInRoot: Float by mutableFloatStateOf(Float.NaN)
+    var quitSectionTopInRoot: Float by mutableFloatStateOf(Float.NaN)
+
+    /** How far down the page the quit list starts, or null before either is measured. */
+    val quitListTop: Int?
+        get() = if (viewportTopInRoot.isNaN() || quitSectionTopInRoot.isNaN()) {
+            null
+        } else {
+            (quitSectionTopInRoot - viewportTopInRoot).toInt()
+        }
+}
+
+/** How long a scroll waits for Home to be measured before giving up on it. */
+private const val ScrollWaitMillis = 2_000L
 
 @Composable
 fun HomeRoute(
@@ -77,15 +111,47 @@ fun HomeRoute(
     onTapFeedback: () -> Unit = {},
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    // Hoisted, because an effect scrolls it.
+    val scrollState = rememberScrollState()
+    val anchors = remember { HomeScrollAnchors() }
+    // The quit list stops just below the top edge rather than flush against it, so the
+    // card above it is still half visible and the page reads as scrolled, not jumped.
+    val quitTopGap = with(LocalDensity.current) { Spacing.space3.roundToPx() }
+
     androidx.compose.runtime.LaunchedEffect(Unit) {
         viewModel.effects.collect { effect ->
             when (effect) {
                 HomeEffect.TapFeedback -> onTapFeedback()
+                // Each of these arrives while Home is off screen, so the new content has
+                // not been measured yet: the end of the page is still 0 and the quit list
+                // has no position. Each waits for what it needs, and none waits forever —
+                // a page that fits needs no scrolling, and a collector stuck here would
+                // stop every later effect, tap feedback included.
+                HomeEffect.ScrollToEnd -> {
+                    withTimeoutOrNull(ScrollWaitMillis) {
+                        snapshotFlow { scrollState.maxValue }.first { it > 0 }
+                    }
+                    scrollState.animateScrollTo(scrollState.maxValue)
+                }
+                HomeEffect.ScrollToQuitTop -> {
+                    withTimeoutOrNull(ScrollWaitMillis) {
+                        snapshotFlow { anchors.quitListTop }.first { it != null }
+                    }
+                    anchors.quitListTop?.let { top ->
+                        scrollState.animateScrollTo(
+                            (scrollState.value + top - quitTopGap)
+                                .coerceIn(0, scrollState.maxValue),
+                        )
+                    }
+                }
+                HomeEffect.ScrollToTop -> scrollState.animateScrollTo(0)
             }
         }
     }
     HomeScreen(
         state = state,
+        scrollState = scrollState,
+        anchors = anchors,
         onIntent = viewModel::onIntent,
         onOpenCounter = onOpenCounter,
         onOpenQuit = onOpenQuit,
@@ -104,6 +170,8 @@ fun HomeScreen(
     onCreate: (quit: Boolean) -> Unit,
     onSettings: () -> Unit,
     modifier: Modifier = Modifier,
+    scrollState: ScrollState = rememberScrollState(),
+    anchors: HomeScrollAnchors = remember { HomeScrollAnchors() },
 ) {
     val c = TapTapTheme.colors
 
@@ -133,7 +201,8 @@ fun HomeScreen(
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(scrollState)
+                    .onGloballyPositioned { anchors.viewportTopInRoot = it.positionInRoot().y }
                     .padding(top = Spacing.space6),
                 // Between sections. A section's own header-to-content gap is
                 // tighter (see HomeSection), so each title reads as belonging to the
@@ -173,7 +242,14 @@ fun HomeScreen(
                             // are being shown, so while it is up the card only counts.
                             holdFirstCard = journeyStep == JourneyStep.FIRST_TAP,
                         )
-                        QuitSection(state, handleIntent, onOpenQuit)
+                        QuitSection(
+                            state,
+                            handleIntent,
+                            onOpenQuit,
+                            Modifier.onGloballyPositioned {
+                                anchors.quitSectionTopInRoot = it.positionInRoot().y
+                            },
+                        )
                     }
                 }
                 // Clears the floating button.
@@ -355,6 +431,7 @@ private fun QuitSection(
     state: HomeState,
     onIntent: (HomeIntent) -> Unit,
     onOpenQuit: (Long) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     if (state.quitCounters.isEmpty()) return
     val locale = currentLocale()
@@ -369,6 +446,8 @@ private fun QuitSection(
                 state.quitCounters.size,
             )
         } ${stringResource(R.string.home_pinned_first)}",
+        // Reports where the quit list starts, for the scroll that shows its first card.
+        modifier = modifier,
     ) {
     Column(
         modifier = Modifier.padding(horizontal = Spacing.space4),
@@ -504,9 +583,10 @@ private fun EmptyState(onCreate: (quit: Boolean) -> Unit, normalChoiceAnchor: Jo
 private fun HomeSection(
     title: String,
     trailing: String,
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {
         SectionHeader(title = title, trailing = trailing)
         content()
     }
