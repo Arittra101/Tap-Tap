@@ -227,9 +227,9 @@
     <string name="settings_language">भाषा</string>
     <string name="settings_when_you_tap">जब आप टैप करें</string>
     <string name="settings_vibration">कंपन</string>
-    <string name="settings_vibration_help">हर + और − पर छोटा कंपन</string>
+    <string name="settings_vibration_help">हर + और − पर छोटा कंपन, भले ही फ़ोन का टच वाइब्रेशन बंद हो</string>
     <string name="settings_sound">आवाज़</string>
-    <string name="settings_sound_help">हर + और − पर हल्की क्लिक</string>
+    <string name="settings_sound_help">हर + और − पर हल्की क्लिक, साइलेंट पर भी</string>
     <string name="settings_about">बारे में</string>
     <string name="settings_privacy">निजता नीति</string>
     <string name="lang_en">अंग्रेज़ी</string>

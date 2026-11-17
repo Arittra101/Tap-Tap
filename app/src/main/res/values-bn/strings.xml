@@ -229,9 +229,9 @@
     <string name="settings_language">ভাষা</string>
     <string name="settings_when_you_tap">যখন আপনি ট্যাপ করেন</string>
     <string name="settings_vibration">কম্পন</string>
-    <string name="settings_vibration_help">প্রতি + আর − এ ছোট কম্পন</string>
+    <string name="settings_vibration_help">প্রতি + আর − এ ছোট কম্পন, ফোনের টাচ ভাইব্রেশন বন্ধ থাকলেও</string>
     <string name="settings_sound">শব্দ</string>
-    <string name="settings_sound_help">প্রতি + আর − এ নরম ক্লিক</string>
+    <string name="settings_sound_help">প্রতি + আর − এ নরম ক্লিক, ফোন সাইলেন্ট থাকলেও</string>
     <string name="settings_about">সম্পর্কে</string>
     <string name="settings_privacy">গোপনীয়তা নীতি</string>
     <string name="lang_en">ইংরেজি</string>

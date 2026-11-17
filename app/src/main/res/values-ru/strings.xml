@@ -231,9 +231,9 @@
     <string name="settings_language">Язык</string>
     <string name="settings_when_you_tap">При касании</string>
     <string name="settings_vibration">Вибрация</string>
-    <string name="settings_vibration_help">Короткая вибрация на каждый + и −</string>
+    <string name="settings_vibration_help">Короткая вибрация на каждый + и −, даже если на телефоне она выключена</string>
     <string name="settings_sound">Звук</string>
-    <string name="settings_sound_help">Мягкий щелчок на каждый + и −</string>
+    <string name="settings_sound_help">Мягкий щелчок на каждый + и −, даже в беззвучном режиме</string>
     <string name="settings_about">О приложении</string>
     <string name="settings_privacy">Политика конфиденциальности</string>
     <string name="lang_en">Английский</string>

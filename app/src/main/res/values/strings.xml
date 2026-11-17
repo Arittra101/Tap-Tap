@@ -276,9 +276,9 @@
     <string name="settings_language">Language</string>
     <string name="settings_when_you_tap">When you tap</string>
     <string name="settings_vibration">Vibration</string>
-    <string name="settings_vibration_help">Short buzz on every + and \u2212</string>
+    <string name="settings_vibration_help">Short buzz on every + and \u2212, even if the phone\'s touch vibration is off</string>
     <string name="settings_sound">Sound</string>
-    <string name="settings_sound_help">Soft click on every + and \u2212</string>
+    <string name="settings_sound_help">Soft click on every + and \u2212, even on silent</string>
     <string name="settings_about">About</string>
     <string name="settings_privacy">Privacy policy</string>
 

@@ -228,9 +228,9 @@
     <string name="settings_language">Lingua</string>
     <string name="settings_when_you_tap">Quando tocchi</string>
     <string name="settings_vibration">Vibrazione</string>
-    <string name="settings_vibration_help">Una vibrazione breve a ogni + e −</string>
+    <string name="settings_vibration_help">Una vibrazione breve a ogni + e −, anche se quella del telefono è disattivata</string>
     <string name="settings_sound">Suono</string>
-    <string name="settings_sound_help">Un clic leggero a ogni + e −</string>
+    <string name="settings_sound_help">Un clic leggero a ogni + e −, anche in modalità silenziosa</string>
     <string name="settings_about">Informazioni</string>
     <string name="settings_privacy">Informativa sulla privacy</string>
     <string name="lang_en">Inglese</string>

@@ -142,8 +142,8 @@ The app has 6 screens: Home, New counter, Normal counter, Quit counter, Edit cou
 | FR-8.1 | All text lives in string resources for en, bn, hi, ru, es, it. No hard-coded text. |
 | FR-8.2 | Language can change inside the app without changing the phone language (per-app language). |
 | FR-8.3 | Numbers and dates follow the chosen language (for example Bangla digits in Bangla). Money uses the local currency symbol. |
-| FR-8.4 | Vibration: a short haptic (about 10 ms) per tap when on. A slightly longer haptic when a target or badge is reached. |
-| FR-8.5 | Sound: a soft click per tap when on. It respects the phone's silent mode. |
+| FR-8.4 | Vibration: a short haptic per tap when on. A slightly longer haptic when a target or badge is reached. The app's switch is the user's intent for this app, so it plays whether or not the phone's own touch-feedback setting is on. Do Not Disturb is still respected. |
+| FR-8.5 | Sound: a soft click per tap when on. It plays on the media stream, so it is heard whatever the ringer mode is, including silent. The switch is off by default, so this is always something the user asked for. |
 | FR-8.6 | Daily motivation message: one local notification per quit counter per day (default 9:00 AM) with days free and the next badge. Needs the notification permission on Android 13+. |
 | FR-8.7 | Privacy: all data stays on the phone. No account, no analytics with personal data, no ads in v1. A privacy policy page is linked from Settings and the Play Store listing. |
 
