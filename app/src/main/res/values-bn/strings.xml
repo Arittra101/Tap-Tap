@@ -124,6 +124,9 @@
     <string name="create_button_normal">কাউন্টার তৈরি করুন</string>
     <string name="create_button_quit">ছাড়ার কাউন্টার শুরু করুন</string>
     <string name="create_footer">রং, পটভূমি আর এই বিকল্পগুলো পরে বদলাতে পারবেন।</string>
+    <string name="create_exit_title">এই কাউন্টার তৈরি করবেন?</string>
+    <string name="create_exit_message">আপনার কাউন্টার এখনো সেভ হয়নি। এখন ফিরে গেলে এটি মুছে যাবে।</string>
+    <string name="create_exit_discard">বাদ দিন</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">আজ</string>

@@ -124,6 +124,9 @@
     <string name="create_button_normal">Создать счётчик</string>
     <string name="create_button_quit">Начать счётчик отказа</string>
     <string name="create_footer">Цвет, фон и эти настройки можно изменить позже.</string>
+    <string name="create_exit_title">Создать этот счётчик?</string>
+    <string name="create_exit_message">Счётчик ещё не сохранён. Если выйти сейчас, он будет потерян.</string>
+    <string name="create_exit_discard">Не сохранять</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">Сегодня</string>

@@ -130,6 +130,9 @@
     <string name="create_button_normal">Create counter</string>
     <string name="create_button_quit">Start quit counter</string>
     <string name="create_footer">You can change the color, background and these options later.</string>
+    <string name="create_exit_title">Create this counter?</string>
+    <string name="create_exit_message">Your counter isn\'t saved yet. Go back now and you\'ll lose it.</string>
+    <string name="create_exit_discard">Discard</string>
 
     <string name="home_money_saved_value">%1$s saved</string>
     <string name="badge_all_earned">You earned every badge</string>

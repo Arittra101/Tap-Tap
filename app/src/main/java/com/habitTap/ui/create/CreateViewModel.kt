@@ -69,7 +69,28 @@ class CreateViewModel(
             is CreateIntent.ToggleMakeFocus -> _state.update { it.copy(makeFocus = intent.on) }
             is CreateIntent.TogglePin -> _state.update { it.copy(isPinned = intent.on) }
             CreateIntent.Create -> create()
+            CreateIntent.Back -> back()
+            CreateIntent.ExitSheetDismissed -> _state.update { it.copy(showExitSheet = false) }
+            CreateIntent.Discard -> leave()
         }
+    }
+
+    /**
+     * Back on a half-written normal counter asks instead of leaving: the sheet's Create
+     * button runs the same [create] the form's button does, and Discard leaves without
+     * saving. With nothing to lose, back just leaves.
+     */
+    private fun back() {
+        if (_state.value.shouldAskBeforeLeaving) {
+            _state.update { it.copy(showExitSheet = true) }
+        } else {
+            leave()
+        }
+    }
+
+    private fun leave() {
+        _state.update { it.copy(showExitSheet = false) }
+        viewModelScope.launch { _effects.send(CreateEffect.Leave) }
     }
 
     /**
@@ -91,7 +112,7 @@ class CreateViewModel(
     private fun create() {
         val s = _state.value
         if (!s.canCreate) return
-        _state.update { it.copy(isSaving = true) }
+        _state.update { it.copy(isSaving = true, showExitSheet = false) }
 
         viewModelScope.launch {
             val now = clock()

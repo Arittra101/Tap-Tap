@@ -1,6 +1,7 @@
 package com.habitTap.ui.create
 
 import android.app.DatePickerDialog
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,6 +37,7 @@ import com.habitTap.model.ThemeColor
 import com.habitTap.model.ThemeMode
 import com.habitTap.ui.components.ButtonVariant
 import com.habitTap.ui.components.ChipRow
+import com.habitTap.ui.components.ConfirmSheet
 import com.habitTap.ui.components.Segment
 import com.habitTap.ui.components.SegmentedControl
 import com.habitTap.ui.components.SettingDivider
@@ -71,20 +73,25 @@ fun CreateRoute(
         viewModel.effects.collect { effect ->
             when (effect) {
                 is CreateEffect.Created -> onCreated()
+                CreateEffect.Leave -> onBack()
             }
         }
     }
-    CreateScreen(state = state, onIntent = viewModel::onIntent, onBack = onBack, modifier = modifier)
+    CreateScreen(state = state, onIntent = viewModel::onIntent, modifier = modifier)
 }
 
 @Composable
 fun CreateScreen(
     state: CreateState,
     onIntent: (CreateIntent) -> Unit,
-    onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = TapTapTheme.colors
+
+    // The system back goes through the same intent as the arrow, so both get the sheet.
+    // While the sheet is open it handles its own back press (it dismisses), so this one
+    // stands down rather than re-opening what was just closed.
+    BackHandler(enabled = !state.showExitSheet) { onIntent(CreateIntent.Back) }
 
     // Read through stringResource, not context.getString: the latter is not
     // configuration-aware, so after an in-app language change (FR-8.2) it would hand back
@@ -107,7 +114,7 @@ fun CreateScreen(
     ) {
         TopBar(
             title = stringResource(R.string.create_title),
-            onBack = onBack,
+            onBack = { onIntent(CreateIntent.Back) },
             backLabel = stringResource(R.string.action_back),
         )
 
@@ -154,6 +161,23 @@ fun CreateScreen(
             // on top of the last row.
             Spacer(Modifier.height(Spacing.space4))
             Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
+        }
+
+        // Leaving with a title typed and nothing saved: the sheet offers the create the
+        // form's own button would have done, so back is never a silent loss.
+        if (state.showExitSheet) {
+            ConfirmSheet(
+                title = stringResource(R.string.create_exit_title),
+                message = stringResource(R.string.create_exit_message),
+                confirmLabel = stringResource(R.string.create_button_normal),
+                cancelLabel = stringResource(R.string.create_exit_discard),
+                onConfirm = { onIntent(CreateIntent.Create) },
+                onDismiss = { onIntent(CreateIntent.ExitSheetDismissed) },
+                confirmVariant = ButtonVariant.Primary,
+                // Discard leaves. The scrim and a swipe down only close the sheet, so a
+                // stray tap outside it never costs the user the form.
+                onCancel = { onIntent(CreateIntent.Discard) },
+            )
         }
     }
 }
@@ -444,7 +468,7 @@ private fun showDatePicker(
 @Composable
 private fun CreateNormalPreview() {
     TapTapTheme(ThemeColor.PINK, ThemeMode.LIGHT) {
-        CreateScreen(CreateState(type = CounterType.NORMAL, name = "Push-ups", targetOn = true), {}, {})
+        CreateScreen(CreateState(type = CounterType.NORMAL, name = "Push-ups", targetOn = true), {})
     }
 }
 
@@ -459,7 +483,6 @@ private fun CreateQuitPreview() {
                 name = "Quit cigarettes",
                 moneyPerDay = "150",
             ),
-            {},
             {},
         )
     }

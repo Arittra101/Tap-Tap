@@ -122,6 +122,9 @@
     <string name="create_button_normal">काउंटर बनाएँ</string>
     <string name="create_button_quit">छोड़ने वाला काउंटर शुरू करें</string>
     <string name="create_footer">रंग, पृष्ठभूमि और ये विकल्प बाद में बदल सकते हैं।</string>
+    <string name="create_exit_title">यह काउंटर बनाएँ?</string>
+    <string name="create_exit_message">आपका काउंटर अभी सेव नहीं हुआ है। अभी वापस जाने पर यह खो जाएगा।</string>
+    <string name="create_exit_discard">छोड़ दें</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">आज</string>

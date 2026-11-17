@@ -122,6 +122,9 @@
     <string name="create_button_normal">Crear contador</string>
     <string name="create_button_quit">Empezar a dejarlo</string>
     <string name="create_footer">Puedes cambiar el color, el fondo y estas opciones más tarde.</string>
+    <string name="create_exit_title">¿Crear este contador?</string>
+    <string name="create_exit_message">Tu contador aún no se ha guardado. Si vuelves ahora, lo perderás.</string>
+    <string name="create_exit_discard">Descartar</string>
 
     <!-- Normal counter -->
     <string name="counter_stat_today">Hoy</string>

@@ -21,7 +21,7 @@ import com.habitTap.ui.theme.TapTapType
 
 /**
  * The sheet that asks before an action that loses data: Reset (FR-3.6), "I slipped"
- * (FR-4.8) and Delete counter (FR-5.7).
+ * (FR-4.8), Delete counter (FR-5.7) and leaving a half-written New counter form.
  *
  * The caller supplies the copy. The design system's rule is that the title is a question,
  * the body is one sentence saying exactly what happens, and the confirm button is a verb
@@ -37,6 +37,18 @@ fun ConfirmSheet(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    /**
+     * `Danger` is the default because that is what resets and deletes need. The leave-form
+     * sheet confirms by *creating* the counter, so it asks for `Primary` instead.
+     */
+    confirmVariant: ButtonVariant = ButtonVariant.Danger,
+    /**
+     * What the cancel *button* does, when that differs from dismissing the sheet. Reset,
+     * slip and delete want them the same — cancel means "stay where I was" — so this
+     * defaults to [onDismiss]. The leave-form sheet's cancel is "Discard", which leaves
+     * the screen, and that must not also be what a stray tap on the scrim does.
+     */
+    onCancel: () -> Unit = onDismiss,
 ) {
     val c = TapTapTheme.colors
     val sheetState = rememberModalBottomSheetState()
@@ -69,7 +81,7 @@ fun ConfirmSheet(
             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.space3)) {
                 TapTapButton(
                     text = cancelLabel,
-                    onClick = onDismiss,
+                    onClick = onCancel,
                     variant = ButtonVariant.Secondary,
                     minHeight = 48.dp,
                     modifier = Modifier.weight(1f),
@@ -77,7 +89,7 @@ fun ConfirmSheet(
                 TapTapButton(
                     text = confirmLabel,
                     onClick = onConfirm,
-                    variant = ButtonVariant.Danger,
+                    variant = confirmVariant,
                     minHeight = 48.dp,
                     modifier = Modifier.weight(1f),
                 )
