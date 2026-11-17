@@ -307,4 +307,11 @@
     <string name="tutorial_3_body">যেদিন থেমেছেন সেই দিনটা বেছে নিন। HabitTap নিজেই মুক্ত দিন গুনবে, আর কত সঞ্চয় হলো দেখাবে।</string>
     <string name="tutorial_4_title">নিজের মতো সাজান</string>
     <string name="tutorial_4_body">রং, পটভূমি, ভাষা আর দৈনিক বার্তা সবই সেটিংসে। সব কিছু আপনার ফোনেই থাকে।</string>
+
+    <!-- Guided journey on Home -->
+    <string name="journey_stop">টিউটোরিয়াল বন্ধ করুন</string>
+    <string name="journey_create">চলুন আপনার প্রথম কাউন্টার বানাই। এখানে ট্যাপ করুন।</string>
+    <string name="journey_name">একটা নাম দিন — ব্যায়াম, পানির গ্লাস, পড়া পাতা। যা খুশি গুনতে পারেন।</string>
+    <string name="journey_create_button">এখন “কাউন্টার তৈরি করুন”-এ ট্যাপ করুন।</string>
+    <string name="journey_first_tap">এই তো হয়ে গেল। গুনতে কার্ডের + এ ট্যাপ করুন।</string>
 </resources>

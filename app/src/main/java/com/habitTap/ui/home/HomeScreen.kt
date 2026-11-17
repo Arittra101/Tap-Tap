@@ -51,6 +51,13 @@ import com.habitTap.ui.components.QuitCard
 import com.habitTap.ui.components.QuoteSlider
 import com.habitTap.ui.components.TapTapButton
 import com.habitTap.ui.components.TapTapIcons
+import com.habitTap.ui.journey.JourneyAnchor
+import com.habitTap.ui.journey.JourneyCoach
+import com.habitTap.ui.journey.JourneyStep
+import com.habitTap.ui.journey.LocalJourney
+import com.habitTap.ui.journey.currentJourneyStep
+import com.habitTap.ui.journey.journeyAnchor
+import com.habitTap.ui.journey.rememberJourneyAnchor
 import com.habitTap.ui.theme.Spacing
 import com.habitTap.ui.theme.TapTapTheme
 import com.habitTap.ui.theme.TapTapType
@@ -99,6 +106,22 @@ fun HomeScreen(
 ) {
     val c = TapTapTheme.colors
 
+    // The guided journey, when one is running. Null in previews and in tests, which is
+    // why none of this needs a parameter on the screen.
+    val journey = LocalJourney.current
+    val journeyStep = currentJourneyStep()
+    // Whichever of the two leads to the normal form on this Home: the big choice on first
+    // run, the floating button once counters exist.
+    val createAnchor = rememberJourneyAnchor()
+    val firstCardAnchor = rememberJourneyAnchor()
+
+    // The journey's last step is answered by a tap on a card, so it watches the intents
+    // on their way through rather than asking the screen to report separately.
+    val handleIntent: (HomeIntent) -> Unit = { intent ->
+        if (intent is HomeIntent.AddTap) journey?.onCounterTapped()
+        onIntent(intent)
+    }
+
     Box(modifier = modifier.fillMaxSize().background(c.bg)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             HomeTopBar(
@@ -127,18 +150,29 @@ fun HomeScreen(
 
                 when {
                     // FR-1.10: first open with no counters.
-                    state.isEmpty -> EmptyState(onCreate)
+                    state.isEmpty -> EmptyState(onCreate, createAnchor)
 
                     else -> {
                         // FR-1.2 / FR-1.3 / FR-1.4: focus card, picker, or nothing at all.
                         state.focus?.let { focus ->
-                            FocusSection(focus, state, onIntent, onOpenQuit)
+                            FocusSection(focus, state, handleIntent, onOpenQuit)
                         }
                         if (state.showFocusPicker) {
-                            FocusPickerSection(state.allQuitCounters, onIntent)
+                            FocusPickerSection(state.allQuitCounters, handleIntent)
                         }
-                        CountersSection(state, onIntent, onOpenCounter, onCreate)
-                        QuitSection(state, onIntent, onOpenQuit)
+                        CountersSection(
+                            state,
+                            handleIntent,
+                            onOpenCounter,
+                            onCreate,
+                            firstCardAnchor,
+                            // The last step rings the whole card, so the card body is
+                            // inside the one area still taking touches. Opening the
+                            // counter from there would walk the user off the step they
+                            // are being shown, so while it is up the card only counts.
+                            holdFirstCard = journeyStep == JourneyStep.FIRST_TAP,
+                        )
+                        QuitSection(state, handleIntent, onOpenQuit)
                     }
                 }
                 // Clears the floating button.
@@ -160,8 +194,25 @@ fun HomeScreen(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .navigationBarsPadding()
-                    .padding(end = Spacing.space4, bottom = 28.dp),
+                    .padding(end = Spacing.space4, bottom = 28.dp)
+                    .journeyAnchor(createAnchor),
             )
+        }
+
+        // On top of Home, and only ever one step at a time.
+        when (journeyStep) {
+            JourneyStep.CREATE_COUNTER -> JourneyCoach(
+                text = stringResource(R.string.journey_create),
+                anchor = createAnchor,
+                onStop = { journey?.stop() },
+            )
+            JourneyStep.FIRST_TAP -> JourneyCoach(
+                text = stringResource(R.string.journey_first_tap),
+                anchor = firstCardAnchor,
+                onStop = { journey?.stop() },
+            )
+            // The middle two steps belong to the New counter form, not here.
+            else -> Unit
         }
     }
 }
@@ -231,6 +282,9 @@ private fun CountersSection(
     onIntent: (HomeIntent) -> Unit,
     onOpenCounter: (Long) -> Unit,
     onCreate: (quit: Boolean) -> Unit,
+    firstCardAnchor: JourneyAnchor,
+    /** The journey is pointing at the first card: its + counts, the rest of it does not. */
+    holdFirstCard: Boolean = false,
 ) {
     HomeSection(
         title = stringResource(R.string.home_counters_heading),
@@ -249,11 +303,12 @@ private fun CountersSection(
         horizontalArrangement = Arrangement.spacedBy(Spacing.space3),
         verticalAlignment = Alignment.Top,
     ) {
-        state.normalCounters.forEach { counter ->
+        state.normalCounters.forEachIndexed { index, counter ->
             val done = counter.isTargetReached && !counter.keepCountingAfterTarget
+            val held = holdFirstCard && index == 0
             CounterCard(
                 counter = counter,
-                onOpen = { onOpenCounter(counter.id) },
+                onOpen = { if (!held) onOpenCounter(counter.id) },
                 onAdd = { onIntent(HomeIntent.AddTap(counter.id)) },
                 onTogglePin = { onIntent(HomeIntent.TogglePin(counter.id)) },
                 addLabel = stringResource(R.string.a11y_add_to, counter.step, counter.name),
@@ -278,6 +333,9 @@ private fun CountersSection(
                 ofText = counter.target
                     ?.let { stringResource(R.string.home_of_target, it) }
                     ?: stringResource(R.string.home_no_target),
+                // The journey's last step points at the first card, which is the one a
+                // user with a single counter has just made.
+                modifier = if (index == 0) Modifier.journeyAnchor(firstCardAnchor) else Modifier,
             )
         }
         NewCounterCard(
@@ -352,7 +410,7 @@ private fun QuitSection(
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun EmptyState(onCreate: (quit: Boolean) -> Unit) {
+private fun EmptyState(onCreate: (quit: Boolean) -> Unit, normalChoiceAnchor: JourneyAnchor) {
     val c = TapTapTheme.colors
     Column(
         modifier = Modifier.padding(horizontal = Spacing.space4),
@@ -390,6 +448,7 @@ private fun EmptyState(onCreate: (quit: Boolean) -> Unit) {
                 icon = TapTapIcons.Plus,
                 accentFill = true,
                 onClick = { onCreate(false) },
+                modifier = Modifier.journeyAnchor(normalChoiceAnchor),
             )
             com.habitTap.ui.components.BigChoiceRow(
                 title = stringResource(R.string.home_choice_quit_title),

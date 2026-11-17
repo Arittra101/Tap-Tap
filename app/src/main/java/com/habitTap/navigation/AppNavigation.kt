@@ -2,6 +2,8 @@ package com.habitTap.navigation
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.core.os.LocaleListCompat
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -14,6 +16,8 @@ import com.habitTap.ui.counter.CounterRoute
 import com.habitTap.ui.create.CreateRoute
 import com.habitTap.ui.edit.EditRoute
 import com.habitTap.ui.home.HomeRoute
+import com.habitTap.ui.journey.JourneyController
+import com.habitTap.ui.journey.LocalJourney
 import com.habitTap.ui.quit.QuitRoute
 import com.habitTap.ui.settings.SettingsRoute
 import com.habitTap.data.repository.SettingsRepository
@@ -36,6 +40,12 @@ fun AppNavigation(modifier: Modifier = Modifier) {
     val settingsRepository = koinInject<SettingsRepository>()
     val feedback = rememberFeedback(settingsRepository.settings)
 
+    // The journey starts here rather than on Home: reaching this composable is what
+    // "past the intro slides" means, and it should not restart every time Home is
+    // recomposed or returned to.
+    val journey = koinInject<JourneyController>()
+    LaunchedEffect(journey) { journey.startIfNeeded() }
+
     fun open(key: NavKey) {
         backStack.add(key)
     }
@@ -44,6 +54,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         backStack.removeLastOrNull()
     }
 
+    CompositionLocalProvider(LocalJourney provides journey) {
     NavDisplay(
         backStack = backStack,
         modifier = modifier,
@@ -60,7 +71,11 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                     viewModel = koinViewModel(),
                     onOpenCounter = { id -> open(CounterKey(id)) },
                     onOpenQuit = { id -> open(QuitKey(id)) },
-                    onCreate = { quit -> open(CreateKey(startAsQuit = quit)) },
+                    onCreate = { quit ->
+                        // The journey teaches the normal form, so only that counts.
+                        if (!quit) journey.onCreateFormOpened()
+                        open(CreateKey(startAsQuit = quit))
+                    },
                     onSettings = { open(SettingsKey) },
                     onTapFeedback = feedback::tap,
                 )
@@ -71,7 +86,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                     viewModel = koinViewModel(),
                     startAsQuit = key.startAsQuit,
                     onBack = { goBack() },
-                    onCreated = { goBack() },
+                    onCreated = {
+                        journey.onCounterCreated()
+                        goBack()
+                    },
                 )
             }
 
@@ -121,4 +139,5 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             }
         },
     )
+    }
 }

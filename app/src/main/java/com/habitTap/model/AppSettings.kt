@@ -22,4 +22,9 @@ data class AppSettings(
      * with these defaults and would say "not seen" to someone who has already seen it.
      */
     val tutorialSeen: Boolean = false,
+    /**
+     * The guided journey on Home has been finished or stopped. Stored for the same reason
+     * as [tutorialSeen], and read the same way — from the store, never from the cache.
+     */
+    val journeyDone: Boolean = false,
 )

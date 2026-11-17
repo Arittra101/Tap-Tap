@@ -323,4 +323,11 @@
     <string name="tutorial_3_body">Выберите день, когда вы остановились. HabitTap сам считает дни без привычки и показывает, сколько вы сэкономили.</string>
     <string name="tutorial_4_title">Настройте под себя</string>
     <string name="tutorial_4_body">Цвет, фон, язык и ежедневное сообщение — всё в настройках. Всё остаётся на вашем телефоне.</string>
+
+    <!-- Guided journey on Home -->
+    <string name="journey_stop">Остановить обучение</string>
+    <string name="journey_create">Давайте создадим ваш первый счётчик. Коснитесь здесь.</string>
+    <string name="journey_name">Дайте ему имя: подходы, стаканы воды, страницы. Что угодно.</string>
+    <string name="journey_create_button">Теперь нажмите «Создать счётчик».</string>
+    <string name="journey_first_tap">Готово. Нажмите + на карточке, чтобы прибавить один.</string>
 </resources>

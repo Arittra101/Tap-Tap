@@ -9,6 +9,7 @@ import com.habitTap.ui.counter.CounterViewModel
 import com.habitTap.ui.create.CreateViewModel
 import com.habitTap.ui.edit.EditViewModel
 import com.habitTap.ui.home.HomeViewModel
+import com.habitTap.ui.journey.JourneyController
 import com.habitTap.ui.quit.QuitViewModel
 import com.habitTap.ui.settings.SettingsViewModel
 import org.koin.android.ext.koin.androidContext
@@ -34,6 +35,9 @@ val appModule = module {
     // --- Repositories ---
     single { CounterRepository(get()) }
     single { SettingsRepository(get()) }
+
+    // --- The guided journey, one for the whole app: it crosses screens. ---
+    single { JourneyController(get()) }
 
     // --- ViewModels ---
     viewModel { HomeViewModel(get(), get()) }

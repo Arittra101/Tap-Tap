@@ -312,4 +312,11 @@
     <string name="tutorial_3_body">Scegli il giorno in cui hai smesso. HabitTap conta da sé i tuoi giorni liberi e mostra quanto hai risparmiato.</string>
     <string name="tutorial_4_title">Fallo tuo</string>
     <string name="tutorial_4_body">Colore, sfondo, lingua e messaggio del giorno sono nelle Impostazioni. Tutto resta sul tuo telefono.</string>
+
+    <!-- Guided journey on Home -->
+    <string name="journey_stop">Interrompi il tutorial</string>
+    <string name="journey_create">Creiamo il tuo primo contatore. Tocca qui.</string>
+    <string name="journey_name">Dagli un nome: ripetizioni, bicchieri d\'acqua, pagine. Quello che vuoi contare.</string>
+    <string name="journey_create_button">Ora tocca Crea contatore.</string>
+    <string name="journey_first_tap">Eccolo. Tocca + sulla scheda per contare uno.</string>
 </resources>

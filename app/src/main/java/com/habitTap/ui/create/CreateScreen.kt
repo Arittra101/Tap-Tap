@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -50,6 +51,13 @@ import com.habitTap.ui.components.TapTapIcons
 import com.habitTap.ui.components.TapTapTextField
 import com.habitTap.ui.components.TopBar
 import com.habitTap.ui.components.TypeCard
+import com.habitTap.ui.journey.JourneyAnchor
+import com.habitTap.ui.journey.JourneyCoach
+import com.habitTap.ui.journey.JourneyStep
+import com.habitTap.ui.journey.LocalJourney
+import com.habitTap.ui.journey.currentJourneyStep
+import com.habitTap.ui.journey.journeyAnchor
+import com.habitTap.ui.journey.rememberJourneyAnchor
 import com.habitTap.util.currencySymbol
 import com.habitTap.util.rememberDailyMessagePermission
 import com.habitTap.ui.theme.Spacing
@@ -88,6 +96,27 @@ fun CreateScreen(
 ) {
     val c = TapTapTheme.colors
 
+    val journey = LocalJourney.current
+    val journeyStep = currentJourneyStep()
+    val nameAnchor = rememberJourneyAnchor()
+    val createAnchor = rememberJourneyAnchor()
+    // Hoisted out of the modifier below, because the journey scrolls the form itself.
+    val formScroll = rememberScrollState()
+
+    // A step has to be able to point at something the user can see. The name field is at
+    // the top of the form and the Create button is past the bottom of most screens, so
+    // the journey brings each one into view as its step begins instead of ringing a
+    // button that is not there yet.
+    LaunchedEffect(journeyStep) {
+        when (journeyStep) {
+            JourneyStep.NAME_IT -> formScroll.animateScrollTo(0)
+            // The button is the last thing on the form bar its footer, so the bottom of
+            // the scroll is where it is.
+            JourneyStep.TAP_CREATE -> formScroll.animateScrollTo(formScroll.maxValue)
+            else -> Unit
+        }
+    }
+
     // The system back goes through the same intent as the arrow, so both get the sheet.
     // While the sheet is open it handles its own back press (it dismisses), so this one
     // stands down rather than re-opening what was just closed.
@@ -106,61 +135,90 @@ fun CreateScreen(
         }
     }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(c.bg)
-            .statusBarsPadding(),
-    ) {
-        TopBar(
-            title = stringResource(R.string.create_title),
-            onBack = { onIntent(CreateIntent.Back) },
-            backLabel = stringResource(R.string.action_back),
-        )
-
+    // A Box, so the journey's character can sit on top of the form rather than
+    // becoming one more row at the bottom of it.
+    Box(modifier = modifier.fillMaxSize().background(c.bg)) {
         Column(
             modifier = Modifier
-                .weight(1f)
-                // imePadding has to come BEFORE verticalScroll: it must shrink the scroll
-                // viewport, not pad the content inside it. The other way round, the
-                // viewport still runs behind the keyboard and the focused field is hidden.
-                .imePadding()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = Spacing.space4, vertical = Spacing.space6),
-            verticalArrangement = Arrangement.spacedBy(Spacing.space6),
+                .fillMaxSize()
+                .statusBarsPadding(),
         ) {
-            TypeSection(state, onIntent)
+            TopBar(
+                title = stringResource(R.string.create_title),
+                onBack = { onIntent(CreateIntent.Back) },
+                backLabel = stringResource(R.string.action_back),
+            )
 
-            if (state.isQuit) {
-                QuitFields(state, onIntent)
-            } else {
-                NormalFields(state, onIntent)
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    // imePadding has to come BEFORE verticalScroll: it must shrink the scroll
+                    // viewport, not pad the content inside it. The other way round, the
+                    // viewport still runs behind the keyboard and the focused field is hidden.
+                    .imePadding()
+                    .verticalScroll(formScroll)
+                    .padding(horizontal = Spacing.space4, vertical = Spacing.space6),
+                verticalArrangement = Arrangement.spacedBy(Spacing.space6),
+            ) {
+                TypeSection(state, onIntent)
+
+                if (state.isQuit) {
+                    QuitFields(state, onIntent)
+                } else {
+                    NormalFields(state, onIntent, nameAnchor)
+                }
+
+                TapTapButton(
+                    text = stringResource(
+                        if (state.isQuit) R.string.create_button_quit else R.string.create_button_normal,
+                    ),
+                    onClick = { onIntent(CreateIntent.Create) },
+                    variant = ButtonVariant.Primary,
+                    enabled = state.canCreate,
+                    minHeight = 56.dp,
+                    modifier = Modifier.fillMaxWidth().journeyAnchor(createAnchor),
+                )
+
+                Text(
+                    text = stringResource(R.string.create_footer),
+                    style = TapTapType.caption,
+                    color = c.inkMuted,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                // The bottom inset, as its own spacer. Hanging navigationBarsPadding()
+                // off a fixed height() does nothing: the outer height clamps the
+                // measurement, the inset is dropped, and the navigation bar then sits
+                // on top of the last row.
+                Spacer(Modifier.height(Spacing.space4))
+                Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
             }
+        }
 
-            TapTapButton(
-                text = stringResource(
-                    if (state.isQuit) R.string.create_button_quit else R.string.create_button_normal,
-                ),
-                onClick = { onIntent(CreateIntent.Create) },
-                variant = ButtonVariant.Primary,
-                enabled = state.canCreate,
-                minHeight = 56.dp,
-                modifier = Modifier.fillMaxWidth(),
-            )
-
-            Text(
-                text = stringResource(R.string.create_footer),
-                style = TapTapType.caption,
-                color = c.inkMuted,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth(),
-            )
-            // The bottom inset, as its own spacer. Hanging navigationBarsPadding()
-            // off a fixed height() does nothing: the outer height clamps the
-            // measurement, the inset is dropped, and the navigation bar then sits
-            // on top of the last row.
-            Spacer(Modifier.height(Spacing.space4))
-            Spacer(Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
+        // The journey's two form steps. Only on the normal half: the journey teaches a
+        // normal counter, and the quit form is a different shape with no step for it.
+        if (!state.isQuit) {
+            when (journeyStep) {
+                JourneyStep.NAME_IT -> JourneyCoach(
+                    text = stringResource(R.string.journey_name),
+                    anchor = nameAnchor,
+                    onStop = { journey?.stop() },
+                    // Next appears once there is a title to go on with. Only the user
+                    // knows when they have finished typing, so the step waits for them
+                    // to say so rather than jumping on the first letter.
+                    onNext = if (state.name.isNotBlank()) {
+                        { journey?.onNamed() }
+                    } else {
+                        null
+                    },
+                )
+                JourneyStep.TAP_CREATE -> JourneyCoach(
+                    text = stringResource(R.string.journey_create_button),
+                    anchor = createAnchor,
+                    onStop = { journey?.stop() },
+                )
+                else -> Unit
+            }
         }
 
         // Leaving with a title typed and nothing saved: the sheet offers the create the
@@ -213,7 +271,11 @@ private fun TypeSection(state: CreateState, onIntent: (CreateIntent) -> Unit) {
 }
 
 @Composable
-private fun NormalFields(state: CreateState, onIntent: (CreateIntent) -> Unit) {
+private fun NormalFields(
+    state: CreateState,
+    onIntent: (CreateIntent) -> Unit,
+    nameAnchor: JourneyAnchor? = null,
+) {
     Column(verticalArrangement = Arrangement.spacedBy(Spacing.space6)) {
         TapTapTextField(
             value = state.name,
@@ -221,6 +283,7 @@ private fun NormalFields(state: CreateState, onIntent: (CreateIntent) -> Unit) {
             label = stringResource(R.string.create_name_normal),
             placeholder = stringResource(R.string.create_name_hint_normal),
             required = true,
+            modifier = if (nameAnchor != null) Modifier.journeyAnchor(nameAnchor) else Modifier,
         )
 
         SettingGroup {

@@ -340,4 +340,11 @@
     <string name="tutorial_3_body">Pick the day you stopped. HabitTap counts your days free on its own, and shows what you have saved.</string>
     <string name="tutorial_4_title">Make it yours</string>
     <string name="tutorial_4_body">Colour, background, language and the daily message are all in Settings. Everything stays on your phone.</string>
+
+    <!-- Guided journey on Home -->
+    <string name="journey_stop">Stop tutorial</string>
+    <string name="journey_create">Let\'s make your first counter. Tap here.</string>
+    <string name="journey_name">Give it a name — push-ups, glasses of water, pages. Anything you want to count.</string>
+    <string name="journey_create_button">Now tap Create counter.</string>
+    <string name="journey_first_tap">There it is. Tap + on the card to count one.</string>
 </resources>

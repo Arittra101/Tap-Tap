@@ -55,6 +55,11 @@ class SettingsRepository(private val store: SettingsStore) {
      */
     suspend fun isTutorialSeen(): Boolean = store.settings.first().tutorialSeen
 
+    suspend fun setJourneyDone() = store.setJourneyDone()
+
+    /** Read from the store once, for the same reason as [isTutorialSeen]. */
+    suspend fun isJourneyDone(): Boolean = store.settings.first().journeyDone
+
     /**
      * The tag to actually apply.
      *

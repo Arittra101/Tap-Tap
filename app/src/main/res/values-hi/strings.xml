@@ -305,4 +305,11 @@
     <string name="tutorial_3_body">वह दिन चुनें जब आपने छोड़ा था। HabitTap खुद आपके मुक्त दिन गिनेगा और बताएगा कितनी बचत हुई।</string>
     <string name="tutorial_4_title">अपने मन का बनाएँ</string>
     <string name="tutorial_4_body">रंग, पृष्ठभूमि, भाषा और रोज़ का संदेश सब सेटिंग्स में हैं। सब कुछ आपके फ़ोन में ही रहता है।</string>
+
+    <!-- Guided journey on Home -->
+    <string name="journey_stop">ट्यूटोरियल रोकें</string>
+    <string name="journey_create">चलिए आपका पहला काउंटर बनाएँ। यहाँ टैप करें।</string>
+    <string name="journey_name">इसे एक नाम दें — कसरत, पानी के गिलास, पन्ने। जो चाहें गिनें।</string>
+    <string name="journey_create_button">अब “काउंटर बनाएँ” पर टैप करें।</string>
+    <string name="journey_first_tap">यह तैयार है। गिनने के लिए कार्ड पर + टैप करें।</string>
 </resources>
