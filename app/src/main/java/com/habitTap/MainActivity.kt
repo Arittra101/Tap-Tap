@@ -4,16 +4,13 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.habitTap.data.repository.SettingsRepository
@@ -35,9 +32,30 @@ class MainActivity : AppCompatActivity() {
 
     private val settingsRepository: SettingsRepository by inject()
 
+    /**
+     * Null until the stored settings have been read.
+     *
+     * Two things wait on it: the splash screen stays up while it is null, and the first
+     * screen is chosen from it — the tutorial for someone who has not seen it, Home for
+     * everyone else. The stored default is "not seen", so deciding before the read would
+     * show the tutorial to everyone on every launch.
+     */
+    private var tutorialSeen by mutableStateOf<Boolean?>(null)
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Before super.onCreate, as the splash screen API requires. It swaps the launch
+        // theme for the app's own, so Theme.TapTap.Splash is only ever the window the
+        // system paints before this line runs.
+        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        // The splash is held until the settings are in hand. That read also fills the
+        // repository's cache, so the first frame after it is already the user's own
+        // colour and currency: the splash covers the read instead of the app flashing
+        // through it.
+        splash.setKeepOnScreenCondition { tutorialSeen == null }
+        lifecycleScope.launch { tutorialSeen = settingsRepository.awaitLoaded().tutorialSeen }
 
         setContent {
             // Seeded from the repository's cache, so a recreation (a system light/dark
@@ -49,15 +67,9 @@ class MainActivity : AppCompatActivity() {
             TapTapTheme(color = current.themeColor, mode = current.themeMode) {
                 // Every screen that draws money reads this rather than taking a parameter.
                 CompositionLocalProvider(LocalCurrencyCode provides current.currencyCode) {
-                // null until the stored flag has been read. The flag's default is "not
-                // seen", so showing the tutorial while the answer is unknown would flash
-                // it at everyone on every launch; an empty background for the one frame
-                // the read takes shows it only to the people it is for.
-                var tutorialSeen by remember { mutableStateOf<Boolean?>(null) }
-                LaunchedEffect(Unit) { tutorialSeen = settingsRepository.isTutorialSeen() }
-
                 when (tutorialSeen) {
-                    null -> Box(Modifier.fillMaxSize().background(TapTapTheme.colors.bg))
+                    // The splash is still up, so nothing here is on screen yet.
+                    null -> Unit
                     false -> TutorialScreen(
                         onDone = {
                             // Switched here and written in the background: Home should

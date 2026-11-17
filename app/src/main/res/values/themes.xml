@@ -13,4 +13,18 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
+
+    <!--
+        The launch theme (the splash screen).
+
+        The window the system paints before the app has drawn anything. Its background is
+        the same `bg` token the rest of the app starts with, so the splash does not flash a
+        different colour into the first frame, and `postSplashScreenTheme` hands over to the
+        real theme once MainActivity calls installSplashScreen().
+    -->
+    <style name="Theme.TapTap.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/tt_bg</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.TapTap</item>
+    </style>
 </resources>

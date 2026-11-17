@@ -49,13 +49,17 @@ class SettingsRepository(private val store: SettingsStore) {
     suspend fun setTutorialSeen() = store.setTutorialSeen()
 
     /**
-     * Read straight from the store, once.
+     * The stored settings, read straight from the store, once.
      *
-     * [settings] is seeded eagerly with [AppSettings] defaults, and that default says the
-     * tutorial has not been seen — collecting it would flash the tutorial at everyone on
-     * every launch until DataStore caught up.
+     * [settings] is seeded eagerly with [AppSettings] defaults, so until DataStore has
+     * answered it reports a theme, a currency and a tutorial flag that are nobody's. The
+     * launch waits on this read rather than on that cache, and awaiting it also fills the
+     * cache, so everything collecting [settings] afterwards has the real values.
      */
-    suspend fun isTutorialSeen(): Boolean = store.settings.first().tutorialSeen
+    suspend fun awaitLoaded(): AppSettings = store.settings.first()
+
+    /** Whether the first-run tutorial has been finished or skipped. */
+    suspend fun isTutorialSeen(): Boolean = awaitLoaded().tutorialSeen
 
     suspend fun setJourneyDone() = store.setJourneyDone()
 
