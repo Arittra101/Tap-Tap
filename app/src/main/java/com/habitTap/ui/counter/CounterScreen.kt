@@ -4,16 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -88,7 +90,8 @@ fun CounterScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .statusBarsPadding()
+                    // No status bar padding here: the top bar carries that inset itself,
+                    // so its surface reaches the top of the screen.
                     .navigationBarsPadding(),
             ) {
                 TopBar(
@@ -96,6 +99,10 @@ fun CounterScreen(
                     subtitle = state.notes.takeIf { it.isNotBlank() },
                     onBack = onBack,
                     backLabel = stringResource(R.string.action_back_to_home),
+                    windowInsets = WindowInsets.statusBars,
+                    // The counter's background art is already behind this screen, scrim
+                    // and all; an opaque bar would slice a band out of the top of it.
+                    containerColor = Color.Transparent,
                     action = {
                         TapTapIconButton(
                             icon = TapTapIcons.Edit,

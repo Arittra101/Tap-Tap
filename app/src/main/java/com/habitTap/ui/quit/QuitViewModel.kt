@@ -80,6 +80,7 @@ class QuitViewModel(
                             isFocus = counter.isFocus,
                             isPinned = counter.isPinned,
                             color = counter.color,
+                            background = counter.background,
                         )
                     }
                 }

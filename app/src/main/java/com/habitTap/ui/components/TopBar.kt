@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -19,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.res.painterResource
@@ -118,9 +121,30 @@ fun TopBar(
     action: (@Composable () -> Unit)? = null,
     onTitleClick: (() -> Unit)? = null,
     titleClickLabel: String? = null,
+    /**
+     * The inset the bar carries itself, painted through rather than padded around.
+     *
+     * A screen that passes [WindowInsets.statusBars] here must not also pad its own
+     * content for it: the bar's background then runs the full way up behind the status
+     * bar and only its contents sit below, so there is one unbroken band instead of a
+     * seam where the padding stopped.
+     */
+    windowInsets: WindowInsets = WindowInsets(0, 0, 0, 0),
+    /**
+     * Transparent on a screen that draws its own background art, so the art runs behind
+     * the bar instead of being cut off by it.
+     */
+    containerColor: Color = TapTapTheme.colors.bg,
 ) {
     val c = TapTapTheme.colors
-    Column(modifier = modifier.fillMaxWidth().background(c.bg)) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            // Background first, inset second: the colour fills the whole node and the
+            // padding only moves what is drawn inside it.
+            .background(containerColor)
+            .windowInsetsPadding(windowInsets),
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

@@ -1,5 +1,6 @@
 package com.habitTap.ui.quit
 
+import com.habitTap.model.Background
 import com.habitTap.model.ThemeColor
 
 /** The quit counter screen (FR-4.1 - FR-4.8). */
@@ -21,6 +22,8 @@ data class QuitState(
     val isFocus: Boolean = false,
     val isPinned: Boolean = false,
     val color: ThemeColor? = null,
+    /** FR-5.2: chosen in Edit, drawn behind this screen the way it is on a normal counter. */
+    val background: Background = Background.NONE,
     val showSlipDialog: Boolean = false,
 )
 

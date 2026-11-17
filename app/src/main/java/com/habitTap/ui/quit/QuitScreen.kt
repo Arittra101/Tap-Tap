@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.habitTap.R
+import com.habitTap.model.Background
 import com.habitTap.model.ThemeColor
 import com.habitTap.model.ThemeMode
 import com.habitTap.ui.components.BadgeState
@@ -45,6 +47,7 @@ import com.habitTap.ui.components.ButtonTextStyle
 import com.habitTap.ui.components.ButtonVariant
 import com.habitTap.ui.components.CompactContentPadding
 import com.habitTap.ui.components.ConfirmSheet
+import com.habitTap.ui.components.CounterBackground
 import com.habitTap.ui.components.DaysRing
 import com.habitTap.ui.components.IconButtonStyle
 import com.habitTap.ui.components.MilestoneBadgeData
@@ -110,7 +113,13 @@ fun QuitScreen(
         val dayScale = if (fontScale > 1.3f) 1.3f / fontScale else 1f
 
         Box(modifier = modifier.fillMaxSize().background(c.bg)) {
-            Column(Modifier.fillMaxSize().statusBarsPadding()) {
+            // FR-5.2 / FR-3.9: behind everything, with its scrim, exactly as the normal
+            // counter screen draws it.
+            CounterBackground(state.background)
+
+            // No status bar padding here: the top bar carries that inset itself, so its
+            // surface reaches the top of the screen.
+            Column(Modifier.fillMaxSize()) {
                 TopBar(
                     title = state.name,
                     subtitle = if (state.daysFree > 0) {
@@ -120,6 +129,10 @@ fun QuitScreen(
                     },
                     onBack = onBack,
                     backLabel = stringResource(R.string.action_back_to_home),
+                    windowInsets = WindowInsets.statusBars,
+                    // The counter's background art is already behind this screen, scrim
+                    // and all; an opaque bar would slice a band out of the top of it.
+                    containerColor = Color.Transparent,
                     action = {
                         TapTapIconButton(
                             icon = TapTapIcons.Edit,
@@ -454,6 +467,14 @@ private val sample = QuitState(
 @Composable
 private fun QuitPreview() {
     TapTapTheme(ThemeColor.PINK, ThemeMode.LIGHT) { QuitScreen(sample, {}, {}, {}) }
+}
+
+@Preview(name = "Quit · with a background", heightDp = 1200)
+@Composable
+private fun QuitBackgroundPreview() {
+    TapTapTheme(ThemeColor.SAFFRON, ThemeMode.LIGHT) {
+        QuitScreen(sample.copy(background = Background.WAVES, color = ThemeColor.TEAL), {}, {}, {})
+    }
 }
 
 @Preview(name = "Quit · day zero, no money, no reason", heightDp = 1200)
