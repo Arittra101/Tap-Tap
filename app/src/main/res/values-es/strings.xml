@@ -290,11 +290,11 @@
     <string name="quote_cta">Empieza un contador para dejarlo</string>
     <string name="a11y_quote_slide">Motivación. %1$s. Toca para empezar un contador para dejarlo.</string>
     <string-array name="quit_motivation_quotes">
-        <item>El primer día cuenta tanto como el día cien.</item>
-        <item>Las ganas duran unos minutos. Puedes esperar a que pasen.</item>
-        <item>Cada día que dices que no es un día que te quedas.</item>
-        <item>No estás perdiendo un hábito. Estás recuperando tiempo.</item>
-        <item>El dinero se acumula. Los días también.</item>
+        <item>Es la fuerza de voluntad la que mueve el mundo.</item>
+        <item>El único remedio para los malos hábitos son los hábitos contrarios.</item>
+        <item>Rechaza como un veneno todo aquello que te debilite.</item>
+        <item>Cuando el ser humano muere, se pudre; mientras está vivo, cambia.</item>
+        <item>Si realmente quieres hacer algo, encontrarás un camino; si no quieres, encontrarás una excusa.</item>
     </string-array>
     <string name="home_make_focus_short">Poner como foco</string>
     <string name="quit_pin">Fijar</string>

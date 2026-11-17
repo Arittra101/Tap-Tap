@@ -290,11 +290,11 @@
     <string name="quote_cta">Inizia un contatore per smettere</string>
     <string name="a11y_quote_slide">Motivazione. %1$s. Tocca per iniziare un contatore per smettere.</string>
     <string-array name="quit_motivation_quotes">
-        <item>Il primo giorno conta quanto il centesimo.</item>
-        <item>La voglia dura pochi minuti. Puoi aspettare che passi.</item>
-        <item>Ogni giorno in cui dici di no è un giorno che ti resta.</item>
-        <item>Non stai perdendo un\'abitudine. Stai recuperando tempo.</item>
-        <item>I soldi si sommano. Anche i giorni.</item>
+        <item>È la forza di volontà che muove il mondo.</item>
+        <item>L\'unico rimedio alle cattive abitudini sono le abitudini opposte.</item>
+        <item>Rifiuta come un veleno tutto ciò che ti rende debole.</item>
+        <item>Quando l\'uomo muore, marcisce; finché è vivo, cambia.</item>
+        <item>Se vuoi davvero fare qualcosa, troverai un modo; se non vuoi, troverai una scusa.</item>
     </string-array>
     <string name="home_make_focus_short">Rendi focus</string>
     <string name="quit_pin">Fissa</string>

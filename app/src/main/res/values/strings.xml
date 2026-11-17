@@ -319,11 +319,11 @@
     <string name="quote_cta">Start a quit counter</string>
     <string name="a11y_quote_slide">Motivation. %1$s. Tap to start a quit counter.</string>
     <string-array name="quit_motivation_quotes">
-        <item>Day one counts as much as day one hundred.</item>
-        <item>The feeling lasts a few minutes. You can wait it out.</item>
-        <item>Every day you say no is a day you keep.</item>
-        <item>You are not losing a habit. You are getting time back.</item>
-        <item>The money adds up. So do the days.</item>
+        <item>It is willpower that moves the world.</item>
+        <item>The only remedy for bad habits is counter habits.</item>
+        <item>Reject like poison whatever makes you weak.</item>
+        <item>When humans die, they rot; while alive, they change.</item>
+        <item>If you really want to do something, you will find a way; if you don\'t, you will find an excuse.</item>
     </string-array>
     <string name="quit_pin">Pin</string>
     <string name="quit_unpin">Unpin</string>
