@@ -118,7 +118,7 @@ The app has 6 screens: Home, New counter, Normal counter, Quit counter, Edit cou
 
 | ID | Requirement |
 | --- | --- |
-| FR-6.1 | Color theme: Pink, Teal, Saffron, Blue (default Pink). |
+| FR-6.1 | Color theme: Pink, Teal, Saffron, Blue (default Saffron). |
 | FR-6.2 | Mode: Light, Dark, System (default System). A note shows the result, for example "Phone is in dark mode, so the app uses Pink ~ Dark". |
 | FR-6.3 | Language: English, Bangla, Hindi, Russian, Spanish, Italian, each shown in its own script. |
 | FR-6.4 | Vibration switch (default on) and sound switch (default off) for every + and −. |

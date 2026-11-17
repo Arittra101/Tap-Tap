@@ -35,7 +35,7 @@ class SettingsTest {
     @Test
     fun `defaults match the requirements`() = runTest {
         val s = repo().settings.first()
-        assertEquals(ThemeColor.PINK, s.themeColor)
+        assertEquals(ThemeColor.SAFFRON, s.themeColor)
         assertEquals(ThemeMode.SYSTEM, s.themeMode)
         assertEquals("", s.languageTag)
         assertTrue("vibration defaults on (FR-6.4)", s.vibration)

@@ -7,7 +7,7 @@ package com.habitTap.model
  * if it speaks one of the six languages, else English".
  */
 data class AppSettings(
-    val themeColor: ThemeColor = ThemeColor.PINK,
+    val themeColor: ThemeColor = ThemeColor.SAFFRON,
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
     val languageTag: String = "",
     val vibration: Boolean = true,

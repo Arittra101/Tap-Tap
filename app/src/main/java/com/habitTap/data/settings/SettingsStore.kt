@@ -82,7 +82,7 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
     companion object {
         const val FILE_NAME = "settings"
 
-        val DEFAULT_COLOR = ThemeColor.PINK
+        val DEFAULT_COLOR = ThemeColor.SAFFRON
         val DEFAULT_MODE = ThemeMode.SYSTEM
         const val DEFAULT_VIBRATION = true
         const val DEFAULT_SOUND = false

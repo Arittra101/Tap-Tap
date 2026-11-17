@@ -21,7 +21,7 @@ Layout: `TopBar` (back, "Settings", an empty right slot so the title stays centr
 four groups with `label`-styled `inkMuted` headings:
 
 1. **App appearance** — "Color theme" as four `ColorSwatch`es (Pink, Teal, Saffron, Blue;
-   default Pink) each with its name beneath; then "Mode" as a Light / Dark / System
+   default Saffron) each with its name beneath; then "Mode" as a Light / Dark / System
    `SegmentedControl` (default System); then the result note in an `accentSoft` box:
    `Phone is in dark mode, so the app uses Pink ~ Dark` when System is chosen, and
    `The app uses Pink ~ Dark` otherwise.
@@ -46,7 +46,7 @@ Choosing a language calls `AppCompatDelegate.setApplicationLocales` (TT-027).
 
 ## Acceptance criteria
 
-- [ ] Four colour themes, default Pink — `FR-6.1`.
+- [ ] Four colour themes, default Saffron — `FR-6.1`.
 - [ ] Light / Dark / System, default System, with a note showing the resulting theme — `FR-6.2`.
 - [ ] Six languages, each shown in its own script — `FR-6.3`.
 - [ ] Vibration (default on) and Sound (default off) switches apply to every + and − — `FR-6.4`.

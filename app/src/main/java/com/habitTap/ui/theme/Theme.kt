@@ -35,7 +35,7 @@ val LocalIsDark = staticCompositionLocalOf { false }
  */
 @Composable
 fun TapTapTheme(
-    color: ThemeColor = ThemeColor.PINK,
+    color: ThemeColor = ThemeColor.SAFFRON,
     mode: ThemeMode = ThemeMode.SYSTEM,
     content: @Composable () -> Unit,
 ) {
