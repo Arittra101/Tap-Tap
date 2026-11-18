@@ -359,4 +359,11 @@
     <string name="home_exit_message">Your counters and streaks stay right here. Come back tomorrow and keep them going.</string>
     <string name="home_exit_confirm">Exit</string>
     <string name="home_exit_stay">Stay</string>
+
+    <!-- Notifications -->
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_daily">Daily message</string>
+    <string name="settings_notifications_help">One short note each morning for the habits you are leaving</string>
+    <string name="settings_notifications_on">On</string>
+    <string name="settings_notifications_off">Off</string>
 </resources>

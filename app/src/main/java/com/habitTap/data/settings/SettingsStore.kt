@@ -39,6 +39,7 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
         val sound = booleanPreferencesKey("sound")
         val tutorialSeen = booleanPreferencesKey("tutorial_seen")
         val journeyDone = booleanPreferencesKey("journey_done")
+        val notificationAsked = booleanPreferencesKey("notification_asked")
     }
 
     val settings: Flow<AppSettings> = dataStore.data
@@ -58,6 +59,7 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
                 sound = prefs[Keys.sound] ?: DEFAULT_SOUND,
                 tutorialSeen = prefs[Keys.tutorialSeen] ?: DEFAULT_TUTORIAL_SEEN,
                 journeyDone = prefs[Keys.journeyDone] ?: DEFAULT_JOURNEY_DONE,
+                notificationAsked = prefs[Keys.notificationAsked] ?: false,
             )
         }
 
@@ -95,6 +97,11 @@ class SettingsStore(private val dataStore: DataStore<Preferences>) {
     /** Set once, when the journey is finished or stopped. It never goes back to false. */
     suspend fun setJourneyDone() {
         dataStore.edit { it[Keys.journeyDone] = true }
+    }
+
+    /** Set once, the first time the app asks for notifications itself. */
+    suspend fun setNotificationAsked() {
+        dataStore.edit { it[Keys.notificationAsked] = true }
     }
 
     private fun String?.toThemeColor(): ThemeColor =

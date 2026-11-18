@@ -342,4 +342,11 @@
     <string name="home_exit_message">Счётчики и серии останутся на месте. Возвращайтесь завтра и продолжайте.</string>
     <string name="home_exit_confirm">Выйти</string>
     <string name="home_exit_stay">Остаться</string>
+
+    <!-- Notifications -->
+    <string name="settings_notifications">Уведомления</string>
+    <string name="settings_notifications_daily">Ежедневное сообщение</string>
+    <string name="settings_notifications_help">Короткая заметка каждое утро о привычках, которые вы бросаете</string>
+    <string name="settings_notifications_on">Включено</string>
+    <string name="settings_notifications_off">Выключено</string>
 </resources>

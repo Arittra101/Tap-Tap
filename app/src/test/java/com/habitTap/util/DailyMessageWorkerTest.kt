@@ -6,8 +6,14 @@ import android.app.NotificationManager
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import android.util.Log
+import androidx.work.Configuration
 import androidx.work.ListenableWorker
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
+import androidx.work.testing.SynchronousExecutor
 import androidx.work.testing.TestListenableWorkerBuilder
+import androidx.work.testing.WorkManagerTestInitHelper
 import com.habitTap.data.db.AppDatabase
 import com.habitTap.data.repository.CounterRepository
 import com.habitTap.model.Background
@@ -49,6 +55,16 @@ class DailyMessageWorkerTest {
 
     @Before
     fun setUp() {
+        // The worker arms the next morning before it returns, so WorkManager has to
+        // exist. SynchronousExecutor keeps that enqueue on this thread, so the test can
+        // read back what was scheduled.
+        WorkManagerTestInitHelper.initializeTestWorkManager(
+            context,
+            Configuration.Builder()
+                .setExecutor(SynchronousExecutor())
+                .setMinimumLoggingLevel(Log.ERROR)
+                .build(),
+        )
         db = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java)
             .allowMainThreadQueries().build()
         repository = CounterRepository(db.counterDao()) { now }
@@ -157,5 +173,42 @@ class DailyMessageWorkerTest {
         )
         runWorker()
         assertEquals("reminders for normal counters are out of scope for v1", 0, posted().size)
+    }
+
+    /**
+     * The chain has to re-arm itself, or the message is a one-off.
+     *
+     * This is what a periodic request used to do badly and what a one-time request does
+     * not do at all unless the worker asks for the next one. If this fails, the user gets
+     * exactly one morning message, ever.
+     */
+    @Test
+    fun `the worker arms tomorrow's run before it finishes`() = runTest {
+        repository.create(quit("Quit cigarettes", daysAgo = 3))
+
+        runWorker()
+
+        val scheduled = WorkManager.getInstance(context)
+            .getWorkInfosForUniqueWork(DailyMessageWorker.WORK_NAME)
+            .get()
+        assertEquals("one pending run, never a pile of them", 1, scheduled.size)
+        assertEquals(WorkInfo.State.ENQUEUED, scheduled.first().state)
+    }
+
+    @Test
+    fun `tomorrow is armed even when permission was refused`() = runTest {
+        shadowOf(context as Application).denyPermissions(Manifest.permission.POST_NOTIFICATIONS)
+        repository.create(quit("Quit cigarettes", daysAgo = 3))
+
+        runWorker()
+
+        val scheduled = WorkManager.getInstance(context)
+            .getWorkInfosForUniqueWork(DailyMessageWorker.WORK_NAME)
+            .get()
+        assertEquals(
+            "permission can be granted tomorrow; a chain that stopped would never notice",
+            1,
+            scheduled.size,
+        )
     }
 }

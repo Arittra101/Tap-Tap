@@ -331,4 +331,11 @@
     <string name="home_exit_message">I tuoi contatori e le tue serie restano qui. Torna domani e continua.</string>
     <string name="home_exit_confirm">Esci</string>
     <string name="home_exit_stay">Resto</string>
+
+    <!-- Notifications -->
+    <string name="settings_notifications">Notifiche</string>
+    <string name="settings_notifications_daily">Messaggio quotidiano</string>
+    <string name="settings_notifications_help">Una nota breve ogni mattina per le abitudini che stai lasciando</string>
+    <string name="settings_notifications_on">Attivo</string>
+    <string name="settings_notifications_off">Disattivato</string>
 </resources>

@@ -69,6 +69,7 @@ import com.habitTap.ui.theme.TapTapType
 import com.habitTap.ui.theme.swatch
 import com.habitTap.util.Formatters
 import com.habitTap.util.currencySymbol
+import com.habitTap.util.DailyMessagePermission
 import com.habitTap.util.rememberDailyMessagePermission
 import com.habitTap.util.currentLocale
 import java.util.Calendar
@@ -101,6 +102,10 @@ fun EditScreen(
     modifier: Modifier = Modifier,
 ) {
     val c = TapTapTheme.colors
+
+    // Hoisted out of QuitFields, for the same reason as on the New counter screen: a
+    // switch that is already on is never touched, so Save has to do the asking.
+    val notificationPermission = rememberDailyMessagePermission()
 
     // The system back goes through the same intent as the arrow, so both get the sheet.
     // A sheet already open handles its own back press, so this one stands down.
@@ -149,7 +154,11 @@ fun EditScreen(
                 ColorSection(state, onIntent)
 
                 // FR-5.8: the quit variant replaces start, step and target.
-                if (state.isQuit) QuitFields(state, onIntent) else NormalFields(state, onIntent)
+                if (state.isQuit) {
+                    QuitFields(state, onIntent, notificationPermission)
+                } else {
+                    NormalFields(state, onIntent)
+                }
 
                 SettingGroup {
                     SwitchRow(
@@ -164,7 +173,18 @@ fun EditScreen(
 
                 TapTapButton(
                     text = stringResource(R.string.action_save_changes),
-                    onClick = { onIntent(EditIntent.Save) },
+                    // As on the New counter screen: a daily message that is on has to
+                    // have been asked for, or it is a promise the app cannot keep.
+                    onClick = {
+                        if (state.isQuit && state.dailyMessageOn) {
+                            notificationPermission.request(true) { allowed ->
+                                if (!allowed) onIntent(EditIntent.ToggleDailyMessage(false))
+                                onIntent(EditIntent.Save)
+                            }
+                        } else {
+                            onIntent(EditIntent.Save)
+                        }
+                    },
                     variant = ButtonVariant.Primary,
                     enabled = state.canSave,
                     minHeight = 56.dp,
@@ -415,10 +435,13 @@ private fun NormalFields(state: EditState, onIntent: (EditIntent) -> Unit) {
 }
 
 @Composable
-private fun QuitFields(state: EditState, onIntent: (EditIntent) -> Unit) {
+private fun QuitFields(
+    state: EditState,
+    onIntent: (EditIntent) -> Unit,
+    notificationPermission: DailyMessagePermission,
+) {
     val context = LocalContext.current
     val locale = currentLocale()
-    val notificationPermission = rememberDailyMessagePermission()
 
     Column(verticalArrangement = Arrangement.spacedBy(Spacing.space6)) {
         SettingGroup {

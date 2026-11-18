@@ -331,4 +331,11 @@
     <string name="home_exit_message">Tus contadores y tus rachas seguirán aquí. Vuelve mañana y sigue sumando.</string>
     <string name="home_exit_confirm">Salir</string>
     <string name="home_exit_stay">Quedarme</string>
+
+    <!-- Notifications -->
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_notifications_daily">Mensaje diario</string>
+    <string name="settings_notifications_help">Una nota corta cada mañana para los hábitos que estás dejando</string>
+    <string name="settings_notifications_on">Activado</string>
+    <string name="settings_notifications_off">Desactivado</string>
 </resources>

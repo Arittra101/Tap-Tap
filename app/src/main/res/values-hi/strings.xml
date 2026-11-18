@@ -324,4 +324,11 @@
     <string name="home_exit_message">आपके काउंटर और स्ट्रीक यहीं रहेंगे। कल फिर आकर इन्हें जारी रखें।</string>
     <string name="home_exit_confirm">बंद करें</string>
     <string name="home_exit_stay">रुकें</string>
+
+    <!-- Notifications -->
+    <string name="settings_notifications">सूचनाएँ</string>
+    <string name="settings_notifications_daily">रोज़ का संदेश</string>
+    <string name="settings_notifications_help">जो आदतें आप छोड़ रहे हैं, उनके लिए हर सुबह एक छोटा संदेश</string>
+    <string name="settings_notifications_on">चालू</string>
+    <string name="settings_notifications_off">बंद</string>
 </resources>

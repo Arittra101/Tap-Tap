@@ -326,4 +326,11 @@
     <string name="home_exit_message">আপনার কাউন্টার আর ধারাবাহিকতা এখানেই থাকবে। কাল আবার এসে চালিয়ে যান।</string>
     <string name="home_exit_confirm">বন্ধ করুন</string>
     <string name="home_exit_stay">থাকুন</string>
+
+    <!-- Notifications -->
+    <string name="settings_notifications">নোটিফিকেশন</string>
+    <string name="settings_notifications_daily">দৈনিক বার্তা</string>
+    <string name="settings_notifications_help">যে অভ্যাস ছাড়ছেন, তার জন্য প্রতিদিন সকালে ছোট একটি বার্তা</string>
+    <string name="settings_notifications_on">চালু</string>
+    <string name="settings_notifications_off">বন্ধ</string>
 </resources>

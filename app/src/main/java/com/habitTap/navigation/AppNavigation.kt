@@ -34,7 +34,13 @@ import org.koin.core.parameter.parametersOf
  * lambdas named for what the user did, not for where they go (tech spec 5).
  */
 @Composable
-fun AppNavigation(modifier: Modifier = Modifier, onExit: () -> Unit = {}) {
+fun AppNavigation(
+    modifier: Modifier = Modifier,
+    onExit: () -> Unit = {},
+    /** A quit counter to open straight away, from a tapped notification. */
+    openQuitCounterId: Long? = null,
+    onQuitCounterOpened: () -> Unit = {},
+) {
     val backStack = rememberNavBackStack(HomeKey)
     // FR-8.4 / FR-8.5: one Feedback for the whole app, reading the live settings.
     val settingsRepository = koinInject<SettingsRepository>()
@@ -45,6 +51,17 @@ fun AppNavigation(modifier: Modifier = Modifier, onExit: () -> Unit = {}) {
     // recomposed or returned to.
     val journey = koinInject<JourneyController>()
     LaunchedEffect(journey) { journey.startIfNeeded() }
+
+    // Home stays underneath, so back from the counter goes where the user expects rather
+    // than out of the app. Reported as handled, so leaving and returning does not open it
+    // a second time.
+    LaunchedEffect(openQuitCounterId) {
+        val id = openQuitCounterId ?: return@LaunchedEffect
+        backStack.clear()
+        backStack.add(HomeKey)
+        backStack.add(QuitKey(id))
+        onQuitCounterOpened()
+    }
 
     fun open(key: NavKey) {
         backStack.add(key)

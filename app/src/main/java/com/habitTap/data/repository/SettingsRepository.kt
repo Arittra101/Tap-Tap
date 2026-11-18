@@ -63,6 +63,8 @@ class SettingsRepository(private val store: SettingsStore) {
 
     suspend fun setJourneyDone() = store.setJourneyDone()
 
+    suspend fun setNotificationAsked() = store.setNotificationAsked()
+
     /** Read from the store once, for the same reason as [isTutorialSeen]. */
     suspend fun isJourneyDone(): Boolean = store.settings.first().journeyDone
 

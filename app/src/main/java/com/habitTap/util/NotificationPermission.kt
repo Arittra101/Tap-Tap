@@ -1,15 +1,22 @@
 package com.habitTap.util
 
 import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 
 /**
  * Asking for notifications at the moment the daily message is switched on (FR-8.6).
@@ -58,4 +65,55 @@ fun rememberDailyMessagePermission(): DailyMessagePermission {
  */
 fun interface DailyMessagePermission {
     fun request(wantOn: Boolean, onResult: (Boolean) -> Unit)
+}
+
+/**
+ * Whether notifications are allowed right now, kept current across a trip to system
+ * settings.
+ *
+ * Re-read on every resume, because the answer can change while the app is in the
+ * background — which is exactly what happens when the Settings row sends the user to the
+ * system screen to turn them on.
+ */
+@Composable
+fun rememberNotificationsEnabled(): Boolean {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+    var enabled by remember { mutableStateOf(DailyMessageWorker.hasNotificationPermission(context)) }
+
+    DisposableEffect(lifecycleOwner, context) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                enabled = DailyMessageWorker.hasNotificationPermission(context)
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+    return enabled
+}
+
+/**
+ * Opens this app's notification settings.
+ *
+ * The way back for someone who has already refused: Android stops showing the permission
+ * dialog after two refusals, and from then on the system screen is the only place the
+ * decision can be changed. It is also where notifications are turned off again, and where
+ * the channel itself can be configured.
+ */
+@Composable
+fun rememberOpenNotificationSettings(): () -> Unit {
+    val context = LocalContext.current
+    return remember(context) {
+        {
+            val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                    .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+            } else {
+                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    .setData(Uri.fromParts("package", context.packageName, null))
+            }.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            runCatching { context.startActivity(intent) }
+        }
+    }
 }

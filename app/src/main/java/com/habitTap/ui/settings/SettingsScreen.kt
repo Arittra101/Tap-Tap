@@ -66,6 +66,9 @@ import com.habitTap.ui.theme.TapTapType
 import com.habitTap.ui.theme.swatch
 import com.habitTap.util.Formatters
 import com.habitTap.util.currentLocale
+import com.habitTap.util.rememberDailyMessagePermission
+import com.habitTap.util.rememberNotificationsEnabled
+import com.habitTap.util.rememberOpenNotificationSettings
 import java.util.Currency
 import java.util.Locale
 
@@ -139,6 +142,8 @@ fun SettingsScreen(
             AppearanceSection(state, onIntent)
             LanguageSection(state, onIntent)
 
+            NotificationSection()
+
             SettingGroup(heading = stringResource(R.string.settings_money)) {
                 ValueRow(
                     label = stringResource(R.string.settings_currency),
@@ -193,6 +198,42 @@ fun SettingsScreen(
             locale = locale,
             onPick = { onIntent(SettingsIntent.ChangeCurrency(it)) },
             onDismiss = { onIntent(SettingsIntent.CurrencyDismissed) },
+        )
+    }
+}
+
+/**
+ * Turning the daily message on, and the way back from a refusal.
+ *
+ * Entirely platform state — there is nothing of the app's own to keep, so this asks the
+ * system directly rather than going through the ViewModel. Tapping it when off asks for
+ * permission, and if Android has stopped showing that dialog (two refusals and it never
+ * appears again) the callback comes straight back as refused, which is the signal to open
+ * the system screen where the decision can still be changed. Tapping it when on opens the
+ * same screen, which is where it is turned off again.
+ */
+@Composable
+private fun NotificationSection() {
+    val enabled = rememberNotificationsEnabled()
+    val openSystemSettings = rememberOpenNotificationSettings()
+    val permission = rememberDailyMessagePermission()
+
+    SettingGroup(heading = stringResource(R.string.settings_notifications)) {
+        ValueRow(
+            label = stringResource(R.string.settings_notifications_daily),
+            help = stringResource(R.string.settings_notifications_help),
+            icon = TapTapIcons.Sound,
+            value = stringResource(
+                if (enabled) R.string.settings_notifications_on else R.string.settings_notifications_off,
+            ),
+            showChevron = true,
+            onClick = {
+                if (enabled) {
+                    openSystemSettings()
+                } else {
+                    permission.request(true) { granted -> if (!granted) openSystemSettings() }
+                }
+            },
         )
     }
 }

@@ -14,8 +14,8 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.work.Constraints
 import androidx.work.CoroutineWorker
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.habitTap.MainActivity
@@ -44,8 +44,12 @@ class DailyMessageWorker(
         val context = applicationContext
 
         // Asked for when the option is turned on; if it was refused, there is nothing to
-        // do and failing would just retry forever.
-        if (!hasNotificationPermission(context)) return Result.success()
+        // send today. Tomorrow is still armed: permission can be granted from system
+        // settings at any time, and a chain that stopped here would never notice.
+        if (!hasNotificationPermission(context)) {
+            scheduleNextRun()
+            return Result.success()
+        }
 
         ensureChannel(context)
         val manager = NotificationManagerCompat.from(context)
@@ -94,10 +98,21 @@ class DailyMessageWorker(
             // and this call, so the throw is handled rather than crashing the worker.
             runCatching { manager.notify(counter.id.toInt(), notification) }
         }
+
+        scheduleNextRun()
         return Result.success()
     }
 
-    /** Tapping the notification opens that quit counter. */
+    /**
+     * Arms tomorrow's run.
+     *
+     * Last, not first: scheduling with `REPLACE` cancels the work currently running —
+     * this one — so doing it before the notifications were posted would stop them being
+     * posted at all.
+     */
+    private fun scheduleNextRun() = schedule(applicationContext)
+
+    /** Tapping the notification opens that quit counter (MainActivity reads the extra). */
     private fun openCounterIntent(context: Context, counterId: Long): PendingIntent {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
@@ -145,20 +160,28 @@ class DailyMessageWorker(
         }
 
         /**
-         * Schedules the daily run, first firing at the next [DEFAULT_HOUR].
+         * Aims the next run at the coming [DEFAULT_HOUR].
          *
-         * `UPDATE` rather than `REPLACE`: rescheduling on every launch must not stack a
-         * second worker, or the user would get two notifications per counter per day.
+         * One-time work that re-arms itself at the end of every run, rather than periodic
+         * work. A `PeriodicWorkRequest` with a 24-hour period gets a flex window of the
+         * whole 24 hours, so WorkManager is free to run it at **any point** in each day:
+         * the initial delay lines up the first morning, and every day after that drifts
+         * wherever the scheduler likes. A "daily motivation message" that arrives at 4pm,
+         * then 11pm, then 2am is the bug — the feature looked unreliable because it was.
+         *
+         * `REPLACE` because the point of calling this is to re-aim at the next morning.
+         * It is called on every launch and at the end of every run, and the unique name
+         * means there is only ever one pending run however often that happens.
          */
         fun schedule(context: Context) {
-            val request = PeriodicWorkRequestBuilder<DailyMessageWorker>(24, TimeUnit.HOURS)
+            val request = OneTimeWorkRequestBuilder<DailyMessageWorker>()
                 .setInitialDelay(millisUntilNextRun(), TimeUnit.MILLISECONDS)
                 .setConstraints(Constraints.Builder().build())
                 .build()
 
-            WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            WorkManager.getInstance(context).enqueueUniqueWork(
                 WORK_NAME,
-                ExistingPeriodicWorkPolicy.UPDATE,
+                ExistingWorkPolicy.REPLACE,
                 request,
             )
         }

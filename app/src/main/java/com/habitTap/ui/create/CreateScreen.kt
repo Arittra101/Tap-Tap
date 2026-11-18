@@ -59,6 +59,7 @@ import com.habitTap.ui.journey.currentJourneyStep
 import com.habitTap.ui.journey.journeyAnchor
 import com.habitTap.ui.journey.rememberJourneyAnchor
 import com.habitTap.util.currencySymbol
+import com.habitTap.util.DailyMessagePermission
 import com.habitTap.util.rememberDailyMessagePermission
 import com.habitTap.ui.theme.Spacing
 import com.habitTap.ui.theme.TapTapTheme
@@ -95,6 +96,10 @@ fun CreateScreen(
     modifier: Modifier = Modifier,
 ) {
     val c = TapTapTheme.colors
+
+    // Hoisted out of QuitFields: the switch is on by default, so the permission has to
+    // be asked for when the counter is created, not only when the switch is touched.
+    val notificationPermission = rememberDailyMessagePermission()
 
     val journey = LocalJourney.current
     val journeyStep = currentJourneyStep()
@@ -163,7 +168,7 @@ fun CreateScreen(
                 TypeSection(state, onIntent)
 
                 if (state.isQuit) {
-                    QuitFields(state, onIntent)
+                    QuitFields(state, onIntent, notificationPermission)
                 } else {
                     NormalFields(state, onIntent, nameAnchor)
                 }
@@ -172,7 +177,22 @@ fun CreateScreen(
                     text = stringResource(
                         if (state.isQuit) R.string.create_button_quit else R.string.create_button_normal,
                     ),
-                    onClick = { onIntent(CreateIntent.Create) },
+                    // The daily message is on by default, and asking only when the
+                    // switch is touched meant the common path — leave it on, press
+                    // Create — never asked for notifications at all, so the message
+                    // never arrived. Asked here instead, at the moment the user commits
+                    // to a counter that wants one. A refusal creates the counter anyway,
+                    // with the message off rather than on and silent.
+                    onClick = {
+                        if (state.isQuit && state.dailyMessageOn) {
+                            notificationPermission.request(true) { allowed ->
+                                if (!allowed) onIntent(CreateIntent.ToggleDailyMessage(false))
+                                onIntent(CreateIntent.Create)
+                            }
+                        } else {
+                            onIntent(CreateIntent.Create)
+                        }
+                    },
                     variant = ButtonVariant.Primary,
                     enabled = state.canCreate,
                     minHeight = 56.dp,
@@ -334,10 +354,13 @@ private fun NormalFields(
 }
 
 @Composable
-private fun QuitFields(state: CreateState, onIntent: (CreateIntent) -> Unit) {
+private fun QuitFields(
+    state: CreateState,
+    onIntent: (CreateIntent) -> Unit,
+    notificationPermission: DailyMessagePermission,
+) {
     val c = TapTapTheme.colors
     val context = LocalContext.current
-    val notificationPermission = rememberDailyMessagePermission()
 
     Column(verticalArrangement = Arrangement.spacedBy(Spacing.space6)) {
         Column(verticalArrangement = Arrangement.spacedBy(Spacing.space3)) {

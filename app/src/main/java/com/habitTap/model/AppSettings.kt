@@ -32,4 +32,12 @@ data class AppSettings(
      * as [tutorialSeen], and read the same way — from the store, never from the cache.
      */
     val journeyDone: Boolean = false,
+    /**
+     * The app has asked for notification permission once, on its own.
+     *
+     * Stored so the ask happens once and never again: Android only shows the dialog
+     * twice, and a prompt on every launch would burn both and teach the user to refuse.
+     * Settings still has a row for turning it on later.
+     */
+    val notificationAsked: Boolean = false,
 )
